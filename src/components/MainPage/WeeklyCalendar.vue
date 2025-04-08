@@ -1,9 +1,7 @@
 <script setup></script>
 
 <template>
-  <div id="app">
-    <router-view />
-  </div>
+  <div class="weekly-container"></div>
 </template>
 
 <style scoped></style>

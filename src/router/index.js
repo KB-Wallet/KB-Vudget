@@ -5,8 +5,11 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      // 지연로딩 적용!
       component: () => import('@/pages/Home.vue'),
+    },
+    {
+      path: '/main',
+      component: () => import('@/pages/MainPage.vue'),
     },
   ],
 })

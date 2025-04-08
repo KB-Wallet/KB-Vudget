@@ -12,6 +12,7 @@
     "db": "json-server --watch db.json --port 5000"
   },
   "dependencies": {
+    "@vuepic/vue-datepicker": "^11.0.2",
     "axios": "^1.8.4",
     "bootstrap": "^5.3.3",
     "bootstrap5": "^1.1.9",
