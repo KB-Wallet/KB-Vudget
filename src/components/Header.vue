@@ -1,7 +1,9 @@
 <script setup></script>
 
 <template>
-  <div>헤더</div>
+  <div>
+    <img src="@/icons/vudget.svg" alt="로고" />
+  </div>
 </template>
 
 <style scoped></style>
