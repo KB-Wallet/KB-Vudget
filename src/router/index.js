@@ -1,0 +1,13 @@
+import { createRouter, createWebHistory } from 'vue-router'
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
+    {
+      path: '/',
+      // 지연로딩 적용!
+      component: () => import('@/pages/Home.vue'),
+    },
+  ],
+})
+export default router
