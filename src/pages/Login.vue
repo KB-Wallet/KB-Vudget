@@ -66,18 +66,18 @@
 .logo_container {
   position: absolute;
   height: 100%;
-  bottom: 30%;
+  bottom: 35%;
   display: flex;
   justify-content: flex-end;
   padding-left: 30%;
 }
 .logo {
-  width: 400px;
+  width: 300px;
   height: auto;
 }
 .signin {
   text-align: center;
-  margin-top: 100px;
+  margin-top: 60px;
 }
 .signin-text {
   font-size: 16px;
@@ -92,18 +92,18 @@
 }
 .introduce {
   text-align: left;
-  padding-left: 250px;
-  padding-top: 30px;
+  padding-left: 150px;
+  padding-top: 10px;
   font-size: 20px;
 }
 .loginForm {
-  margin: 40px auto;
+  margin: 20px auto;
   padding: 30px;
 }
 
 .ID-input,
 .PW-input {
-  width: 60%;
+  width: 70%;
   height: 60px;
   padding-top: 10px;
   margin-bottom: 15px;
@@ -118,10 +118,10 @@
   padding-left: 40px;
 }
 .PW-input {
-  margin: 40px;
+  margin: 20px;
 }
 .login_button {
-  width: 60%;
+  width: 70%;
   height: 60px;
   background-color: #ffbc00;
   border: none;
