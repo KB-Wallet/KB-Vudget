@@ -1,8 +1,9 @@
+<script setup></script>
 <template>
   <div class="container">
     <div class="left-half">
       <div class="logo_container">
-        <img src="@/icons/vudget.svg" alt="logo" class="logo" />
+        <img src="@/icons/Welcome Vudget.svg" alt="logo" class="logo" />
       </div>
     </div>
 
@@ -19,20 +20,26 @@
             <br />
             이제는 돈의 흐름을 한눈에 확인하세요.
             <br />
-            지출을 정리하고, 소비를 통제하며, 더 나은 내일을 위한 첫걸음.
+            지출을 정리하고, 소비를 통제하며,
+            <br />
+            더 나은 내일을 위한 첫걸음.
             <br />
             지금 바로 가계부를 시작해보세요.
           </p>
         </div>
         <div class="loginForm">
-          <p><input class="ID-input" name="uid" placeholder=" Email address" /><br /></p>
+          <p><input class="ID-input" name="uid" placeholder="Email address" /><br /></p>
           <p>
-            <input name="upw" class="PW-input" placeholder=" Password" type="password" />
+            <input name="upw" class="PW-input" placeholder="Password" type="password" />
           </p>
           <p>
             <button type="submit" class="login_button">Login</button>
           </p>
         </div>
+        <p class="find_info">
+          Lost your ID or PW?
+          <span class="link" @click="">Click it</span>
+        </p>
       </div>
     </div>
   </div>
@@ -62,10 +69,10 @@
   bottom: 30%;
   display: flex;
   justify-content: flex-end;
-  padding-left: 40%;
+  padding-left: 30%;
 }
 .logo {
-  width: 200px;
+  width: 400px;
   height: auto;
 }
 .signin {
@@ -81,32 +88,49 @@
 }
 .head_introduce {
   padding-top: 15px;
+  font-size: 50px;
 }
 .introduce {
   text-align: left;
-  padding-left: 40px;
+  padding-left: 250px;
   padding-top: 30px;
+  font-size: 20px;
 }
 .loginForm {
   margin: 40px auto;
   padding: 30px;
 }
+
 .ID-input,
 .PW-input {
   width: 60%;
-  height: 40px;
+  height: 60px;
   padding-top: 10px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  border: 1px solid #f0f0f0;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 17px;
   box-sizing: border-box;
   transition: border-color 0.2s;
+
+  text-align: left;
+  padding-left: 40px;
+}
+.PW-input {
+  margin: 40px;
 }
 .login_button {
   width: 60%;
-  height: 40px;
+  height: 60px;
   background-color: #ffbc00;
+  border: none;
   border-radius: 6px;
+  color: white;
+  font-size: 20px;
+  margin: 40px 0 5px 0;
+}
+.find_info {
+  font-size: 16px;
 }
 </style>
