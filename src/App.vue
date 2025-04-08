@@ -1,7 +1,10 @@
-<script setup></script>
+<script setup>
+import '@/assets/main.css'
+import Login from './pages/Login.vue'
+</script>
 
 <template>
-  <div>vudget</div>
+  <Login />
 </template>
 
 <style scoped></style>
