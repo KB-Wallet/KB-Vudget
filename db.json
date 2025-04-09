@@ -5,7 +5,7 @@
       "username": "jiyoon123",
       "email": "jiyoon@example.com",
       "password": "password123",
-      "profileImg": "url/to/profile.jpg",
+      "profileImg": "src/icons/profile.svg",
       "targetBudget": 2000000,
       "categories": [
         { "type": "income", "name": "월급" },
