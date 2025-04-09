@@ -43,6 +43,11 @@ const router = createRouter({
       name: editmaypage,
       component: () => import('@/pages/EditMyPage.vue'),
     },
+    {
+      path: '/Findinfo',
+      name: findinfo,
+      component: () => import('@/pages/Findinfo.vue'),
+    },
   ],
 })
 export default router
