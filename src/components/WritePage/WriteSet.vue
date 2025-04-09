@@ -7,7 +7,8 @@ const amount = ref()
 const place = ref('')
 const memo = ref('')
 const today = ref('')
-const catelist = ref(['식비', '주거비', '교통비', '쇼핑', '여가비', '보험비', '기타']) // 수정
+const catelist = ref(['식비', '주거비', '교통비', '쇼핑', '여가비', '보험비', '기타'])
+const payment = ref('')
 const incomes = reactive({
   id: 1,
   userId: 1,
@@ -32,7 +33,12 @@ const cateClick = ref(false)
 const none_style = ref({ display: 'none' }) // 수정
 
 const send_list = function () {
-  console.log('ddd', expenses, incomes, expenses.id) // 수정
+  incomes.amount = amount.value
+  incomes.date = today.value
+  incomes.category = cate.value
+  incomes.description = memo.value
+  incomes.vendor = place.value
+  incomes.payment = payment.value
 }
 
 const changeRevenue = function () {}
@@ -72,21 +78,23 @@ const cate_click = function () {
             <li v-for="i in catelist" :key="i" @click="cate = i">{{ i }}</li>
           </ul>
         </div>
-        <input
-          type="text"
-          placeholder=" 금액"
-          class="amount spend-place input-box"
-          v-model="amount"
-        />
       </div>
+      <input
+        type="text"
+        placeholder=" 금액"
+        class="amount spend-place input-box"
+        v-model="amount"
+      />
       <div class="container-input">
         <div>
-          <input
-            type="text"
-            placeholder=" 지출장소"
-            class="spend-place input-box-below"
-            v-model="place"
-          />
+          <span>
+            <input
+              type="text"
+              placeholder=" 지출장소"
+              class="spend-place input-box-below"
+              v-model="place"
+            />
+          </span>
         </div>
         <div>
           <input
@@ -99,7 +107,28 @@ const cate_click = function () {
         <div>
           <input type="text" placeholder=" 날짜" class="date input-box-below" v-model="today" />
         </div>
-        <div class="">사진박스</div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="payment"
+            id="cash"
+            v-model="payment"
+            value="현금"
+          />
+          <label class="form-check-label" for="cash"> 현금 </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="payment"
+            id="credit_card"
+            v-model="payment"
+            value="카드"
+          />
+          <label class="form-check-label" for="credit_card"> 카드 </label>
+        </div>
         <button class="btn-confirm" @click="send_list">continue</button>
       </div>
     </div>
@@ -107,10 +136,6 @@ const cate_click = function () {
 </template>
 
 <style scoped>
-body {
-  /* position: absolute; */
-  /* left: 300px; */
-}
 .revenue-cost-box {
   position: relative;
   top: -30px;
@@ -222,5 +247,12 @@ li {
 }
 li:hover {
   background-color: #8a8d8f;
+}
+.payment-box {
+  position: relative;
+  bottom: 10px;
+  left: 15px;
+  border: 1px solid #8a8d8f;
+  border-radius: 5px;
 }
 </style>

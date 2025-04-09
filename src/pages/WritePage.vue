@@ -34,7 +34,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-@media (max-width: 832px) {
+/* @media (max-width: 832px) {
   div {
     display: flex;
     justify-content: center;
@@ -53,5 +53,5 @@ body {
     bottom: 100px;
     left: 200px;
   }
-}
+} */
 </style>
