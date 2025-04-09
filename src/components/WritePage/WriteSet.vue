@@ -2,61 +2,105 @@
 import axios from 'axios'
 import { reactive, ref } from 'vue'
 
+const cate = ref('')
+const amount = ref()
+const place = ref('')
+const memo = ref('')
+const today = ref('')
+const catelist = ref(['식비', '주거비', '교통비', '쇼핑', '여가비', '보험비', '기타']) // 수정
 const incomes = reactive({
   id: 1,
-  userid: 1,
-  amount: 1,
-  date: '',
-  category: '',
-  description: '',
-  payment: 0,
-  vendor: '',
+  userId: 1,
+  amount: 3000000,
+  date: '2025-03-01',
+  category: '월급',
+  description: '3월 월급',
+  payment: '이체',
+  vendor: '회사',
 })
 const expenses = reactive({
   id: 1,
-  userid: 1,
+  userId: 1,
   amount: 1,
   date: '',
   category: '',
   description: '',
-  payment: 0,
+  payment: '',
   vendor: '',
 })
-// const
-const add_list = function () {
-  console.log(expenses, incomes, expenses.value.id)
+const cateClick = ref(false)
+const none_style = ref({ display: 'none' }) // 수정
+
+const send_list = function () {
+  console.log('ddd', expenses, incomes, expenses.id) // 수정
 }
+
 const changeRevenue = function () {}
 const changeCost = function () {}
+
+const cate_click = function () {
+  console.log(cateClick.value) // 수정
+  if (cateClick.value === false) {
+    none_style.value = { display: 'block' } // 수정
+  } else {
+    none_style.value = { display: 'none' } // 수정
+  }
+  cateClick.value = !cateClick.value // 수정
+  // console.log(cate)
+}
 </script>
 
 <template>
   <body>
     <div class="revenue-cost-box">
-      <span class="set-revenue" @click="changeRevenue"
-        ><div>수입</div>
-        <p class="small-write">Choose Income</p></span
-      >
-      <span class="set-cost" @click="changeCost"
-        ><div>지출</div>
-        <p class="small-write">Choose Expenditure</p></span
-      >
+      <span class="set-revenue" @click="changeRevenue">
+        <div>수입</div>
+        <p class="small-write">Choose Income</p>
+      </span>
+      <span class="set-cost" @click="changeCost">
+        <div>지출</div>
+        <p class="small-write">Choose Expenditure</p>
+      </span>
     </div>
 
     <div class="input-all">
-      <div>
+      <div @click="cate_click">
         <span class="category spend-place input-box">카테고리 ▼</span>
         <!-- 카테고리 클릭시 이벤트 추가 예정 -->
-        <input type="text" placeholder=" 금액" class="amount spend-place input-box" />
+        <div class="cate-list" :style="none_style">
+          <ul>
+            <li v-for="i in catelist" :key="i" @click="cate = i">{{ i }}</li>
+          </ul>
+        </div>
+        <input
+          type="text"
+          placeholder=" 금액"
+          class="amount spend-place input-box"
+          v-model="amount"
+        />
       </div>
       <div class="container-input">
-        <div><input type="text" placeholder=" 지출장소" class="spend-place input-box-below" /></div>
         <div>
-          <input type="text" placeholder=" 한 줄 메모" class="small-memo input-box-below" />
+          <input
+            type="text"
+            placeholder=" 지출장소"
+            class="spend-place input-box-below"
+            v-model="place"
+          />
         </div>
-        <div><input type="text" placeholder=" 날짜" class="date input-box-below" /></div>
+        <div>
+          <input
+            type="text"
+            placeholder=" 한 줄 메모"
+            class="small-memo input-box-below"
+            v-model="memo"
+          />
+        </div>
+        <div>
+          <input type="text" placeholder=" 날짜" class="date input-box-below" v-model="today" />
+        </div>
         <div class="">사진박스</div>
-        <button class="btn-confirm" @click="add_list">continue</button>
+        <button class="btn-confirm" @click="send_list">continue</button>
       </div>
     </div>
   </body>
@@ -153,5 +197,30 @@ body {
   bottom: 70px;
   position: inherit;
   left: 140px;
+}
+.cate-list {
+  position: absolute;
+  z-index: 3;
+  /* border: 1px solid #8a8d8f; */
+  border-radius: 4px;
+  /* background-color: #eef2f5; */
+  width: 138px;
+  left: 10px;
+  top: 30px;
+}
+li {
+  list-style-type: none;
+  border: 1px solid #8a8d8f;
+  margin: 0;
+  background-color: #eef2f5;
+  position: relative;
+  top: -15px;
+  left: -40px;
+  padding: 5px;
+  width: 120px;
+  border-radius: 5px;
+}
+li:hover {
+  background-color: #8a8d8f;
 }
 </style>
