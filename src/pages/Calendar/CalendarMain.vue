@@ -87,20 +87,6 @@ function updateMonthlyStats() {
   }
 }
 
-// 현재 일에 해당하는 통계를 stats에서 찾아서 반영
-// function updateMonthlyStats() {
-//   const monthStr = `${currentYear.value}-${String(currentMonth.value + 1).padStart(2, '0')}`
-//   const stat = stats.value.find((item) => item.month === monthStr)
-
-//   if (stat) {
-//     totalIncomeMonth.value = stat.totalIncome
-//     totalExpensesMonth.value = stat.totalExpenses
-//   } else {
-//     totalIncomeMonth.value = 0
-//     totalExpensesMonth.value = 0
-//   }
-// }
-
 // 통계 데이터 불러온 후 업데이트
 onMounted(async () => {
   try {
@@ -115,6 +101,34 @@ onMounted(async () => {
 // 월 변경 감지
 watch([currentYear, currentMonth, stats], () => {
   updateMonthlyStats()
+})
+
+const totalIncomeDay = ref([])
+const totalExpensesDay = ref([])
+const dailyTotals = ref({})
+
+function incomeDailyStats() {
+  const dayStr = `${currentYear.value}-${String(currentMonth.value + 1).padStart(2, '0')}-${String(date.value + 1).padStart(2, '0')}`
+  const dateincomes = incomes.value.find((item) => {
+    item.date === dayStr
+  })
+  const dateexpenses = expenses.value.find((item) => {
+    item.date === dayStr
+  })
+
+  if (dateincomes) {
+    totalIncomeDay.value = dateincome.amount
+  } else if (dateexpenses) {
+    totalExpensesDay.value = dateexpenses.amount
+  } else {
+    totalIncomeDay.value = 0
+    totalExpensesDay.value = 0
+  }
+}
+
+//월 변경 감지 중 일 수입/지출
+watch([incomes, expenses], () => {
+  calculateDailyTotals()
 })
 </script>
 
@@ -144,9 +158,20 @@ watch([currentYear, currentMonth, stats], () => {
         @click="handleDayClick(day)"
       >
         <div class="day-number">{{ day.date.getDate() }}</div>
-        <ul class="notes">
-          <li v-for="(note, i) in day.notes" :key="i">• {{ note }}</li>
-        </ul>
+        <div class="amounts" v-if="!day.inactive">
+          <div
+            v-if="dailyTotals[formatDateKey(day.date)]?.income"
+            style="color: blue; font-size: 0.75rem"
+          >
+            +{{ dailyTotals[formatDateKey(day.date)].income.toLocaleString() }}
+          </div>
+          <div
+            v-if="dailyTotals[formatDateKey(day.date)]?.expense"
+            style="color: red; font-size: 0.75rem"
+          >
+            -{{ dailyTotals[formatDateKey(day.date)].expense.toLocaleString() }}
+          </div>
+        </div>
       </div>
     </div>
 
