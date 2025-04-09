@@ -10,8 +10,12 @@ const router = createRouter({
     },
     {
       path: '/mypage',
-      
-    }
+      component: () => import('@/components/MyPage.vue'),
+    },
+    {
+      path: '/mypage/edit',
+      component: () => import('@/components/EditMyPage.vue'),
+    },
   ],
 })
 export default router

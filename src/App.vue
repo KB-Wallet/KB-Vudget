@@ -1,9 +1,9 @@
-<script setup>
-import MyPage from './components/MyPage.vue'
-</script>
+<script setup></script>
 
 <template>
-  <MyPage />
+  <div id="app">
+    <router-view />
+  </div>
 </template>
 
 <style scoped></style>
