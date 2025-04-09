@@ -138,4 +138,7 @@ ul {
   position: relative;
   left: 270px;
 }
+/* @media (max-width: 832px) {
+} */
+/* 428 832 */
 </style>

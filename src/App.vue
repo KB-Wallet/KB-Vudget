@@ -34,4 +34,24 @@ body {
   justify-content: center;
   align-items: center;
 }
+@media (max-width: 832px) {
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1px;
+    position: absolute;
+    left: -170px;
+  }
+  .write-box {
+    position: relative;
+    right: 200px;
+    top: 800px;
+  }
+  .list-box {
+    position: relative;
+    bottom: 100px;
+    left: 200px;
+  }
+}
 </style>

@@ -1,4 +1,12 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+const amount = ref()
+const date = ref()
+const cate = ref()
+const place = ref()
+const memo = ref()
+const add_list = function () {}
+</script>
 
 <template>
   <body>
@@ -26,7 +34,7 @@
         </div>
         <div><input type="text" placeholder=" 날짜" class="date input-box-below" /></div>
         <div class="">사진박스</div>
-        <button class="btn-confirm">continue</button>
+        <button class="btn-confirm" @click="add_list">continue</button>
       </div>
     </div>
   </body>
