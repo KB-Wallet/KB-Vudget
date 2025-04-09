@@ -13,23 +13,30 @@
       >
     </div>
 
-    <div>
-      <span class="category spend-place input-box">카테고리 ▼</span>
-      <!-- 카테고리 클릭시 이벤트 추가 예정 -->
-      <input type="text" placeholder=" 금액" class="amount spend-place input-box" />
-    </div>
-
-    <div class="container-input">
-      <div><input type="text" placeholder=" 지출장소" class="spend-place input-box-below" /></div>
-      <div><input type="text" placeholder=" 한 줄 메모" class="small-memo input-box-below" /></div>
-      <div><input type="text" placeholder=" 날짜" class="date input-box-below" /></div>
-      <div class="">사진박스</div>
-      <button class="btn-confirm">continue</button>
+    <div class="input-all">
+      <div>
+        <span class="category spend-place input-box">카테고리 ▼</span>
+        <!-- 카테고리 클릭시 이벤트 추가 예정 -->
+        <input type="text" placeholder=" 금액" class="amount spend-place input-box" />
+      </div>
+      <div class="container-input">
+        <div><input type="text" placeholder=" 지출장소" class="spend-place input-box-below" /></div>
+        <div>
+          <input type="text" placeholder=" 한 줄 메모" class="small-memo input-box-below" />
+        </div>
+        <div><input type="text" placeholder=" 날짜" class="date input-box-below" /></div>
+        <div class="">사진박스</div>
+        <button class="btn-confirm">continue</button>
+      </div>
     </div>
   </body>
 </template>
 
 <style scoped>
+body {
+  /* position: absolute; */
+  /* left: 300px; */
+}
 .revenue-cost-box {
   position: relative;
   top: -30px;
@@ -37,16 +44,19 @@
 .set-revenue,
 .set-cost {
   padding: 1rem;
+  /* margin: rem; */
   width: 150px;
-  height: 100px;
-  left: 10px;
+  height: 80px;
+  left: 50px;
   position: absolute;
-  top: -150px;
+  bottom: 100px;
   border-radius: 10px;
   border: 1px solid #8a8d8f;
   font-size: 2rem;
 }
 .set-revenue {
+  left: 150px;
+  /* bottom: 1px; */
 }
 .set-revenue:active {
   border: #2b46f9 solid 1px;
@@ -54,7 +64,7 @@
   /* color: #2b46f9 solid 1px; */
 }
 .set-cost {
-  left: 250px;
+  left: 400px;
 }
 .set-cost:active {
   border: #ff4e4e solid 1px;
@@ -85,6 +95,7 @@
 .input-box {
   border: 1px solid #8a8d8f;
   border-radius: 4px;
+  background-color: #8a8d8f29;
 }
 .input-box-below {
   padding: 1rem;
@@ -107,5 +118,10 @@
 }
 .btn-confirm:active {
   border: #8a8d8f 1px solid;
+}
+.input-all {
+  bottom: 70px;
+  position: inherit;
+  left: 140px;
 }
 </style>

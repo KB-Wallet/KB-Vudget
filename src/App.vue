@@ -6,17 +6,32 @@ import WriteSet from './components/WritePage/WriteSet.vue'
 <template>
   <body>
     <div>
-      <DailyList />
-    </div>
-    <div>
-      <WriteSet class="dd" />
+      <DailyList class="list-box" />
+
+      <WriteSet class="write-box" />
     </div>
   </body>
 </template>
 
 <style scoped>
-.dd {
+.write-box {
   position: relative;
-  left: 500px;
+  left: 200px;
+  top: 250px;
+}
+.list-box {
+  position: relative;
+  bottom: 100px;
+  /* left: 200px; */
+}
+body > div {
+  right: 300px;
+  position: relative;
+  /* border: 1px solid black; */
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
