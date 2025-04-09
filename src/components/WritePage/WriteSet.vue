@@ -1,7 +1,7 @@
 <script setup>
 import axios from 'axios'
 import { ref } from 'vue'
-axios
+
 const incomes = ref({
   id: ref(),
   userid: ref(),

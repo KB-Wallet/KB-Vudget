@@ -1,13 +1,15 @@
 <script setup>
 import axios from 'axios'
-const API_URL = 'http://localhost:5500/posts'
+const API_URL = 'http://localhost:5000/'
 import { ref, onMounted } from 'vue'
-
+const users = ref([])
+const incomes = ref([])
+const expenses = ref([])
 const fetchData = async () => {
   try {
-    const response = await axios.get('http://localhost:5500/posts')
+    const response = await axios.get('http://localhost:5000/')
     const { users: usersData, incomes: incomesData, expenses: expensesData } = response.data
-
+    console.log(response)
     // 받아온 데이터를 상태 변수에 저장
     users.value = usersData
     incomes.value = incomesData
@@ -16,10 +18,11 @@ const fetchData = async () => {
     console.error('Error fetching data:', error)
   }
 }
-const users = ref([])
-const incomes = ref([])
-const expenses = ref([])
-onMounted(fetchData)
+
+onMounted(fetchData())
+const check = function () {
+  console.log('users.value', users)
+}
 </script>
 
 <template>
@@ -41,7 +44,7 @@ onMounted(fetchData)
     </div>
   </body>
 
-  <button class="move-total" @click="">전체 내역 보기→</button>
+  <button class="move-total" @click="check">전체 내역 보기→</button>
 </template>
 
 <style scoped>
