@@ -5,6 +5,10 @@ import { onMounted } from 'vue'
 onMounted(() => {
   console.log(db)
 })
+
+// function logout(()=>{
+
+// })
 </script>
 
 <template>
@@ -16,10 +20,17 @@ onMounted(() => {
           <img src="@/icons/user.svg" alt="" />
         </div>
         <div>
-          <p>이름:{{ db.users[0].username }}</p>
-          <p>이메일: {{ db.users[0].email }}</p>
-          <p>목표예산: {{ db.users[0].targetBudget.toLocaleString() }}원</p>
-          <p>투자성향: 쇼핑왕</p>
+          <p>
+            <span class="label">이름:</span><span class="value">{{ db.users[0].username }}</span>
+          </p>
+          <p>
+            <span class="label">이메일:</span><span class="value">{{ db.users[0].email }}</span>
+          </p>
+          <p>
+            <span class="label">목표예산:</span
+            ><span class="value">{{ db.users[0].targetBudget.toLocaleString() }}원</span>
+          </p>
+          <p><span class="label">투자성향:</span><span class="value">쇼핑왕</span></p>
         </div>
       </div>
     </div>
@@ -37,11 +48,12 @@ onMounted(() => {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 40px 60px;
 }
 
 .mypage-Lcontainer {
   display: flex;
-  width: 70%;
+  width: 75%;
   border: 1px solid lightgray;
   border-radius: 20px;
   overflow: hidden;
@@ -60,6 +72,18 @@ h2 {
   width: 20%;
   border-radius: 20px;
   position: relative;
+}
+
+.label {
+  display: inline-block;
+  width: 100px; /* 너비 조정 가능 */
+  text-align: right;
+  margin-right: 60px;
+}
+
+.value {
+  display: inline-block;
+  margin-left: 100px;
 }
 
 .profile-container {
@@ -84,10 +108,12 @@ h2 {
   text-align: left;
   justify-content: center;
   font-size: 1.4rem;
+  gap: 20px;
   font-weight: bold;
   overflow-wrap: break-word;
   white-space: normal;
-  margin-left: 300px;
+  margin-left: 0;
+  padding-left: 20px;
 }
 .profile-container > div > img {
   width: 250px;
@@ -96,13 +122,13 @@ h2 {
 .link {
   text-decoration: none;
   color: white;
-  font-size: 2rem;
-  padding: 30px;
+  font-size: 1.5rem;
+  padding: 20px;
   text-align: center;
   border-bottom: 1px solid white;
 }
 .logout-btn {
-  padding: 10px 0;
+  padding: 20px;
   position: absolute;
   bottom: 0;
   border: none;

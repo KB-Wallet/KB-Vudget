@@ -1,22 +1,9 @@
 <script setup>
-import { ref } from 'vue'
-const profileImage = ref(null)
-// const name = ref('이승리')
-// const email = ref('test123@abc.com')
-// const phone = ref('010-1234-5678')
-// const password = ref('')
-// const confirmPassword = ref('')
-// const budget = ref('1,000,000원')
-function onFileChange(e) {
-  const file = e.target.files[0]
-  if (file) {
-    profileImage.value = URL.createObjectURL(file)
-  }
-}
+import { reactive, onMounted, ref, computed } from 'vue'
 import db from '@/../db.json'
-import { reactive, onMounted } from 'vue'
+import defaultProfile from '@/icons/user.svg'
 
-// form 객체로 관리 (reactive 사용!)
+const profileImage = ref(null)
 const form = reactive({
   name: '',
   email: '',
@@ -26,142 +13,205 @@ const form = reactive({
 })
 
 onMounted(() => {
-  // 예시로 첫 번째 사용자 데이터를 form에 바인딩
   const user = db.users[0]
   if (user) {
     form.name = user.username
     form.email = user.email
-    form.password = user.password
-    form.budget = user.targetBudget || '1,000,000원' // targetBudget에서 가져오기
+    form.password = ''
+    form.confirmPassword = ''
+    form.budget = user.targetBudget || '1000000'
   }
 })
+
+const passwordMatchMessage = computed(() => {
+  if (!form.password && !form.confirmPassword) return ''
+  return form.password === form.confirmPassword
+    ? '비밀번호가 일치합니다.'
+    : '비밀번호가 일치하지 않습니다.'
+})
+
+const formattedBudget = computed(() => {
+  const raw = form.budget.toString().replace(/[^0-9]/g, '')
+  if (!raw) return ''
+  return parseInt(raw).toLocaleString()
+})
 </script>
+
 <template>
-  <div class="page">
-    <header class="header">
-      <h1 class="logo">Vudget</h1>
-      <div class="profile-icon">
-        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="User Icon" />
-      </div>
-    </header>
-    <main class="main">
-      <div class="left-section">
+  <div class="mypage-container">
+    <div class="mypage-Lcontainer">
+      <div class="profile-container">
         <h2>회원정보수정</h2>
-        <div class="profile-wrapper">
-          <div class="profile-image">
-            <img
-              :src="profileImage || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'"
-              alt="Profile Image"
-            />
-          </div>
+        <div class="user-img">
+          <img :src="profileImage || defaultProfile" alt="Profile Image" />
           <label class="profile-btn">
             프로필 사진 변경
             <input type="file" accept="image/*" @change="onFileChange" hidden />
           </label>
         </div>
-        <div class="info-group">
-          <label>이름:</label>
-          <input type="text" v-model="form.name" />
-          <label>이메일:</label>
-          <input type="text" v-model="form.email" />
-          <label>새로운 비밀번호:</label>
-          <input type="password" v-model="form.confirmPassword" />
-          <label>새로운 비밀번호 확인:</label>
-          <input type="password" v-model="form.confirmPassword" />
-          <p class="warn">비밀번호가 일치하지 않습니다.</p>
-          <label>목표 예산:</label>
-          <input type="text" v-model="budget" />
+        <div class="form-section">
+          <div class="input-pair">
+            <span class="label">이름:</span>
+            <input class="value" type="text" v-model="form.name" />
+          </div>
+          <div class="input-pair">
+            <span class="label">이메일:</span>
+            <input class="value" type="text" v-model="form.email" />
+          </div>
+          <div class="input-pair">
+            <span class="label">새 비밀번호:</span>
+            <input class="value" type="password" v-model="form.password" />
+          </div>
+          <div class="input-pair">
+            <span class="label">비밀번호 확인:</span>
+            <input class="value" type="password" v-model="form.confirmPassword" />
+          </div>
+          <p
+            v-if="passwordMatchMessage"
+            class="password-msg"
+            :style="{ color: form.password === form.confirmPassword ? 'green' : 'red' }"
+          >
+            {{ passwordMatchMessage }}
+          </p>
+
+          <div class="input-pair">
+            <span class="label">목표예산:</span>
+            <input class="value" type="text" v-model="form.budget" />원
+          </div>
+          <p class="formatted-budget">-> {{ formattedBudget }}원</p>
           <button class="submit-btn">수정 완료</button>
         </div>
       </div>
-    </main>
-    <footer class="footer">
-      <span>© 2025 · Wallet</span>
-      <span>vudget@email.com</span>
-    </footer>
+    </div>
   </div>
 </template>
+
 <style scoped>
-.page {
-  font-family: sans-serif;
+.mypage-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 40px 60px;
+}
+
+.mypage-Lcontainer {
+  display: flex;
+  width: 100%;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+h2 {
+  padding: 30px;
+  width: 100%;
+}
+
+.user-img {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  justify-items: center;
 }
-.header {
+
+.profile-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  gap: 40px;
+  width: 100%;
 }
-.logo {
-  font-size: 2rem;
-  color: #f4b731;
-  font-weight: 800;
-}
-.profile-icon img {
-  width: 24px;
-  height: 24px;
-}
-.main {
+
+.profile-container > div:first-child {
+  display: flex;
   flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-container > div:last-child.form-section {
+  padding: 20px;
   display: flex;
-  padding: 2rem;
+  flex: 3;
+  flex-direction: column;
+  text-align: left;
+  justify-content: center;
+  font-size: 1.4rem;
+  gap: 20px;
+  font-weight: bold;
+  overflow-wrap: break-word;
+  white-space: normal;
+  margin-left: 0;
+  padding-left: 20px;
 }
-.left-section {
-  flex: 2;
-  padding-right: 2rem;
+
+.profile-container > div > img {
+  width: 250px;
 }
-.profile-wrapper {
+
+.label {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+  margin-right: 60px;
+}
+
+.value {
+  display: inline-block;
+  margin-left: 100px;
+  padding: 5px 10px;
+  font-size: 1.4rem;
+  font-weight: normal;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  width: 300px;
+}
+
+.input-pair {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
 }
-.profile-image img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: #eee;
-}
+
 .profile-btn {
-  padding: 0.3rem 0.6rem;
-  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
   border: 1px solid #aaa;
   border-radius: 0.5rem;
   cursor: pointer;
   background-color: #fff;
 }
-.info-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+
+.password-msg {
+  font-size: 0.9rem;
+  margin: -10px 0 10px 270px;
 }
-label {
-  font-weight: bold;
+
+.formatted-budget {
+  font-size: 0.9rem;
+  color: black;
+  margin-left: 270px;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
-input {
-  background-color: #ddd;
-  border: none;
-  padding: 0.5rem;
-}
-.warn {
-  font-size: 0.8rem;
-  color: gray;
-}
+
 .submit-btn {
-  background-color: #f4b731;
+  margin-top: 2rem;
+  align-self: flex-end;
+  background-color: #ffbc00;
   border: none;
-  padding: 0.5rem 1rem;
-  margin-top: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
   border-radius: 1rem;
   cursor: pointer;
 }
-.footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  font-size: 0.9rem;
-  color: #555;
+
+@media (max-width: 768px) {
+  .profile-container > div:last-child {
+    margin-left: 0;
+  }
 }
 </style>
