@@ -1,21 +1,43 @@
 <script setup>
+import axios from 'axios'
 import { ref } from 'vue'
-const amount = ref()
-const date = ref()
-const cate = ref()
-const place = ref()
-const memo = ref()
-const add_list = function () {}
+axios
+const incomes = ref({
+  id: ref(),
+  userid: ref(),
+  amount: ref(),
+  date: ref(),
+  category: ref(),
+  description: ref(),
+  payment: ref(),
+  vendor: ref(),
+})
+const expenses = ref({
+  id: ref(),
+  userid: ref(),
+  amount: ref(),
+  date: ref(),
+  category: ref(),
+  description: ref(),
+  payment: ref(),
+  vendor: ref(),
+})
+// const
+const add_list = function () {
+  console.log(expenses, incomes, expenses.value.id)
+}
+const changeRevenue = function () {}
+const changeCost = function () {}
 </script>
 
 <template>
   <body>
     <div class="revenue-cost-box">
-      <span class="set-revenue"
+      <span class="set-revenue" @click="changeRevenue"
         ><div>수입</div>
         <p class="small-write">Choose Income</p></span
       >
-      <span class="set-cost"
+      <span class="set-cost" @click="changeCost"
         ><div>지출</div>
         <p class="small-write">Choose Expenditure</p></span
       >

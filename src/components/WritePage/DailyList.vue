@@ -1,4 +1,30 @@
-<script setup></script>
+<script setup>
+import axios from 'axios'
+const API_URL = 'http://localhost:5500/posts'
+import { defineStore } from 'pinia'
+
+const usePostStore = defineStore('post', {
+  state: () => {},
+  actions: {
+    async fetchPosts() {
+      const toastStore = useToastStore()
+      this.posts = []
+      this.loading = true
+      this.error = null
+
+      try {
+        const response = await axios.get(API_URL)
+        this.posts = response.data
+      } catch (error) {
+        this.error = error.message || '게시물을 불러오는데 실패했습니다.'
+        toastStore.showToast(this.error, 'error')
+      } finally {
+        this.loading = false
+      }
+    },
+  },
+})
+</script>
 
 <template>
   <body>
@@ -13,56 +39,6 @@
           <div>
             <span class="date">2024-12-03</span><span class="cate-name">식비</span>
             <span class="amount">₩30,000</span>
-          </div>
-        </li>
-        <li>
-          <div>
-            <span class="list-name">제목</span>
-            <span class="-name"> 수입 지출 구분</span>
-          </div>
-          <div>
-            <span class="date">date</span><span class="cate-name">category</span>
-            <span class="amount">금앵ㄱ</span>
-          </div>
-        </li>
-        <li>
-          <div>
-            <span class="list-name">제목</span>
-            <span class="-name"> 수입 지출 구분</span>
-          </div>
-          <div>
-            <span class="date">date</span><span class="cate-name">category</span>
-            <span class="amount">금앵ㄱ</span>
-          </div>
-        </li>
-        <li>
-          <div>
-            <span class="list-name">제목</span>
-            <span class="-name"> 수입 지출 구분</span>
-          </div>
-          <div>
-            <span class="date">date</span><span class="cate-name">category</span>
-            <span class="amount">금앵ㄱ</span>
-          </div>
-        </li>
-        <li>
-          <div>
-            <span class="list-name">제목</span>
-            <span class="-name"> 수입 지출 구분</span>
-          </div>
-          <div>
-            <span class="date">date</span><span class="cate-name">category</span>
-            <span class="amount">금앵ㄱ</span>
-          </div>
-        </li>
-        <li>
-          <div>
-            <span class="list-name">제목</span>
-            <span class="-name"> 수입 지출 구분</span>
-          </div>
-          <div>
-            <span class="date">date</span><span class="cate-name">category</span>
-            <span class="amount">금앵ㄱ</span>
           </div>
         </li>
       </ul>
