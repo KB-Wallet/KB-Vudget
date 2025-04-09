@@ -88,7 +88,7 @@ const login = () => {
         </div>
         <p class="find_info">
           Lost your ID or PW?
-          <span class="link" @clickt="goToFindinfo">Click it</span>
+          <span class="link" @click="goToFindinfo">Click it</span>
         </p>
       </div>
     </div>
