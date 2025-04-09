@@ -70,6 +70,7 @@ onMounted(async () => {
       }
       categorySums[category] += expense.amount
     })
+    //데이터 차트에 추가
     chartData.labels = Object.keys(categorySums)
     chartData.datasets[0].data = Object.values(categorySums)
 

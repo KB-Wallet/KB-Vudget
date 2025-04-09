@@ -2,20 +2,22 @@
   "users": [
     {
       "id": 1,
-      "username": "jiyoon123",
-      "email": "jiyoon@example.com",
-      "password": "password123",
+      "userName": "jiyoon123",
+      "userEmail": "jiyoon@example.com",
+      "userPW": "password123",
       "profileImg": "url/to/profile.jpg",
-      "targetBudget": 2000000,
-      "categories": [
-        { "type": "income", "name": "월급" },
-        { "type": "income", "name": "용돈" },
-        { "type": "expense", "name": "식비" },
-        { "type": "expense", "name": "교통" },
-        { "type": "expense", "name": "쇼핑" }
-      ]
+      "targetBudget": 2000000
+    },
+    {
+      "id": 2,
+      "userName": "minho89",
+      "userEmail": "minho@example.com",
+      "userPW": "minhoPW",
+      "profileImg": "url/to/profile2.jpg",
+      "targetBudget": 1500000
     }
   ],
+
   "incomes": [
     {
       "id": 1,
@@ -24,20 +26,21 @@
       "date": "2025-03-01",
       "category": "월급",
       "description": "3월 월급",
-      "payment": "이체",
+      "payment": "credit",
       "vendor": "회사"
     },
     {
       "id": 2,
-      "userId": 1,
+      "userId": 2,
       "amount": 50000,
       "date": "2025-03-15",
       "category": "용돈",
       "description": "부모님 용돈",
-      "payment": "현금",
+      "payment": "cash",
       "vendor": "부모님"
     }
   ],
+
   "expenses": [
     {
       "id": 1,
@@ -46,7 +49,7 @@
       "date": "2025-03-05",
       "category": "식비",
       "description": "마트 장보기",
-      "payment": "카드",
+      "payment": "credit",
       "vendor": "이마트"
     },
     {
@@ -56,34 +59,18 @@
       "date": "2025-03-07",
       "category": "교통",
       "description": "버스 충전",
-      "payment": "현금",
-      "vendor": "T-money"
+      "payment": "cash",
+      "vendor": "티머니"
     },
     {
       "id": 3,
-      "userId": 1,
+      "userId": 2,
       "amount": 120000,
       "date": "2025-03-10",
       "category": "쇼핑",
       "description": "봄옷 구매",
-      "payment": "카드",
+      "payment": "credit",
       "vendor": "ZARA"
-    }
-  ],
-  "stats": [
-    {
-      "userId": 1,
-      "month": "2025-03",
-      "totalIncome": 3050000,
-      "totalExpenses": 350000,
-      "remainingBudget": 1650000
-    },
-    {
-      "userId": 1,
-      "month": "2025-04",
-      "totalIncome": 0,
-      "totalExpenses": 0,
-      "remainingBudget": 2000000
     }
   ]
 }
