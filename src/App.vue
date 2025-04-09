@@ -1,7 +1,7 @@
-<script setup></script>
-
 <template>
-  <div>vudget</div>
+  <Calendar />
 </template>
 
-<style scoped></style>
+<script setup>
+import Calendar from './components/Calendar/CalendarMain.vue'
+</script>
