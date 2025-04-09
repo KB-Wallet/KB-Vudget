@@ -1,6 +1,6 @@
 <script setup>
-import DailyList from './components/WritePage/DailyList.vue'
-import WriteSet from './components/WritePage/WriteSet.vue'
+import DailyList from '@/components/WritePage/DailyList.vue'
+import WriteSet from '@/components/WritePage/WriteSet.vue'
 </script>
 
 <template>

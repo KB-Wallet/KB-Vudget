@@ -1,29 +1,25 @@
 <script setup>
 import axios from 'axios'
 const API_URL = 'http://localhost:5500/posts'
-import { defineStore } from 'pinia'
+import { ref, onMounted } from 'vue'
 
-const usePostStore = defineStore('post', {
-  state: () => {},
-  actions: {
-    async fetchPosts() {
-      const toastStore = useToastStore()
-      this.posts = []
-      this.loading = true
-      this.error = null
+const fetchData = async () => {
+  try {
+    const response = await axios.get('http://localhost:5500/posts')
+    const { users: usersData, incomes: incomesData, expenses: expensesData } = response.data
 
-      try {
-        const response = await axios.get(API_URL)
-        this.posts = response.data
-      } catch (error) {
-        this.error = error.message || '게시물을 불러오는데 실패했습니다.'
-        toastStore.showToast(this.error, 'error')
-      } finally {
-        this.loading = false
-      }
-    },
-  },
-})
+    // 받아온 데이터를 상태 변수에 저장
+    users.value = usersData
+    incomes.value = incomesData
+    expenses.value = expensesData
+  } catch (error) {
+    console.error('Error fetching data:', error)
+  }
+}
+const users = ref([])
+const incomes = ref([])
+const expenses = ref([])
+onMounted(fetchData)
 </script>
 
 <template>
@@ -45,7 +41,7 @@ const usePostStore = defineStore('post', {
     </div>
   </body>
 
-  <button class="move-total">전체 내역 보기→</button>
+  <button class="move-total" @click="">전체 내역 보기→</button>
 </template>
 
 <style scoped>
