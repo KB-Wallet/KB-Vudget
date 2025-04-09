@@ -84,6 +84,13 @@
       "totalIncome": 0,
       "totalExpenses": 0,
       "remainingBudget": 2000000
+    },
+    {
+      "userId": 1,
+      "month": "2025-05",
+      "totalIncome": 0,
+      "totalExpenses": 0,
+      "remainingBudget": 4000000
     }
   ]
 }
