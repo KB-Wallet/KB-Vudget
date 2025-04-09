@@ -8,6 +8,10 @@ const router = createRouter({
       // 지연로딩 적용!
       component: () => import('@/pages/Home.vue'),
     },
+    {
+      path: '/mypage',
+      
+    }
   ],
 })
 export default router

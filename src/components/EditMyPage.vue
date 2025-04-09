@@ -10,16 +10,13 @@ onMounted(() => {
 <template>
   <div class="mypage-container">
     <div class="mypage-Lcontainer">
+      <h2>회원정보수정</h2>
       <div class="profile-container">
-        <h2>마이페이지</h2>
         <div>
           <img src="@/icons/user.svg" alt="" />
         </div>
         <div>
-          <p>이름:{{ db.users[0].username }}</p>
-          <p>이메일: {{ db.users[0].email }}</p>
-          <p>목표예산: {{ db.users[0].targetBudget.toLocaleString() }}원</p>
-          <p>투자성향: 쇼핑왕</p>
+          <label for=""> <input type="text" /> 이름: </label>
         </div>
       </div>
     </div>
@@ -33,10 +30,13 @@ onMounted(() => {
 
 <style scoped>
 .mypage-container {
+  width: 90%;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  /* border: 1px solid darkgoldenrod; */
+  height: 60vh;
 }
 
 .mypage-Lcontainer {
@@ -44,8 +44,6 @@ onMounted(() => {
   width: 70%;
   border: 1px solid lightgray;
   border-radius: 20px;
-  overflow: hidden;
-  flex-wrap: wrap;
 }
 
 h2 {
@@ -66,7 +64,7 @@ h2 {
   display: flex;
   box-sizing: border-box;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 20px;
 }
 
 .profile-container > div:first-child {
@@ -85,9 +83,10 @@ h2 {
   justify-content: center;
   font-size: 1.4rem;
   font-weight: bold;
+  white-space: nowrap;
   overflow-wrap: break-word;
-  white-space: normal;
   margin-left: 300px;
+  /* border: 1px solid red; */
 }
 .profile-container > div > img {
   width: 250px;
@@ -114,11 +113,5 @@ h2 {
 }
 .logout-btn:hover {
   cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  .profile-container > div:last-child {
-    margin-left: 0;
-  }
 }
 </style>
