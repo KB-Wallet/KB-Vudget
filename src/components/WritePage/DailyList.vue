@@ -1,27 +1,36 @@
 <script setup>
 import axios from 'axios'
-const API_URL = 'http://localhost:5000/'
+const API_URL_users = 'http://localhost:5000/users'
+const API_URL_incomes = 'http://localhost:5000/incomes'
+const API_URL_expenses = 'http://localhost:5000/expenses'
 import { ref, onMounted } from 'vue'
-const users = ref([])
-const incomes = ref([])
-const expenses = ref([])
+const users = ref({})
+const incomes = ref({})
+const expenses = ref({})
 const fetchData = async () => {
   try {
-    const response = await axios.get('http://localhost:5000/')
-    const { users: usersData, incomes: incomesData, expenses: expensesData } = response.data
-    console.log(response)
+    const response_users = await axios.get(API_URL_users)
+    const response_incomes = await axios.get(API_URL_incomes)
+    const response_expenses = await axios.get(API_URL_expenses)
+
+    // const usersData = response.data.users.value
+    const users = response_users.data
+    const incomes = response_incomes.data
+    const expenses = response_expenses.data
+    // const { users: usersData, incomes: incomesData, expenses: expensesData } = response.data
+    console.log(users, incomes, expenses)
     // 받아온 데이터를 상태 변수에 저장
-    users.value = usersData
-    incomes.value = incomesData
-    expenses.value = expensesData
   } catch (error) {
     console.error('Error fetching data:', error)
   }
 }
+onMounted(() => {
+  fetchData()
+})
 
-onMounted(fetchData())
-const check = function () {
-  console.log('users.value', users)
+// 콘솔에 users 데이터를 출력하는 함수
+const check = () => {
+  console.log('users.value', users.value)
 }
 </script>
 
@@ -32,7 +41,7 @@ const check = function () {
       <ul>
         <li>
           <div>
-            <span class="list-name">홈플러스 쇼핑</span>
+            <span class="list-name">롯데마트 쇼핑</span>
             <span class="income-cost"> 수입 </span>
           </div>
           <div>

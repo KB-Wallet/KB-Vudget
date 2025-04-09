@@ -1,26 +1,26 @@
 <script setup>
 import axios from 'axios'
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 
-const incomes = ref({
-  id: ref(),
-  userid: ref(),
-  amount: ref(),
-  date: ref(),
-  category: ref(),
-  description: ref(),
-  payment: ref(),
-  vendor: ref(),
+const incomes = reactive({
+  id: 1,
+  userid: 1,
+  amount: 1,
+  date: '',
+  category: '',
+  description: '',
+  payment: 0,
+  vendor: '',
 })
-const expenses = ref({
-  id: ref(),
-  userid: ref(),
-  amount: ref(),
-  date: ref(),
-  category: ref(),
-  description: ref(),
-  payment: ref(),
-  vendor: ref(),
+const expenses = reactive({
+  id: 1,
+  userid: 1,
+  amount: 1,
+  date: '',
+  category: '',
+  description: '',
+  payment: 0,
+  vendor: '',
 })
 // const
 const add_list = function () {
