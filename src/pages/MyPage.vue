@@ -24,8 +24,8 @@ onMounted(() => {
       </div>
     </div>
     <div class="mypage-Rcontainer">
-      <router-link to="/mypage/edit" class="link">회원정보수정</router-link>
-      <router-link to="/" class="link">카테고리관리</router-link>
+      <router-link to="/editmypage" class="link">회원정보수정</router-link>
+      <router-link to="/categoriespage" class="link">카테고리관리</router-link>
       <button class="logout-btn">로그아웃</button>
     </div>
   </div>
