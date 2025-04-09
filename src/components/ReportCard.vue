@@ -1,93 +1,79 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-import { defineStore } from 'pinia'
-import axios from 'axios'
+import { ref, computed, onMounted } from 'vue'
+// import { defineStore } from 'pinia'
+// import axios from '@/utils/axios'
+import instance from '@/utils/axios'
 
-const category = '식비' // 임시 카테고리, 추후 prop 또는 루프 처리 가능
+// 임시 카테고리, 추후 prop 또는 루프 처리 가
+const category = '식비'
+const API_URL = '/expenses'
 
-// import db from '@/../db.json'
+//현재 날짜 기준 월 계산
+const currentDate = ref(new Date())
+const currentMonth = computed(() => currentDate.value.getMonth() + 1)
 
-//---------------------------------------------------
-const API_URL = 'http://localhost:5000/'
+// 상태변수
+// 지출금액, 목표지출, 지출 비율
+const expenses = ref([]) // 전체 expenses
+const totalExpensesMonth = ref([]) // 해당 카테고리의 월별 지출만
+const allExpensesTotal = ref(0) // 전체 월별 총 지출 합계
+const consumed = ref(0) // 해당 카테고리 소비액
+const target = ref(1000000) // 기본 목표 지출
+const percent = ref(0) // 퍼센트 계산
 
-export const usePostStore = defineStore('post', () => {
-  // state 상태
-  // : 컴포넌트 간에 공유되어야 하는 데이터를 저장
-  const consumed = ref(0)
-  const target = ref(0)
-  const percent = ref(0)
+// const datas = reactive({
+//   id: 1,
+//   userId: 1,
+//   amount: 1,
+//   date: '2025-01-01',
+//   category: '',
+//   description: '',
+//   payment: '',
+//   vendor: '',
+// })
 
-  // getter 게터
-  // : computed 속성과 유사 기능
-  const getSortedPosts = computed(() => {
-    return [...posts.value].sort((a, b) => b.createdAt - a.createdAt)
-  })
+// axios 통해서 데이터 불러오기
 
-  // Actions 액션
-  // : 비동기 작업 등 복잡 로직 처리, state 변경하는메서드 포함
-  const fetchPosts = async () => {
-    // 서버에서 게시글 목록을 가져오는 비동기 함수
-    const toastStore = useToastStore()
-    posts.value = [] // 기존 글 목록 비우기
-    loading.value = true // 지금 로딩 중 표시
-    error.value = null // 이전 에러 있었으면 초기화
-
-    try {
-      const response = await axios.get(API_URL)
-      // axios.get() 으로 서버에 게시글 데이터 요청
-      // await : '서버에서 응답 올 때까지 기다릴게' 같은 의미
-      expenses.value = response.data
-      // 서버가 준 데이터(response.data)를 posts에 저장
-      // 나중에 v-for로 화면에서 출력할 수 있음
-    } catch (err) {
-      error.value = err.message || '게시물을 불러오는데 실패했습니다.'
-      toastStore.showToast(error.value, 'error')
-    } finally {
-      loading.value = false
-      // 성공/실패든지 무조건 마지막에 로딩 표시 종료 실행
-    }
-  }
-
-  return {
-    posts,
-    loading,
-    error,
-    getSortedPosts,
-    fetchPosts,
-  })
-
-
-//-------------------------------------------
-const consumed = ref(0)
-const target = ref(0)
-const percent = ref(0)
+// 전체 지출 데이터 및 필터링 데이터
 
 onMounted(async () => {
-  console.log(db)
-
   try {
-    const res = await fetch('/db.json')
-    const data = await res.json()
+    const response = await instance.get(API_URL)
+    expenses.value = response.data
+    console.log('전체 지출 데이터----', expenses.value)
 
-    // 소비 데이터 계산
-    const expenses = data.expenses.filter((e) => e.userId === 1 && e.category === category)
-    const sum = expenses.reduce((acc, curr) => acc + curr.amount, 0)
-    consumed.value = sum
+    // 해당 월 필터링 (현재 월 + 카테고리 + userId 조건 포함)
+    totalExpensesMonth.value = expenses.value.filter((exp) => {
+      const date = new Date(exp.date)
+      const expenseMonth = date.getMonth() + 1
+      const isMatch =
+        exp.userId === 1 && exp.category === category && expenseMonth === currentMonth.value
+      console.log(`🔍 비교: ${exp.category} / ${expenseMonth} -> 일치 여부: ${isMatch}`)
+      return isMatch
+    })
+    // console.log('currentDate.value:',currentDate)
+    // console.log('expenses.value:',expenses.month)
+    //
 
-    // axios async await filter
-    // 카테고리별 목표 예산 설정 (예: 식비: 100000)
-    // db 데이터랑 연결해야 함
+    // 총 소비 금액 계산
+    consumed.value = totalExpensesMonth.value.reduce((sum, exp) => sum + exp.amount, 0)
+
+    // 전체 지출 합계 (userId 1 & 현재 월 기준)
+    allExpensesTotal.value = expenses.value
+      .filter((exp) => exp.userId === 1 && new Date(exp.date).getMonth() + 1 === currentMonth.value)
+      .reduce((sum, exp) => sum + exp.amount, 0)
+
+    // 카테고리별 목표 예산 설정
     const categoryBudgets = {
-      식비: 0,
-      주거비: 0,
-      교통비: 0,
-      쇼핑: 0,
-      여가비: 0,
-      보험비: 0,
-      기타: 0,
+      식비: 100000,
+      교통: 50000,
+      쇼핑: 200000,
+      여가비: 80000,
+      보험비: 70000,
+      기타: 120000,
     }
 
-    target.value = categoryBudgets[category] || 1000000
+    target.value = categoryBudgets[category] || 100000
     percent.value = Math.min((consumed.value / target.value) * 100, 100)
   } catch (err) {
     console.error('데이터 불러오기 실패:', err)
@@ -110,9 +96,9 @@ onMounted(async () => {
 
     <div class="main-slide-card-1-2">
       <ul class="totalSummary">
-        <li>총 수입액 : 3,000,000 원</li>
+        <li>총 {{ currentMonth }} 월 {{ category }}지출액 : {{ consumed.toLocaleString() }} 원</li>
         <br />
-        <li>총 지출액 : 2,300,000 원</li>
+        <li>총 {{ currentMonth }}월 지출액 : {{ allExpensesTotal.toLocaleString() }} 원</li>
       </ul>
       <img
         class="icons-bear"
