@@ -19,6 +19,7 @@
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
+  color: #ffbc00;
 }
 
 .calendar-month {
@@ -44,7 +45,7 @@
   text-align: center;
   font-weight: bold;
   padding: 10px 0;
-  background-color: #f0f0f0;
+  background-color: white;
   border-radius: 4px;
 }
 
@@ -63,8 +64,8 @@
 }
 
 .day-cell.today {
-  background-color: #d9efff;
-  border-color: #6ec1ff;
+  background-color: rgba(255, 247, 226, 0.5);
+  border-color: #fff7e2;
 }
 
 .day-cell.inactive {
