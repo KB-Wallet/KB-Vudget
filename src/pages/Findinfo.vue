@@ -1,55 +1,30 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
-import { ref, onMounted } from 'vue'
-import { useUserStore } from '@/stores/user'
-import axios from 'axios'
-const userStore = useUserStore()
+import { onMounted } from 'vue'
 const route = useRoute()
 const router = useRouter()
-const email = ref('')
-const password = ref('')
-const users = ref([])
 
 const goToRegister = () => {
-  router.push('/Register')
+  router.push('/Register') // 원하는 경로로 이동
 }
-
-const goToFindinfo = () => {
-  router.push('/Findinfo')
-}
-onMounted(async () => {
-  const res = await axios.get('http://localhost:5000/users')
-  users.value = res.data
+onMounted(() => {
+  console.log(route)
 })
-
-const login = () => {
-  const foundUser = users.value.find(
-    (user) => user.email === email.value && user.password === password.value,
-  )
-
-  if (foundUser) {
-    alert('로그인 성공!')
-    userStore.login(foundUser)
-    router.push('/mainpage')
-  } else {
-    alert('이메일 또는 비밀번호가 올바르지 않습니다.')
-  }
-}
 </script>
 <template>
   <div class="container">
     <div class="left-half">
       <div class="logo_container">
         <img src="@/icons/Welcome Vudget.svg" alt="logo" class="logo" />
-        <!-- 웹사이트 소개 사진 넣기 -->
       </div>
     </div>
+
     <div class="right-half">
       <div class="signin">
-        <p class="signin-text">
+        <!-- <p class="signin-text">
           Have an account?
           <span class="link" @click="goToRegister">sign in</span>
-        </p>
+        </p> -->
         <h1 class="head_introduce">Welcome to Vudget</h1>
         <div class="introduce">
           <p>
@@ -65,31 +40,23 @@ const login = () => {
           </p>
         </div>
         <div class="loginForm">
+          <p><input class="Email-input" name="uemail" placeholder="Email address" /><br /></p>
           <p>
             <input
-              class="Email-input"
-              name="uemail"
-              placeholder="Email address"
-              v-model="email"
-            /><br />
-          </p>
-          <p>
-            <input
-              class="PW-input"
-              name="upw"
-              placeholder="Password"
-              type="password"
-              v-model="password"
+              name="uid"
+              class="ID-input"
+              placeholder="Please enter the last username you remember."
+              type="ID"
             />
           </p>
           <p>
-            <button type="submit" class="login_button" @click.prevent="login">Log in</button>
+            <button type="submit" class="find_button">send email</button>
           </p>
         </div>
-        <p class="find_info">
+        <!-- <p class="find_info">
           Lost your ID or PW?
-          <span class="link" @clickt="goToFindinfo">Click it</span>
-        </p>
+          <span class="link" @click="">Click it</span>
+        </p> -->
       </div>
     </div>
   </div>
@@ -135,8 +102,8 @@ const login = () => {
 .link {
   color: #ffbc00;
   margin-left: 8px;
-  cursor: pointer;
-  text-decoration: underline;
+  cursor: pointer; /* ← 이게 핵심! */
+  text-decoration: underline; /* 선택 사항: 더 클릭 가능하게 보이도록 */
 }
 .head_introduce {
   padding-top: 15px;
@@ -153,8 +120,8 @@ const login = () => {
   padding: 30px;
 }
 
-.Email-input,
-.PW-input {
+.ID-input,
+.Email-input {
   width: 70%;
   height: 60px;
   padding-top: 10px;
@@ -169,10 +136,10 @@ const login = () => {
   text-align: left;
   padding-left: 40px;
 }
-.PW-input {
+.Email-input {
   margin: 20px;
 }
-.login_button {
+.find_button {
   width: 70%;
   height: 60px;
   background-color: #ffbc00;
@@ -181,8 +148,5 @@ const login = () => {
   color: white;
   font-size: 20px;
   margin: 40px 0 5px 0;
-}
-.find_info {
-  font-size: 16px;
 }
 </style>

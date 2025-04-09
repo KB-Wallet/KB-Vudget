@@ -1,4 +1,41 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import axios from 'axios'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+// 입력값 상태
+const username = ref('')
+const email = ref('')
+const password = ref('')
+const agree = ref(false)
+
+// 회원가입 함수
+const register = async () => {
+  if (!username.value || !email.value || !password.value) {
+    alert('모든 필드를 입력해주세요.')
+    return
+  }
+
+  if (!agree.value) {
+    alert('약관에 동의해야 가입할 수 있습니다.')
+    return
+  }
+
+  try {
+    await axios.post('http://localhost:5000/users', {
+      username: username.value,
+      email: email.value,
+      password: password.value,
+    })
+    alert('회원가입이 완료되었습니다!')
+    router.push('/') // 로그인 페이지로 이동
+  } catch (error) {
+    console.error(error)
+    alert('회원가입 중 오류가 발생했습니다.')
+  }
+}
+</script>
 <template>
   <div class="container">
     <div class="left-half">
@@ -24,21 +61,36 @@
           </p>
         </div>
         <div class="signup_Form"></div>
-        <p><input class="Name-input" name="uname" placeholder="Full Name" /><br /></p>
-
-        <p><input class="ID-input" name="uid" placeholder="Email address" /><br /></p>
         <p>
-          <input class="PW-input" name="upw" placeholder="Password" type="password" />
+          <input
+            class="Username-input"
+            v-model="username"
+            name="uname"
+            placeholder="User Name"
+          /><br />
+        </p>
+
+        <p>
+          <input class="ID-input" v-model="email" name="uid" placeholder="Email address" /><br />
+        </p>
+        <p>
+          <input
+            class="PW-input"
+            v-model="password"
+            name="upw"
+            placeholder="Password"
+            type="password"
+          />
         </p>
         <p class="policy">
-          <input type="radio" id="agreebtn" value="agree" class="custom-radio" />
+          <input type="radio" id="agreebtn" value="agree" v-model="agree" class="custom-radio" />
           <label for="agreebtn" class="custom-radio-label"
             ><img src="@/icons/radiobutton.svg" alt="radiobutton" class="custom-radio-img" /> I
             agree to Vudget terms of services and privacy policy.</label
           >
         </p>
         <p>
-          <button type="submit" class="signup_button">Sign up</button>
+          <button type="submit" class="signup_button" @click.prevent="register">Sign up</button>
         </p>
       </div>
     </div>
@@ -98,7 +150,7 @@
   margin: 20px auto;
   /* padding: 30px; */
 }
-.Name-input,
+.Username-input,
 .ID-input,
 .PW-input {
   width: 65%;
