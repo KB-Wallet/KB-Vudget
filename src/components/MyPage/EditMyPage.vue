@@ -35,6 +35,17 @@ const formattedBudget = computed(() => {
   if (!raw) return ''
   return parseInt(raw).toLocaleString()
 })
+
+const onFileChange = (e) => {
+  const file = e.target.files[0]
+  if (file) {
+    const reader = new FileReader()
+    reader.onload = (e) => {
+      profileImage.value = e.target.result
+    }
+    reader.readAsDataURL(file)
+  }
+}
 </script>
 
 <template>
@@ -43,11 +54,13 @@ const formattedBudget = computed(() => {
       <div class="profile-container">
         <h2>회원정보수정</h2>
         <div class="user-img">
-          <img :src="profileImage || defaultProfile" alt="Profile Image" />
-          <label class="profile-btn">
-            프로필 사진 변경
-            <input type="file" accept="image/*" @change="onFileChange" hidden />
-          </label>
+          <div class="user-img-inner">
+            <img :src="profileImage || defaultProfile" alt="Profile Image" />
+            <label class="profile-btn">
+              프로필 사진 변경
+              <input type="file" accept="image/*" @change="onFileChange" hidden />
+            </label>
+          </div>
         </div>
         <div class="form-section">
           <div class="input-pair">
@@ -111,8 +124,21 @@ h2 {
 
 .user-img {
   display: flex;
-  flex-direction: column;
   justify-items: center;
+  align-items: center;
+}
+
+.user-img-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transform: translate(400px, -80px);
+}
+.user-img-inner img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 80%;
 }
 
 .profile-container {
@@ -154,14 +180,16 @@ h2 {
 
 .label {
   display: inline-block;
-  width: 100px;
+  width: 140px;
   text-align: right;
-  margin-right: 60px;
+  margin-right: 20px;
+  padding: 10px;
+  white-space: nowrap;
 }
 
 .value {
   display: inline-block;
-  margin-left: 100px;
+  margin-left: 0;
   padding: 5px 10px;
   font-size: 1.4rem;
   font-weight: normal;
@@ -174,26 +202,31 @@ h2 {
 .input-pair {
   display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .profile-btn {
-  padding: 0.4rem 0.8rem;
+  padding: 0.4rem 0;
   font-size: 1rem;
   border: 1px solid #aaa;
   border-radius: 0.5rem;
   cursor: pointer;
   background-color: #fff;
+  text-align: center;
+  width: 150px;
+  margin: 0 auto;
 }
 
 .password-msg {
   font-size: 0.9rem;
-  margin: -10px 0 10px 270px;
+  margin: -10px 0 10px 770px;
 }
 
 .formatted-budget {
   font-size: 0.9rem;
   color: black;
-  margin-left: 270px;
+  margin-left: 770px;
   margin-top: -10px;
   margin-bottom: 10px;
 }
