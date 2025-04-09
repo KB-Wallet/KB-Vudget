@@ -49,15 +49,19 @@ const register = async () => {
         <h1 class="head_introduce">Welcome to Vudget</h1>
         <div class="introduce">
           <p>
-            언제 썼는지, 어디에 썼는지 기억 안 나시나요?
+            "돈이 어디로 사라졌는지 기억 안 나시죠?"
             <br />
-            이제는 돈의 흐름을 한눈에 확인하세요.
+            Vudget이 당신의 소비를 기억해드립니다.
             <br />
-            지출을 정리하고, 소비를 통제하며,
+            지금 가입하고,
             <br />
-            더 나은 내일을 위한 첫걸음.
+            지갑 탈출 돈귀신과의 전쟁을 끝내보세요
             <br />
-            지금 바로 가계부를 시작해보세요.
+            쉽고, 빠르고, 속 시원하게!
+            <br />
+            <br />
+            회원가입하고 똑똑한 소비의 첫걸음을 지금 시작해보세요.
+            <br />
           </p>
         </div>
         <div class="signup_Form"></div>

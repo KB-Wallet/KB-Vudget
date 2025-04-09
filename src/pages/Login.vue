@@ -45,10 +45,10 @@ const login = () => {
       </div>
     </div>
     <div class="right-half">
-      <div class="signin">
-        <p class="signin-text">
+      <div class="signup">
+        <p class="signup-text">
           Have an account?
-          <span class="link" @click="goToRegister">sign in</span>
+          <span class="link" @click="goToRegister">sign up</span>
         </p>
         <h1 class="head_introduce">Welcome to Vudget</h1>
         <div class="introduce">
@@ -61,7 +61,7 @@ const login = () => {
             <br />
             더 나은 내일을 위한 첫걸음.
             <br />
-            지금 바로 가계부를 시작해보세요.
+            지금 바로 Vudget 가계부를 시작해보세요.
           </p>
         </div>
         <div class="loginForm">
@@ -125,11 +125,11 @@ const login = () => {
   width: 300px;
   height: auto;
 }
-.signin {
+.signup {
   text-align: center;
   margin-top: 60px;
 }
-.signin-text {
+.signup-text {
   font-size: 16px;
 }
 .link {

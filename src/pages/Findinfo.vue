@@ -28,15 +28,17 @@ onMounted(() => {
         <h1 class="head_introduce">Welcome to Vudget</h1>
         <div class="introduce">
           <p>
-            언제 썼는지, 어디에 썼는지 기억 안 나시나요?
+            로그인하려고 했는데 아이디가 기억 안 나시나요?
             <br />
-            이제는 돈의 흐름을 한눈에 확인하세요.
+            비밀번호는 맞는 것 같은데 자꾸 틀렸다고요?
             <br />
-            지출을 정리하고, 소비를 통제하며,
+            당황하지 마세요. 누구나 한 번쯤은 겪는 일이니까요.
             <br />
-            더 나은 내일을 위한 첫걸음.
+            (난 아님)
             <br />
-            지금 바로 가계부를 시작해보세요.
+            Vudget은 여러분의 기억을 살려드립니다.
+            <br />
+            지금 바로 아이디와 비밀번호를 되찾아보세요.
           </p>
         </div>
         <div class="loginForm">
@@ -50,7 +52,7 @@ onMounted(() => {
             />
           </p>
           <p>
-            <button type="submit" class="find_button">send email</button>
+            <button type="submit" class="find_button">Find my account</button>
           </p>
         </div>
         <!-- <p class="find_info">
