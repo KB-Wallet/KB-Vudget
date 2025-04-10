@@ -154,6 +154,10 @@ watch([currentYear, currentMonth, stats, incomes, expenses], () => {
   updateMonthlyStats()
   updateDailyStats()
 })
+
+function moveTotalList() {
+  router.push({ path: '/history' })
+}
 </script>
 
 <template>
@@ -208,6 +212,11 @@ watch([currentYear, currentMonth, stats, incomes, expenses], () => {
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- 페이지 이동 버튼; 아직 페이지 이동 이벤트 추가 안함 -->
+    <div class="move-totallist">
+      <button class="btn-move-totallist" @click="moveTotalList()">달 전체 리스트 보기</button>
     </div>
 
     <!-- 날짜 클릭시 뜨는 화면 -->
