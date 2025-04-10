@@ -19,7 +19,7 @@ const goToRegister = () => {
 }
 
 const goToFindinfo = () => {
-  router.push('/Findinfo')
+  router.push('/Findpw')
 }
 
 onMounted(async () => {
