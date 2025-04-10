@@ -1,13 +1,19 @@
 .container {
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  flex-direction: row;
+  min-height: calc(100vh - 104px);
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 .left-half {
   flex: 1;
   background-color: #8a8d8f;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
 }
 
 .right-half {
@@ -15,22 +21,14 @@
   background-color: #ffffff;
 }
 .logo_container {
-  /* position: absolute;
-  height: 100%;
-  bottom: 35%;
+  width: 100%;
+  max-width: 500px;
   display: flex;
-  justify-content: flex-end;
-  padding-left: 30%; */
-  position: absolute;
-  width: 500px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column; /* 수직 정렬 */
+  flex-direction: column;
   align-items: center;
-  gap: 10px; /* logo와 webintro 사이 간격 */
+  gap: 10px;
 }
+
 .logo {
   width: 300px;
   height: auto;
@@ -64,7 +62,6 @@
 }
 .signup_Form {
   margin: 20px auto;
-  /* padding: 30px; */
 }
 .inputUserName,
 .inputUserEmail,
@@ -142,4 +139,9 @@ input[type='radio']:checked + .custom-radio-label::after {
   color: #8a8d8f;
   font-weight: bold;
   transform: translate(-50%, -50%);
+}
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
 }
