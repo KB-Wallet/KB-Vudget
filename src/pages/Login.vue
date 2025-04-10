@@ -1,10 +1,10 @@
 <script setup>
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue'
 import { useUserStore } from '@/stores/user'
 import axios from 'axios'
+
 const userStore = useUserStore()
-const route = useRoute()
 const router = useRouter()
 const email = ref('')
 const password = ref('')
@@ -17,12 +17,13 @@ const goToRegister = () => {
 const goToFindinfo = () => {
   router.push('/Findinfo')
 }
+
 onMounted(async () => {
   const res = await axios.get('http://localhost:5000/users')
   users.value = res.data
 })
 
-const login = () => {
+const logIn = () => {
   const foundUser = users.value.find(
     (user) => user.email === email.value && user.password === password.value,
   )
@@ -67,7 +68,7 @@ const login = () => {
         <div class="loginForm">
           <p>
             <input
-              class="Email-input"
+              class="userEmail"
               name="uemail"
               placeholder="Email address"
               v-model="email"
@@ -75,7 +76,7 @@ const login = () => {
           </p>
           <p>
             <input
-              class="PW-input"
+              class="userPw"
               name="upw"
               placeholder="Password"
               type="password"
@@ -83,7 +84,7 @@ const login = () => {
             />
           </p>
           <p>
-            <button type="submit" class="login_button" @click.prevent="login">Log in</button>
+            <button type="submit" class="btnLogin" @click.prevent="logIn">Log in</button>
           </p>
         </div>
         <p class="find_info">
@@ -100,7 +101,6 @@ const login = () => {
   display: flex;
   height: 100vh;
   width: 100vw;
-  /* overflow: hidden; */
 }
 
 .left-half {
@@ -153,8 +153,8 @@ const login = () => {
   padding: 30px;
 }
 
-.Email-input,
-.PW-input {
+.userEmail,
+.userPw {
   width: 70%;
   height: 60px;
   padding-top: 10px;
@@ -165,14 +165,13 @@ const login = () => {
   font-size: 17px;
   box-sizing: border-box;
   transition: border-color 0.2s;
-
   text-align: left;
   padding-left: 40px;
 }
-.PW-input {
+.userPw {
   margin: 20px;
 }
-.login_button {
+.btnLogin {
   width: 70%;
   height: 60px;
   background-color: #ffbc00;

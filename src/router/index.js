@@ -7,6 +7,7 @@ const router = createRouter({
       path: '/',
       // 지연로딩 적용!
       name: 'Login',
+      name: 'login',
       component: () => import('@/pages/Login.vue'),
     },
     {
