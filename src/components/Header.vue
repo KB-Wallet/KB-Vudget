@@ -15,7 +15,7 @@ const userId = ref(0)
       <router-link to=""><img src="../icons/calendar.svg" alt="toCalendar" /></router-link>
       <router-link to="/history"><img src="../icons/history.svg" alt="toHistory" /></router-link>
       <!-- <router-link to=""><img src="../../icons/profile.svg" alt="" /></router-link> -->
-      <router-link to=""
+      <router-link to="/mypage"
         ><img :src="db.users[userId].profileImg" alt="profile image"
       /></router-link>
     </div>
