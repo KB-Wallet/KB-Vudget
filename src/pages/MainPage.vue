@@ -1,6 +1,12 @@
+<script setup>
+// import WeeklyCalendar from '@/components/MainPage/WeeklyCalendar.vue'
+import QuickPost from '@/components/MainPage/QuickPost.vue'
+import SliderView from '@/components/MainPage/SliderView.vue'
+</script>
+
 <template>
-  <div class="card card-body">
-    <h2>Home</h2>
-  </div>
+  <SliderView />
+  <QuickPost />
 </template>
-<script setup></script>
+
+<style scoped></style>
