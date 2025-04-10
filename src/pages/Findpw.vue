@@ -2,6 +2,8 @@
 import { onMounted } from 'vue'
 import { ref } from 'vue'
 import '@/assets/findpw.css'
+import webintro from '@/icons/webintroduce.png'
+import webintro2 from '@/icons/webintroduce2.png'
 const userEmail = ref('')
 const userName = ref('')
 
@@ -33,8 +35,9 @@ const findPw = async () => {
     <div class="left-half">
       <div class="find_container">
         <img src="@/icons/Welcome Vudget.svg" alt="logo" class="logo" />
+        <img :src="webintro" alt="webintro" class="webintro" />
+        <img :src="webintro2" alt="webintro2" class="webintro2" />
       </div>
-      <!-- 페이지 소개 사진 삽입 -->
     </div>
     <div class="right-half">
       <div class="findpw">
