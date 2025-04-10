@@ -87,6 +87,40 @@ function updateMonthlyStats() {
   }
 }
 
+//일 에 해당하는 통계를 incomes 와 expenses에서 찾아서 반영
+const totalIncomeDay = ref([])
+const totalExpensesDay = ref([])
+const dailyTotals = ref({})
+// 추가 정보 = ref({}):빈 객체를 초기값, ref([]): 빈 배열을 초기값
+const incomes = ref([])
+const expenses = ref([])
+
+function formatDateKey(date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+}
+
+function updateDailyStats() {
+  const totals = {}
+
+  // 수입 처리
+  incomes.value.forEach((item) => {
+    if (!totals[item.date]) {
+      totals[item.date] = { income: 0, expense: 0 }
+    }
+    totals[item.date].income += item.amount
+  })
+
+  // 지출 처리
+  expenses.value.forEach((item) => {
+    if (!totals[item.date]) {
+      totals[item.date] = { income: 0, expense: 0 }
+    }
+    totals[item.date].expense += item.amount
+  })
+
+  dailyTotals.value = totals
+}
+
 // 통계 데이터 불러온 후 업데이트
 onMounted(async () => {
   try {
@@ -96,39 +130,21 @@ onMounted(async () => {
   } catch (error) {
     console.error('stats 데이터 불러오기 실패:', error)
   }
+  try {
+    const resIncome = await axios.get('/incomes')
+    const resExpenses = await axios.get('/expenses')
+    incomes.value = resIncome.data
+    expenses.value = resExpenses.data
+    updateDailyStats() // mount 시 초기화
+  } catch (error) {
+    console.error('daily 데이터 불러오기 실패:', error)
+  }
 })
 
 // 월 변경 감지
-watch([currentYear, currentMonth, stats], () => {
+watch([currentYear, currentMonth, stats, incomes, expenses], () => {
   updateMonthlyStats()
-})
-
-const totalIncomeDay = ref([])
-const totalExpensesDay = ref([])
-const dailyTotals = ref({})
-
-function incomeDailyStats() {
-  const dayStr = `${currentYear.value}-${String(currentMonth.value + 1).padStart(2, '0')}-${String(date.value + 1).padStart(2, '0')}`
-  const dateincomes = incomes.value.find((item) => {
-    item.date === dayStr
-  })
-  const dateexpenses = expenses.value.find((item) => {
-    item.date === dayStr
-  })
-
-  if (dateincomes) {
-    totalIncomeDay.value = dateincome.amount
-  } else if (dateexpenses) {
-    totalExpensesDay.value = dateexpenses.amount
-  } else {
-    totalIncomeDay.value = 0
-    totalExpensesDay.value = 0
-  }
-}
-
-//월 변경 감지 중 일 수입/지출
-watch([incomes, expenses], () => {
-  calculateDailyTotals()
+  updateDailyStats()
 })
 </script>
 
@@ -137,10 +153,8 @@ watch([incomes, expenses], () => {
     <div class="calendar-header">
       <h2 class="calendar-year">{{ currentYear }}년</h2>
       <h2 class="calendar-month">{{ currentMonth + 1 }}월</h2>
-      <h5>월 총 수입</h5>
-      <h4 class="totalIncomeMonth">{{ totalIncomeMonth }}</h4>
-      <h5>월 총 지출</h5>
-      <h4 class="totalExpensesMonth">{{ totalExpensesMonth }}</h4>
+      <h4 class="totalIncomeMonth">총 수입 {{ totalIncomeMonth.toLocaleString() }}</h4>
+      <h4 class="totalExpensesMonth">총 지출 {{ totalExpensesMonth.toLocaleString() }}</h4>
       <button @click="changeMonth(-1)">&lt;</button>
       <button @click="changeMonth(1)">&gt;</button>
     </div>
@@ -158,18 +172,24 @@ watch([incomes, expenses], () => {
         @click="handleDayClick(day)"
       >
         <div class="day-number">{{ day.date.getDate() }}</div>
+        <!-- 현재 달의 날짜만 표시하기 위한 조건 (amount의 v-if) -->
         <div class="amounts" v-if="!day.inactive">
-          <div
-            v-if="dailyTotals[formatDateKey(day.date)]?.income"
-            style="color: blue; font-size: 0.75rem"
-          >
-            +{{ dailyTotals[formatDateKey(day.date)].income.toLocaleString() }}
+          <div class="amountsincomes" v-if="dailyTotals[formatDateKey(day.date)]?.income">
+            수입 +{{ dailyTotals[formatDateKey(day.date)].income.toLocaleString() }}
           </div>
-          <div
-            v-if="dailyTotals[formatDateKey(day.date)]?.expense"
-            style="color: red; font-size: 0.75rem"
-          >
-            -{{ dailyTotals[formatDateKey(day.date)].expense.toLocaleString() }}
+
+          <div class="amountsExpenses" v-if="dailyTotals[formatDateKey(day.date)]?.expense">
+            지출 -{{ dailyTotals[formatDateKey(day.date)].expense.toLocaleString() }}
+          </div>
+
+          <div class="balance" v-if="dailyTotals[formatDateKey(day.date)]">
+            잔액
+            {{
+              (
+                dailyTotals[formatDateKey(day.date)].income -
+                dailyTotals[formatDateKey(day.date)].expense
+              ).toLocaleString()
+            }}
           </div>
         </div>
       </div>

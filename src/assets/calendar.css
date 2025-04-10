@@ -16,14 +16,14 @@
 }
 
 .calendar-year {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
   color: #ffbc00;
 }
 
 .calendar-month {
-  font-size: 1.8rem;
+  font-size: 2.4rem;
   font-weight: bold;
   flex-grow: 1;
   text-align: left;
@@ -119,4 +119,42 @@
   font-size: 14px;
   cursor: pointer;
   color: #555;
+}
+
+.totalIncomeMonth {
+  color: lightskyblue;
+  font-size: 0.8rem;
+  border: 1px dotted #ddd;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.totalExpensesMonth {
+  color: lightcoral;
+  font-size: 0.8rem;
+  border: 1px dotted #ddd;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.amounts {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  gap: 2px;
+}
+
+.amountsincomes {
+  color: lightskyblue;
+  font-size: 0.5rem;
+}
+
+.amountsExpenses {
+  color: lightcoral;
+  font-size: 0.5rem;
+}
+
+.balance {
+  color: gray;
+  font-size: 0.5rem;
 }
