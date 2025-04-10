@@ -12,7 +12,7 @@ import QuickPost from '@/components/MainPage/QuickPost.vue'
 
 <style scoped>
 .slider-container {
-  height: 330px;
+  height: 350px;
   border: 1px solid lightgray;
   border-radius: 10px;
   margin-bottom: 30px;

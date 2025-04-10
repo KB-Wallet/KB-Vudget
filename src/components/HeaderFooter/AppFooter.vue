@@ -1,4 +1,6 @@
-<script setup></script>
+<script>
+import {} from 'vue'
+</script>
 
 <template>
   <div class="footer-container">
@@ -21,6 +23,7 @@
   line-height: 104px;
   letter-spacing: 0;
   color: #545045;
+  margin: 0;
   /* text-shadow:
     -1.5px 0 #ffbc00,
     1.5px 0 #ffbc00,

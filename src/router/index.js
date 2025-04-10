@@ -11,6 +11,10 @@ const router = createRouter({
       path: '/main',
       component: () => import('@/pages/MainPage.vue'),
     },
+    {
+      path: '/history',
+      component: () => import('@/pages/HistoryPage.vue'),
+    },
   ],
 })
 export default router
