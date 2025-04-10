@@ -1,8 +1,9 @@
+<script setup>
+import CalendarMain from './pages/CalendarPage/CalendarMain.vue'
+</script>
+
 <template>
   <CalendarMain />
 </template>
 
-<script setup>
-import CalendarMain from './pages/CalendarPage/CalendarMain.vue'
-// import CalendarCard from './pages/CalendarCard.vue'
-</script>
+<style scoped></style>
