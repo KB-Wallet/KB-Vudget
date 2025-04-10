@@ -148,6 +148,7 @@ const handleSubmit = async () => {
             locale="ko"
             :enable-time-picker="false"
             auto-apply
+            teleport="body"
             placeholder="날짜 선택"
             :format="
               (date) =>
@@ -224,6 +225,7 @@ const handleSubmit = async () => {
   max-width: 100%;
   overflow-x: auto;
   box-sizing: border-box;
+  overflow: visible;
 }
 
 .typebtn-container {
@@ -254,6 +256,12 @@ const handleSubmit = async () => {
   gap: 20px;
   flex: 1;
   min-width: 0;
+  position: relative;
+  z-index: 0;
+}
+
+.quickpost-container ::v-deep(.dp__menu) {
+  z-index: 9999 !important;
 }
 
 .input-container {

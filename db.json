@@ -169,6 +169,16 @@
       "description": "껌스언",
       "payment": "",
       "vendor": "비엣포"
+    },
+    {
+      "id": "9",
+      "userId": 1,
+      "amount": 100000,
+      "date": "2025-04-01",
+      "category": "쇼핑",
+      "description": "봄옷",
+      "payment": "",
+      "vendor": "무신사"
     }
   ],
   "stats": [
