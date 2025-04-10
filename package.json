@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
-    "db": "json-server --watch db.json --port 5000"
+    "db": "json-server --watch db.json --port 5001"
   },
   "dependencies": {
     "@vuepic/vue-datepicker": "^11.0.2",
