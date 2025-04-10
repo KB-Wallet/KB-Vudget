@@ -52,7 +52,7 @@ const onBudgetInput = (e) => {
 }
 async function editBtn() {
   try {
-    await axios.patch('http://localhost:5000/users/1', {
+    await axios.patch('http://localhost:5001/users/1', {
       username: form.name,
       email: form.email,
       password: form.password, // 비밀번호 저장도 가능 (실제로는 해싱 필요하지만 여긴 테스트니까)
@@ -69,31 +69,31 @@ async function editBtn() {
 </script>
 <template>
   <div class="mypage-container">
-    <div class="mypage-Lcontainer">
-      <div class="profile-container">
-        <h2>회원정보수정</h2>
-        <div class="user-img">
-          <div class="user-img-inner">
-            <img :src="profileImage || defaultProfile" alt="Profile Image" />
-            <label class="profile-btn">
-              프로필 사진 변경
-              <input type="file" accept="image/*" @change="onFileChange" hidden />
-            </label>
-          </div>
+    <div class="profile-container">
+      <h2>회원정보수정</h2>
+    </div>
+    <div class="edit-container">
+      <div class="user-img">
+        <img :src="profileImage || defaultProfile" alt="Profile Image" />
+        <label class="profile-btn">
+          프로필 사진 변경
+          <input type="file" accept="image/*" @change="onFileChange" hidden />
+        </label>
+      </div>
+      <div class="form-section">
+        <div class="input-pair">
+          <span class="label">이름:</span>
+          <input class="value" type="text" v-model="form.name" />
         </div>
-        <div class="form-section">
-          <div class="input-pair">
-            <span class="label">이름:</span>
-            <input class="value" type="text" v-model="form.name" />
-          </div>
-          <div class="input-pair">
-            <span class="label">이메일:</span>
-            <input class="value" type="text" v-model="form.email" />
-          </div>
-          <div class="input-pair">
-            <span class="label">새 비밀번호:</span>
-            <input class="value" type="password" v-model="form.password" />
-          </div>
+        <div class="input-pair">
+          <span class="label">이메일:</span>
+          <input class="value" type="text" v-model="form.email" />
+        </div>
+        <div class="input-pair">
+          <span class="label">새 비밀번호:</span>
+          <input class="value" type="password" v-model="form.password" />
+        </div>
+        <div>
           <div class="input-pair password-section">
             <span class="label">비밀번호 확인:</span>
             <div class="value-column">
@@ -121,6 +121,8 @@ async function editBtn() {
               <span class="won-label">원</span>
             </div>
           </div>
+        </div>
+        <div class="submit-container">
           <button class="submit-btn" @click="editBtn">수정 완료</button>
         </div>
       </div>
@@ -131,78 +133,43 @@ async function editBtn() {
 .mypage-container {
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 50px 50px;
+}
+.edit-container {
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 40px 60px;
-}
-.mypage-Lcontainer {
-  display: flex;
-  width: 100%;
-  border: 1px solid lightgray;
-  border-radius: 20px;
-  overflow: hidden;
-  flex-wrap: wrap;
-}
-h2 {
-  padding: 30px;
-  width: 100%;
+  margin: 30px 200px 0 200px;
 }
 .user-img {
   display: flex;
+  flex-direction: column;
   justify-items: center;
   align-items: center;
+  gap: 30px;
 }
-.user-img-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  transform: translate(400px, -80px);
-}
-.user-img-inner img {
-  width: 400px;
-  height: 400px;
+
+.user-img img {
+  width: 270px;
+  height: 270px;
   object-fit: cover;
   border-radius: 80%;
 }
 .profile-container {
   display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   flex-wrap: wrap;
-  gap: 40px;
   width: 100%;
-}
-.profile-container > div:first-child {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-.profile-container > div:last-child.form-section {
-  padding: 20px;
-  display: flex;
-  flex: 3;
-  flex-direction: column;
-  text-align: left;
-  justify-content: center;
-  font-size: 1.4rem;
-  gap: 20px;
-  font-weight: bold;
-  overflow-wrap: break-word;
-  white-space: normal;
-  margin-left: 0;
-  padding-left: 20px;
-}
-.profile-container > div > img {
-  width: 250px;
 }
 .label {
   display: inline-block;
   width: 140px;
   text-align: right;
   margin-right: 20px;
-  /* padding: 10px; */
   white-space: nowrap;
 }
 .value {
@@ -232,6 +199,17 @@ h2 {
   text-align: center;
   width: 150px;
   margin: 0 auto;
+}
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.value-column > input {
+  margin-bottom: 10px;
+}
+.input-pair:last-child {
+  margin-top: 20px;
 }
 .password-msg {
   font-size: 0.8rem;
@@ -272,8 +250,13 @@ h2 {
   font-weight: normal;
   white-space: nowrap;
 }
+.submit-container {
+  display: flex;
+  flex-direction: row;
+}
 .submit-btn {
   margin-top: 2rem;
+  margin-left: auto;
   align-self: flex-end;
   background-color: #ffbc00;
   border: none;
