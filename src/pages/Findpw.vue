@@ -1,31 +1,45 @@
 <script setup>
-import { useRoute, useRouter } from 'vue-router'
 import { onMounted } from 'vue'
-const route = useRoute()
-const router = useRouter()
+import { ref } from 'vue'
+const email = ref('')
+const username = ref('')
 
-const goToRegister = () => {
-  router.push('/Register') // 원하는 경로로 이동
-}
 onMounted(() => {
   console.log(route)
 })
+
+const findPw = async () => {
+  try {
+    const response = await fetch('http://localhost:5000/users')
+    const users = await response.json()
+
+    const matchedUser = users.find(
+      (user) => user.email === email.value || user.username === username.value,
+    )
+
+    if (matchedUser) {
+      alert('보안에 주의해주세요')
+      alert(`당신의 비밀번호는 "${matchedUser.password}" 입니다.`)
+    } else {
+      alert('해당 이메일 또는 사용자 이름이 잘못되었습니다.')
+    }
+  } catch (error) {
+    console.error('오류 발생:', error)
+    alert('서버 오류가 발생했습니다.')
+  }
+}
 </script>
 <template>
   <div class="container">
     <div class="left-half">
-      <div class="logo_container">
+      <div class="find_container">
         <img src="@/icons/Welcome Vudget.svg" alt="logo" class="logo" />
       </div>
+      <!-- 페이지 소개 사진 삽입 -->
     </div>
-
     <div class="right-half">
-      <div class="signin">
-        <!-- <p class="signin-text">
-          Have an account?
-          <span class="link" @click="goToRegister">sign in</span>
-        </p> -->
-        <h1 class="head_introduce">Welcome to Vudget</h1>
+      <div class="findpw">
+        <h1 class="head_introduce">Find your PW</h1>
         <div class="introduce">
           <p>
             로그인하려고 했는데 아이디가 기억 안 나시나요?
@@ -34,31 +48,25 @@ onMounted(() => {
             <br />
             당황하지 마세요. 누구나 한 번쯤은 겪는 일이니까요.
             <br />
-            (난 아님)
-            <br />
             Vudget은 여러분의 기억을 살려드립니다.
             <br />
             지금 바로 아이디와 비밀번호를 되찾아보세요.
           </p>
         </div>
-        <div class="loginForm">
-          <p><input class="Email-input" name="uemail" placeholder="Email address" /><br /></p>
+        <div class="infoForm">
+          <p><input class="userEmail" name="uemail" placeholder="Email address" /><br /></p>
           <p>
             <input
               name="uid"
-              class="ID-input"
+              class="userId"
               placeholder="Please enter the last username you remember."
               type="ID"
             />
           </p>
           <p>
-            <button type="submit" class="find_button">Find my account</button>
+            <button type="submit" class="btnFind" @click="findPw">Find my password</button>
           </p>
         </div>
-        <!-- <p class="find_info">
-          Lost your ID or PW?
-          <span class="link" @click="">Click it</span>
-        </p> -->
       </div>
     </div>
   </div>
@@ -69,7 +77,6 @@ onMounted(() => {
   display: flex;
   height: 100vh;
   width: 100vw;
-  /* overflow: hidden; */
 }
 
 .left-half {
@@ -82,7 +89,7 @@ onMounted(() => {
   flex: 1;
   background-color: #ffffff;
 }
-.logo_container {
+.find_container {
   position: absolute;
   height: 100%;
   bottom: 35%;
@@ -94,19 +101,14 @@ onMounted(() => {
   width: 300px;
   height: auto;
 }
-.signin {
+.findpw {
   text-align: center;
   margin-top: 60px;
 }
-.signin-text {
+.findpw-text {
   font-size: 16px;
 }
-.link {
-  color: #ffbc00;
-  margin-left: 8px;
-  cursor: pointer; /* ← 이게 핵심! */
-  text-decoration: underline; /* 선택 사항: 더 클릭 가능하게 보이도록 */
-}
+
 .head_introduce {
   padding-top: 15px;
   font-size: 50px;
@@ -117,13 +119,13 @@ onMounted(() => {
   padding-top: 10px;
   font-size: 20px;
 }
-.loginForm {
+.infoForm {
   margin: 20px auto;
   padding: 30px;
 }
 
-.ID-input,
-.Email-input {
+.userId,
+.userEmail {
   width: 70%;
   height: 60px;
   padding-top: 10px;
@@ -138,10 +140,10 @@ onMounted(() => {
   text-align: left;
   padding-left: 40px;
 }
-.Email-input {
+.userEmail {
   margin: 20px;
 }
-.find_button {
+.btnFind {
   width: 70%;
   height: 60px;
   background-color: #ffbc00;

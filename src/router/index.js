@@ -17,7 +17,7 @@ const router = createRouter({
     {
       path: '/Findinfo',
       name: 'findinfo',
-      component: () => import('@/pages/Findinfo.vue'),
+      component: () => import('@/pages/Findpw.vue'),
     },
     // 동적 라우트 파라미터 처리
 
@@ -47,6 +47,16 @@ const router = createRouter({
     //   path: '/EditMyPage',
     //   name: editmaypage,
     //   component: () => import('@/pages/EditMyPage.vue'),
+    // },
+    // {
+    //   path: '/EditMyPage',
+    //   name: editmaypage,
+    //   component: () => import('@/pages/EditMyPage.vue'),
+    // },
+    // {
+    //   path: '/Findinfo',
+    //   name: findinfo,
+    //   component: () => import('@/pages/Findinfo.vue'),
     // },
   ],
 })
