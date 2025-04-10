@@ -19,6 +19,11 @@ const router = createRouter({
       name: 'findinfo',
       component: () => import('@/pages/Findpw.vue'),
     },
+    {
+      path: '/SPTI',
+      name: 'spti',
+      component: () => import('@/pages/Spti.vue'),
+    },
     // 동적 라우트 파라미터 처리
 
     // {
