@@ -67,26 +67,6 @@
       "description": "친구에게 받은 생일 돈",
       "payment": "현금",
       "vendor": "친구"
-    },
-    {
-      "id": "4",
-      "userId": 1,
-      "amount": 3100000,
-      "date": "2025-04-01",
-      "category": "월급",
-      "description": "4월 월급",
-      "payment": "이체",
-      "vendor": "회사"
-    },
-    {
-      "id": "5",
-      "userId": 1,
-      "amount": 3000000,
-      "date": "2025-04-11",
-      "category": "월급",
-      "description": "15년차 월급",
-      "payment": "",
-      "vendor": "KB"
     }
   ],
   "expenses": [
@@ -139,46 +119,6 @@
       "description": "택시비",
       "payment": "현금",
       "vendor": "카카오택시"
-    },
-    {
-      "id": "6",
-      "userId": 1,
-      "amount": 90000,
-      "date": "2025-04-02",
-      "category": "쇼핑",
-      "description": "잡화 쇼핑",
-      "payment": "카드",
-      "vendor": "무신사"
-    },
-    {
-      "id": "7",
-      "userId": 1,
-      "amount": 110000,
-      "date": "2025-04-05",
-      "category": "식비",
-      "description": "주말 외식",
-      "payment": "카드",
-      "vendor": "이자카야"
-    },
-    {
-      "id": "8",
-      "userId": 1,
-      "amount": 30000,
-      "date": "2025-04-11",
-      "category": "식비",
-      "description": "껌스언",
-      "payment": "",
-      "vendor": "비엣포"
-    },
-    {
-      "id": "9",
-      "userId": 1,
-      "amount": 100000,
-      "date": "2025-04-01",
-      "category": "쇼핑",
-      "description": "봄옷",
-      "payment": "",
-      "vendor": "무신사"
     }
   ],
   "stats": [
