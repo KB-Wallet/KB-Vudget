@@ -155,8 +155,14 @@ watch([currentYear, currentMonth, stats, incomes, expenses], () => {
   updateDailyStats()
 })
 
+//버튼 클릭시 전체리스트 페이지
 function moveTotalList() {
   router.push({ path: '/history' })
+}
+
+//버튼 클릭시 작성 페이지
+function moveWritePage() {
+  router.push({ path: '/WritePage' })
 }
 </script>
 
@@ -225,9 +231,9 @@ function moveTotalList() {
         <button class="close-btn" @click="selectedDay = null">닫기</button>
         <!-- 클릭한 해당 날짜 출력 -->
         <h3>{{ formatDate(selectedDay.date) }}</h3>
-        <ul>
-          <li>해당 일자 작성 페이지 입니다.</li>
-        </ul>
+        <button class="btn-move-writepage" @click="moveWritePage()">
+          해당 날짜 입력 페이지 이동
+        </button>
       </div>
     </div>
   </div>

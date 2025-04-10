@@ -193,6 +193,18 @@
   transform: scale(0.98);
 }
 
+.btn-move-writepage {
+  background-color: #ffcb3d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 /*태블릿 이하 (max-width: 768px) */
 @media (max-width: 768px) {
   .calendar-header {
