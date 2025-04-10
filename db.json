@@ -161,5 +161,28 @@
       "totalExpenses": 0,
       "remainingBudget": 2000000
     }
+  ],
+  "stats": [
+    {
+      "userId": 1,
+      "month": "2025-03",
+      "totalIncome": 3050000,
+      "totalExpenses": 350000,
+      "remainingBudget": 1650000
+    },
+    {
+      "userId": 1,
+      "month": "2025-04",
+      "totalIncome": 0,
+      "totalExpenses": 0,
+      "remainingBudget": 2000000
+    },
+    {
+      "userId": 1,
+      "month": "2025-05",
+      "totalIncome": 0,
+      "totalExpenses": 0,
+      "remainingBudget": 4000000
+    }
   ]
 }
