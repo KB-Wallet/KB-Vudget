@@ -1,10 +1,14 @@
 <script setup>
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue'
 import { useUserStore } from '@/stores/user'
 import axios from 'axios'
+import '@/assets/login.css'
+import Logo from '@/icons/Welcome Vudget.svg'
+import webintro from '@/icons/webintroduce.png'
+import webintro2 from '@/icons/webintroduce2.png'
+
 const userStore = useUserStore()
-const route = useRoute()
 const router = useRouter()
 const email = ref('')
 const password = ref('')
@@ -17,12 +21,13 @@ const goToRegister = () => {
 const goToFindinfo = () => {
   router.push('/Findinfo')
 }
+
 onMounted(async () => {
   const res = await axios.get('http://localhost:5000/users')
   users.value = res.data
 })
 
-const login = () => {
+const logIn = () => {
   const foundUser = users.value.find(
     (user) => user.email === email.value && user.password === password.value,
   )
@@ -40,8 +45,9 @@ const login = () => {
   <div class="container">
     <div class="left-half">
       <div class="logo_container">
-        <img src="@/icons/Welcome Vudget.svg" alt="logo" class="logo" />
-        <!-- 웹사이트 소개 사진 넣기 -->
+        <img :src="Logo" alt="logo" class="logo" />
+        <img :src="webintro" alt="webintro" class="webintro" />
+        <img :src="webintro2" alt="webintro2" class="webintro2" />
       </div>
     </div>
     <div class="right-half">
@@ -67,7 +73,7 @@ const login = () => {
         <div class="loginForm">
           <p>
             <input
-              class="Email-input"
+              class="userEmail"
               name="uemail"
               placeholder="Email address"
               v-model="email"
@@ -75,7 +81,7 @@ const login = () => {
           </p>
           <p>
             <input
-              class="PW-input"
+              class="userPw"
               name="upw"
               placeholder="Password"
               type="password"
@@ -83,7 +89,7 @@ const login = () => {
             />
           </p>
           <p>
-            <button type="submit" class="login_button" @click.prevent="login">Log in</button>
+            <button type="submit" class="btnLogin" @click.prevent="logIn">Log in</button>
           </p>
         </div>
         <p class="find_info">
@@ -94,95 +100,3 @@ const login = () => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.container {
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  /* overflow: hidden; */
-}
-
-.left-half {
-  flex: 1;
-  background-color: #8a8d8f;
-  position: relative;
-}
-
-.right-half {
-  flex: 1;
-  background-color: #ffffff;
-}
-.logo_container {
-  position: absolute;
-  height: 100%;
-  bottom: 35%;
-  display: flex;
-  justify-content: flex-end;
-  padding-left: 30%;
-}
-.logo {
-  width: 300px;
-  height: auto;
-}
-.signup {
-  text-align: center;
-  margin-top: 60px;
-}
-.signup-text {
-  font-size: 16px;
-}
-.link {
-  color: #ffbc00;
-  margin-left: 8px;
-  cursor: pointer;
-  text-decoration: underline;
-}
-.head_introduce {
-  padding-top: 15px;
-  font-size: 50px;
-}
-.introduce {
-  text-align: left;
-  padding-left: 150px;
-  padding-top: 10px;
-  font-size: 20px;
-}
-.loginForm {
-  margin: 20px auto;
-  padding: 30px;
-}
-
-.Email-input,
-.PW-input {
-  width: 70%;
-  height: 60px;
-  padding-top: 10px;
-  margin-bottom: 15px;
-  background-color: #f0f0f0;
-  border: 1px solid #f0f0f0;
-  border-radius: 6px;
-  font-size: 17px;
-  box-sizing: border-box;
-  transition: border-color 0.2s;
-
-  text-align: left;
-  padding-left: 40px;
-}
-.PW-input {
-  margin: 20px;
-}
-.login_button {
-  width: 70%;
-  height: 60px;
-  background-color: #ffbc00;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  font-size: 20px;
-  margin: 40px 0 5px 0;
-}
-.find_info {
-  font-size: 16px;
-}
-</style>
