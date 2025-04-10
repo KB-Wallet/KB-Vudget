@@ -8,17 +8,12 @@ const router = createRouter({
       name: 'Login',
       component: () => import('@/pages/Login.vue'),
     },
-    // {
-    //   path: '/Register',
-    //   name: 'register',
-    //   component: () => import('@/pages/Register.vue'),
-    // },
+    {
+      path: '/Register',
+      name: 'register',
+      component: () => import('@/pages/Register.vue'),
+    },
     // 동적 라우트 파라미터 처리
-    // {
-    //   path: '/Findinfo',
-    //   name: 'findinfo',
-    //   component: () => import('@/pages/Findinfo.vue'),
-    // },
     // {
     //   path: '/SPTI',
     //   name: 'spti',
@@ -57,6 +52,11 @@ const router = createRouter({
     {
       path: '/history',
       component: () => import('@/pages/HistoryPage.vue'),
+    },
+    {
+      path: '/Findinfo',
+      name: 'findinfo',
+      component: () => import('@/pages/Findinfo.vue'),
     },
   ],
 })
