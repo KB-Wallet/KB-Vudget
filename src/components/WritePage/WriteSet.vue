@@ -1,9 +1,7 @@
 <script setup>
 import { useUserStore } from '@/stores/user'
 const user_login = useUserStore()
-const setUserId = (id) => {
-  userStore.setUserId(id) // Pinia store에 UserId 저장
-}
+
 import axios from 'axios'
 const API_URL_users = 'http://localhost:5000/users'
 const API_URL_incomes = 'http://localhost:5000/incomes'
@@ -74,12 +72,14 @@ const send_list = async function () {
 
       if (response.ok) {
         console.log('Income successfully sent to the server.')
+        await fetchData()
       } else {
         console.error('Failed to send income. Status:', response.status)
       }
     } catch (error) {
       console.error('Error occurred while sending income:', error)
     }
+    window.location.reload()
   }
   if (choose_cost.value === true) {
     try {
@@ -93,18 +93,20 @@ const send_list = async function () {
 
       if (response.ok) {
         console.log('Expense successfully sent to the server.')
+        await fetchData()
       } else {
         console.error('Failed to send expense. Status:', response.status)
       }
     } catch (error) {
       console.error('Error occurred while sending expense:', error)
     }
+    window.location.reload()
   }
 }
 
 const choose_revenue = ref(false)
 const choose_cost = ref(false)
-
+const fetchData = () => {}
 const changeRevenue = function () {
   choose_revenue.value = !choose_revenue.value
   choose_cost.value = false
@@ -128,6 +130,7 @@ const cate_click = function () {
   console.log(cate)
 }
 const now = ref('')
+
 onMounted(() => {
   const date = new Date()
   const year = date.getFullYear()

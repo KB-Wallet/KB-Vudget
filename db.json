@@ -32,7 +32,26 @@
     }
   ],
   "incomes": [],
-  "expenses": [],
+  "expenses": [
+    {
+      "id": "513b",
+      "amount": "45,645",
+      "date": "2025-03-10",
+      "category": "",
+      "description": "6456456",
+      "payment": "현금",
+      "vendor": "546456"
+    },
+    {
+      "id": "c453",
+      "amount": "456,456",
+      "date": "2025-04-10",
+      "category": "",
+      "description": "456546",
+      "payment": "현금",
+      "vendor": "456"
+    }
+  ],
   "stats": [
     {
       "userId": 1,

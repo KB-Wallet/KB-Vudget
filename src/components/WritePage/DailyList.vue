@@ -77,18 +77,20 @@ const deleteIncome = async (id) => {
   try {
     await axios.delete(`http://localhost:5000/incomes/${id}`)
     console.log('삭제 성공!')
+    fetchData()
   } catch (error) {
     console.error('수입 삭제 실패:', error)
   }
 }
 
 const deleteExpense = async (id) => {
+  console.log(id)
   try {
-    await axios.delete(`${API_URL_expenses}/${id}`)
-    expenses_login.value = expenses_login.value.filter((item) => item.id !== id)
-    console.log(`지출 항목 ${id} 삭제됨`)
+    await axios.delete(`http://localhost:5000/expenses/${id}`)
+    console.log('삭제 성공!')
+    fetchData()
   } catch (error) {
-    console.error('지출 삭제 실패:', error)
+    console.error('수입 삭제 실패:', error)
   }
 }
 </script>
@@ -126,7 +128,7 @@ const deleteExpense = async (id) => {
     </div>
   </body>
 
-  <button class="move-total" @click="check">새로고침</button>
+  <button class="move-total" @click="check" style="display: none">새로고침</button>
 </template>
 
 <style scoped>
@@ -146,7 +148,7 @@ li {
   position: relative;
   right: 40px;
   border-radius: 10px;
-  width: 480px;
+  width: 497px;
 }
 .list-box {
   /* border: 1px solid #8a8d8f47; */
@@ -217,5 +219,9 @@ i:hover {
 }
 i:active {
   color: red;
+}
+.list-box {
+  border: #ffcc00 solid 2px;
+  border-radius: 10px;
 }
 </style>
