@@ -1,37 +1,116 @@
 <script setup>
+import { useUserStore } from '@/stores/user'
+const user_login = useUserStore()
+
 import axios from 'axios'
 const API_URL_users = 'http://localhost:5000/users'
 const API_URL_incomes = 'http://localhost:5000/incomes'
 const API_URL_expenses = 'http://localhost:5000/expenses'
 import { ref, onMounted } from 'vue'
-const users = ref({})
-const incomes = ref({})
-const expenses = ref({})
+const users = ref([])
+const incomes = ref([])
+const expenses = ref([])
+const incomes_login = ref([])
+const expenses_login = ref([])
 const fetchData = async () => {
   try {
     const response_users = await axios.get(API_URL_users)
     const response_incomes = await axios.get(API_URL_incomes)
     const response_expenses = await axios.get(API_URL_expenses)
 
-    // const usersData = response.data.users.value
-    const users = response_users.data
-    const incomes = response_incomes.data
-    const expenses = response_expenses.data
-    // const { users: usersData, incomes: incomesData, expenses: expensesData } = response.data
-    console.log(users, incomes, expenses)
-    // 받아온 데이터를 상태 변수에 저장
+    users.value = response_users.data
+    incomes.value = response_incomes.data
+    expenses.value = response_expenses.data
+
+    console.log('전체 users:', users.value)
+    console.log('전체 incomes:', incomes.value)
+    console.log('전체 expenses:', expenses.value)
+
+    // 로그인한 유저의 UserId 기준으로 필터링
+    incomes_login.value = incomes.value.filter((item) => item.UserId === user_login.UserId)
+    expenses_login.value = expenses.value.filter((item) => item.UserId === user_login.UserId)
+
+    // console.log('로그인한 유저의 수입:', incomes_login.value)
+    // console.log('로그인한 유저의 지출:', expenses_login.value)
   } catch (error) {
     console.error('Error fetching data:', error)
   }
 }
+
 onMounted(() => {
+  const fetchData = async () => {
+    try {
+      const response_users = await axios.get(API_URL_users)
+      const response_incomes = await axios.get(API_URL_incomes)
+      const response_expenses = await axios.get(API_URL_expenses)
+
+      users.value = response_users.data
+      incomes.value = response_incomes.data
+      expenses.value = response_expenses.data
+
+      // console.log('전체 users:', users.value)
+      // console.log('전체 incomes:', incomes.value)
+      // console.log('전체 expenses:', expenses.value)
+
+      // 로그인한 유저의 UserId 기준으로 필터링
+      incomes_login.value = incomes.value.filter((item) => item.UserId === user_login.UserId)
+      expenses_login.value = expenses.value.filter((item) => item.UserId === user_login.UserId)
+
+      // console.log('로그인한 유저의 수입:', incomes_login.value)
+      // console.log('로그인한 유저의 지출:', expenses_login.value)
+    } catch (error) {
+      console.error('Error fetching data:', error)
+    }
+  }
   fetchData()
 })
-
-// 콘솔에 users 데이터를 출력하는 함수
+// 수입 추가 함수
 const check = () => {
-  console.log('users.value', users.value)
+  fetchData()
 }
+const date = new Date()
+const year = date.getFullYear()
+const month = date.getMonth() + 1
+const day = date.getDate()
+// async function deleteIncome(incomeId) {
+//   try {
+//     const response = await fetch(
+//       `${API_URL_incomes}/${incomeId}`,
+//       console.log('이거!!!!!!!', API_URL_incomes, '이거'),
+//       {
+//         method: 'DELETE',
+//       },
+//     )
+//     if (response.ok) {
+//       // 성공적으로 삭제된 경우
+//       alert('수입 항목이 삭제되었습니다.')
+//       fetchData() // 데이터를 새로 고침
+//     } else {
+//       alert('삭제 실패')
+//     }
+//   } catch (error) {
+//     console.error('삭제 중 오류 발생:', error)
+//     alert('삭제 중 오류가 발생했습니다.')
+//   }
+// }
+
+// async function deleteExpense(expenseId) {
+//   try {
+//     const response = await fetch(`${API_URL_expenses}/${expenseId}`, {
+//       method: 'DELETE',
+//     })
+//     if (response.ok) {
+//       // 성공적으로 삭제된 경우
+//       alert('지출 항목이 삭제되었습니다.')
+//       fetchData() // 데이터를 새로 고침
+//     } else {
+//       alert('삭제 실패')
+//     }
+//   } catch (error) {
+//     console.error('삭제 중 오류 발생:', error)
+//     alert('삭제 중 오류가 발생했습니다.')
+//   }
+// }
 </script>
 
 <template>
@@ -39,21 +118,35 @@ const check = () => {
     <h3>오늘의 Vueget 기록</h3>
     <div class="list-box">
       <ul>
-        <li>
+        <li v-for="i in incomes_login" :key="i.id">
           <div>
-            <span class="list-name">롯데마트 쇼핑</span>
-            <span class="income-cost"> 수입 </span>
+            <span class="list-name">{{ i.vendor }}</span>
+            <span class="income"> 수입 </span>
+            <i class="fa-solid fa-trash" @click="deleteIncome(i.id)"></i>
           </div>
           <div>
-            <span class="date">2024-12-03</span><span class="cate-name">식비</span>
-            <span class="amount">₩30,000</span>
+            <span class="date">{{ i.date }}</span
+            ><span class="cate-name">{{ i.category }}</span>
+            <span class="amount">{{ i.amount }}</span>
+          </div>
+        </li>
+        <li v-for="i in expenses_login" :key="i.id">
+          <div>
+            <span class="list-name">{{ i.vendor }}</span>
+            <span class="cost"> 지출 </span>
+            <i class="fa-solid fa-trash" @click="deleteExpense(i.id)"></i>
+          </div>
+          <div>
+            <span class="date">{{ i.date }}</span
+            ><span class="cate-name">{{ i.category }}</span>
+            <span class="amount">{{ i.amount }}</span>
           </div>
         </li>
       </ul>
     </div>
   </body>
 
-  <button class="move-total" @click="check">전체 내역 보기→</button>
+  <button class="move-total" @click="check">새로고침</button>
 </template>
 
 <style scoped>
@@ -89,7 +182,7 @@ li {
 .move-total {
   background-color: white;
   border: white;
-  color: #8a8d8f;
+  color: #a6a6a6;
   left: 350px;
   position: relative;
   top: 50px;
@@ -97,13 +190,24 @@ li {
 ul {
   margin: 0 auto;
 }
-.income-cost {
+.income {
   position: absolute;
   left: 380px;
   top: 5px;
   /* border: 1px solid black; */
   background-color: #eaedff;
   color: #2b46f9;
+  padding: 0.3rem;
+  border-radius: 1rem;
+  /* margin: ; */
+}
+.cost {
+  position: absolute;
+  left: 380px;
+  top: 5px;
+  /* border: 1px solid black; */
+  background-color: #eaedff;
+  color: #ff5c5c;
   padding: 0.3rem;
   border-radius: 1rem;
   /* margin: ; */
@@ -122,7 +226,16 @@ ul {
   position: relative;
   left: 270px;
 }
-/* @media (max-width: 832px) {
-} */
-/* 428 832 */
+i {
+  position: absolute;
+  left: 450px;
+  top: 10px;
+  font-size: 20px;
+}
+i:hover {
+  color: #ff4400;
+}
+i:active {
+  color: red;
+}
 </style>

@@ -1,6 +1,9 @@
 <script setup>
 import axios from 'axios'
-import { reactive, ref } from 'vue'
+const API_URL_users = 'http://localhost:5000/users'
+const API_URL_incomes = 'http://localhost:5000/incomes'
+const API_URL_expenses = 'http://localhost:5000/expenses'
+import { onMounted, reactive, ref } from 'vue'
 
 const cate = ref('')
 const amount = ref()
@@ -32,17 +35,76 @@ const expenses = reactive({
 const cateClick = ref(false)
 const none_style = ref({ display: 'none' }) // 수정
 
-const send_list = function () {
-  incomes.amount = amount.value
+const send_list = async function () {
+  incomes.amount = Number(amount.value).toLocaleString()
+
   incomes.date = today.value
   incomes.category = cate.value
   incomes.description = memo.value
   incomes.vendor = place.value
   incomes.payment = payment.value
+  console.log('incomes: ', incomes)
+  expenses.amount = Number(amount.value).toLocaleString()
+  expenses.date = today.value
+  expenses.category = cate.value
+  expenses.description = memo.value
+  expenses.vendor = place.value
+  expenses.payment = payment.value
+  console.log('expenses: ', expenses)
+  if (choose_revenue.value === true) {
+    try {
+      const response = await fetch(API_URL_incomes, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(incomes),
+      })
+
+      if (response.ok) {
+        console.log('Income successfully sent to the server.')
+      } else {
+        console.error('Failed to send income. Status:', response.status)
+      }
+    } catch (error) {
+      console.error('Error occurred while sending income:', error)
+    }
+  }
+  if (choose_cost.value === true) {
+    try {
+      const response = await fetch(API_URL_expenses, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(expenses),
+      })
+
+      if (response.ok) {
+        console.log('Expense successfully sent to the server.')
+      } else {
+        console.error('Failed to send expense. Status:', response.status)
+      }
+    } catch (error) {
+      console.error('Error occurred while sending expense:', error)
+    }
+  }
 }
 
-const changeRevenue = function () {}
-const changeCost = function () {}
+const choose_revenue = ref(false)
+const choose_cost = ref(false)
+
+const changeRevenue = function () {
+  choose_revenue.value = !choose_revenue.value
+  choose_cost.value = false
+  console.log(choose_revenue.value)
+}
+
+const changeCost = function () {
+  choose_cost.value = !choose_cost.value
+  choose_revenue.value = false
+  console.log(choose_cost.value)
+}
 
 const cate_click = function () {
   console.log(cateClick.value) // 수정
@@ -52,18 +114,30 @@ const cate_click = function () {
     none_style.value = { display: 'none' } // 수정
   }
   cateClick.value = !cateClick.value // 수정
-  // console.log(cate)
+  console.log(cate)
 }
+const now = ref('')
+onMounted(() => {
+  const date = new Date()
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  now.value = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`
+  // `today`가 비어 있으면 초기값을 `now.value`로 설정할 수 있습니다.
+  if (!today.value) {
+    today.value = now.value
+  }
+})
 </script>
 
 <template>
   <body>
     <div class="revenue-cost-box">
-      <span class="set-revenue" @click="changeRevenue">
+      <span class="set-revenue" @click="changeRevenue" :class="{ chosen_revenue: choose_revenue }">
         <div>수입</div>
         <p class="small-write">Choose Income</p>
       </span>
-      <span class="set-cost" @click="changeCost">
+      <span class="set-cost" @click="changeCost" :class="{ chosen_cost: choose_cost }">
         <div>지출</div>
         <p class="small-write">Choose Expenditure</p>
       </span>
@@ -105,7 +179,12 @@ const cate_click = function () {
           />
         </div>
         <div>
-          <input type="text" placeholder=" 날짜" class="date input-box-below" v-model="today" />
+          <input
+            type="text"
+            :placeholder="now.value"
+            class="date input-box-below"
+            v-model="today"
+          />
         </div>
         <div class="form-check">
           <input
@@ -254,5 +333,15 @@ li:hover {
   left: 15px;
   border: 1px solid #8a8d8f;
   border-radius: 5px;
+}
+
+.chosen_revenue {
+  border: #2b46f9 solid 1px;
+  background-color: #eaedff;
+}
+.chosen_cost {
+  border: #ff4e4e solid 1px;
+
+  background-color: #ffd9d9;
 }
 </style>

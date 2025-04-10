@@ -1,18 +1,33 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "username": "jiyoon123",
       "email": "jiyoon@example.com",
       "password": "password123",
       "profileImg": "url/to/profile.jpg",
       "targetBudget": 2000000,
       "categories": [
-        { "type": "income", "name": "월급" },
-        { "type": "income", "name": "용돈" },
-        { "type": "expense", "name": "식비" },
-        { "type": "expense", "name": "교통" },
-        { "type": "expense", "name": "쇼핑" }
+        {
+          "type": "income",
+          "name": "월급"
+        },
+        {
+          "type": "income",
+          "name": "용돈"
+        },
+        {
+          "type": "expense",
+          "name": "식비"
+        },
+        {
+          "type": "expense",
+          "name": "교통"
+        },
+        {
+          "type": "expense",
+          "name": "쇼핑"
+        }
       ]
     }
   ],
@@ -20,54 +35,244 @@
     {
       "id": 1,
       "userId": 1,
-      "amount": 3000000,
-      "date": "2025-03-01",
-      "category": "월급",
-      "description": "3월 월급",
-      "payment": "이체",
-      "vendor": "회사"
+      "amount": "123213",
+      "date": "3213",
+      "category": "",
+      "description": "21321312",
+      "payment": "현금",
+      "vendor": "213213"
     },
     {
-      "id": 2,
+      "id": 1,
       "userId": 1,
-      "amount": 50000,
-      "date": "2025-03-15",
-      "category": "용돈",
-      "description": "부모님 용돈",
+      "amount": "ㅇㄴㄹㄴㅇㄹ",
+      "date": "ㅇㄴㄹㅇㄴㄹ",
+      "category": "",
+      "description": "ㄴㄹㄴㅇㄹ",
+      "payment": "",
+      "vendor": "ㅇㄴㄹ"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "5345",
+      "date": "34534",
+      "category": "",
+      "description": "345",
+      "payment": "",
+      "vendor": "345"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "345,345,435",
+      "date": "2025-04-10",
+      "category": "",
+      "description": "5345",
+      "payment": "",
+      "vendor": "34543"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "30,000",
+      "date": "2025-04-10",
+      "category": "",
+      "description": "23",
       "payment": "현금",
-      "vendor": "부모님"
+      "vendor": "2323"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "4,534,534",
+      "date": "2025-04-10",
+      "category": "",
+      "description": "435435",
+      "payment": "현금",
+      "vendor": "ㄱㄷㅅㄷㄳ"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "3,423,423,423",
+      "date": "2025-04-10",
+      "category": "식비",
+      "description": "324324234",
+      "payment": "",
+      "vendor": "4234"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "23,423,423,423,423,434,000,000",
+      "date": "2025-04-10",
+      "category": "식비",
+      "description": "44324432442344",
+      "payment": "현금",
+      "vendor": "44432"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "435,345",
+      "date": "2025-04-10",
+      "category": "",
+      "description": "345435435",
+      "payment": "현금",
+      "vendor": "345"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "234,234",
+      "date": "2025-04-10",
+      "category": "",
+      "description": "4234234324324",
+      "payment": "현금",
+      "vendor": "23423"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "11,111,111,111,111",
+      "date": "2025-04-10",
+      "category": "",
+      "description": "4234324432423",
+      "payment": "현금",
+      "vendor": "424324"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "11,111,111,111,111",
+      "date": "2025-04-10",
+      "category": "",
+      "description": "4234324432423",
+      "payment": "현금",
+      "vendor": "424324"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "11,111,111,111,111",
+      "date": "2025-04-10",
+      "category": "",
+      "description": "4234324432423",
+      "payment": "현금",
+      "vendor": "424324"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "234,234,233,423",
+      "date": "2025-04-10",
+      "category": "",
+      "description": "3",
+      "payment": "현금",
+      "vendor": "3"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "345,435",
+      "date": "2025-04-10",
+      "category": "",
+      "description": "5345345",
+      "payment": "",
+      "vendor": "34534"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "343,333,333",
+      "date": "2025-04-10",
+      "category": "",
+      "description": "4",
+      "payment": "",
+      "vendor": "4"
     }
   ],
   "expenses": [
     {
       "id": 1,
       "userId": 1,
-      "amount": 150000,
-      "date": "2025-03-05",
-      "category": "식비",
-      "description": "마트 장보기",
-      "payment": "카드",
-      "vendor": "이마트"
-    },
-    {
-      "id": 2,
-      "userId": 1,
-      "amount": 80000,
-      "date": "2025-03-07",
-      "category": "교통",
-      "description": "버스 충전",
+      "amount": "345",
+      "date": "435435",
+      "category": "",
+      "description": "5345",
       "payment": "현금",
-      "vendor": "T-money"
+      "vendor": "34534"
     },
     {
-      "id": 3,
+      "id": 1,
       "userId": 1,
-      "amount": 120000,
-      "date": "2025-03-10",
-      "category": "쇼핑",
-      "description": "봄옷 구매",
+      "amount": "234324",
+      "date": "324324",
+      "category": "주거비",
+      "description": "4234",
       "payment": "카드",
-      "vendor": "ZARA"
+      "vendor": "23423"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "23423423",
+      "date": "2025-04-10",
+      "category": "교통비",
+      "description": "234234234",
+      "payment": "현금",
+      "vendor": "234"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "11111",
+      "date": "2025-04-10",
+      "category": "",
+      "description": "234324234",
+      "payment": "현금",
+      "vendor": "234"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "3453453455435435",
+      "date": "2025-04-10",
+      "category": "",
+      "description": "ㄷㄳㄷㄳㄷㄳ",
+      "payment": "",
+      "vendor": "ㄷㅅ"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "3,453,454,353",
+      "date": "2025-04-10435435",
+      "category": "",
+      "description": "435345",
+      "payment": "",
+      "vendor": "345435"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "34",
+      "date": "2025-04-10",
+      "category": "",
+      "description": "4",
+      "payment": "",
+      "vendor": "4"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "amount": "3,433,333",
+      "date": "2025-04-10",
+      "category": "",
+      "description": "4",
+      "payment": "",
+      "vendor": "4"
     }
   ],
   "stats": [
@@ -76,21 +281,24 @@
       "month": "2025-03",
       "totalIncome": 3050000,
       "totalExpenses": 350000,
-      "remainingBudget": 1650000
+      "remainingBudget": 1650000,
+      "id": "ec76"
     },
     {
       "userId": 1,
       "month": "2025-04",
       "totalIncome": 0,
       "totalExpenses": 0,
-      "remainingBudget": 2000000
+      "remainingBudget": 2000000,
+      "id": "0c79"
     },
     {
       "userId": 1,
       "month": "2025-05",
       "totalIncome": 0,
       "totalExpenses": 0,
-      "remainingBudget": 4000000
+      "remainingBudget": 4000000,
+      "id": "8c8b"
     }
   ]
 }
