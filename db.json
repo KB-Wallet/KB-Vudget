@@ -1,18 +1,33 @@
 {
   "users": [
     {
-      "id": 1,
-      "username": "jiyoon123",
+      "id": "1",
+      "username": "-0000",
       "email": "jiyoon@example.com",
-      "password": "password123",
+      "password": "",
       "profileImg": "src/icons/profile.svg",
       "targetBudget": 2000000,
       "categories": [
-        { "type": "income", "name": "월급" },
-        { "type": "income", "name": "용돈" },
-        { "type": "expense", "name": "식비" },
-        { "type": "expense", "name": "교통" },
-        { "type": "expense", "name": "쇼핑" }
+        {
+          "type": "income",
+          "name": "월급"
+        },
+        {
+          "type": "income",
+          "name": "용돈"
+        },
+        {
+          "type": "expense",
+          "name": "식비"
+        },
+        {
+          "type": "expense",
+          "name": "교통"
+        },
+        {
+          "type": "expense",
+          "name": "쇼핑"
+        }
       ]
     }
   ],
@@ -28,7 +43,7 @@
       "vendor": "회사"
     },
     {
-      "id": 2,
+      "id": "2",
       "userId": 1,
       "amount": 50000,
       "date": "2025-03-15",
@@ -38,7 +53,7 @@
       "vendor": "부모님"
     },
     {
-      "id": 3,
+      "id": "3",
       "userId": 1,
       "amount": 100000,
       "date": "2025-03-25",
@@ -48,7 +63,7 @@
       "vendor": "친구"
     },
     {
-      "id": 4,
+      "id": "4",
       "userId": 1,
       "amount": 3100000,
       "date": "2025-04-01",
@@ -80,7 +95,7 @@
       "vendor": "T-money"
     },
     {
-      "id": 3,
+      "id": "3",
       "userId": 1,
       "amount": 120000,
       "date": "2025-03-10",
@@ -90,7 +105,7 @@
       "vendor": "ZARA"
     },
     {
-      "id": 4,
+      "id": "4",
       "userId": 1,
       "amount": 50000,
       "date": "2025-03-12",
@@ -100,7 +115,7 @@
       "vendor": "고기집"
     },
     {
-      "id": 5,
+      "id": "5",
       "userId": 1,
       "amount": 30000,
       "date": "2025-03-28",
@@ -110,7 +125,7 @@
       "vendor": "카카오택시"
     },
     {
-      "id": 6,
+      "id": "6",
       "userId": 1,
       "amount": 90000,
       "date": "2025-04-02",
@@ -120,7 +135,7 @@
       "vendor": "무신사"
     },
     {
-      "id": 7,
+      "id": "7",
       "userId": 1,
       "amount": 110000,
       "date": "2025-04-05",
@@ -136,14 +151,16 @@
       "month": "2025-03",
       "totalIncome": 3050000,
       "totalExpenses": 350000,
-      "remainingBudget": 1650000
+      "remainingBudget": 1650000,
+      "id": "23a0"
     },
     {
       "userId": 1,
       "month": "2025-04",
       "totalIncome": 0,
       "totalExpenses": 0,
-      "remainingBudget": 2000000
+      "remainingBudget": 2000000,
+      "id": "99f0"
     }
   ]
 }

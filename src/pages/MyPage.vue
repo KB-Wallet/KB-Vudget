@@ -79,7 +79,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0 auto;
+  padding: 0;
 }
 .mypage-Lcontainer {
   display: flex;
@@ -97,7 +97,7 @@ h2 {
   width: 250px;
   height: 250px;
   object-fit: cover;
-  border-radius: 50%; /* 동그랗게 만들기 */
+  border-radius: 50%;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
@@ -112,21 +112,33 @@ h2 {
   height: 100vh;
   backdrop-filter: blur(5px);
   background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  z-index: 1000;
+}
+
+.modal-overlay.active {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
-  display: none;
 }
-.modal-overlay.active {
+
+.modal-content {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 50%;
 }
+
 .modal-content img {
   width: 500px;
   height: 500px;
   object-fit: cover;
   border-radius: 50%;
 }
+
 .mypage-Rcontainer {
   border: none;
   background-color: #ffbc00;
@@ -257,7 +269,7 @@ h2 {
     text-align: right;
   }
 }
-@media (max-width: 1670px) {
+@media (max-width: 1200px) {
   .mypage-container {
     flex-direction: column;
     align-items: center;
