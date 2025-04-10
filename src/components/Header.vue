@@ -1,7 +1,7 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import db from '@/../db.json'
 import { ref } from 'vue'
-
 const userId = ref(0)
 </script>
 
@@ -12,8 +12,8 @@ const userId = ref(0)
       <h1 class="vudget-logo">Vudget</h1>
     </router-link>
     <div class="header-rcontainer">
-      <router-link to=""><img src="../../icons/calendar.svg" alt="toCalendar" /></router-link>
-      <router-link to="/history"><img src="../../icons/history.svg" alt="toHistory" /></router-link>
+      <router-link to=""><img src="../icons/calendar.svg" alt="toCalendar" /></router-link>
+      <router-link to="/history"><img src="../icons/history.svg" alt="toHistory" /></router-link>
       <!-- <router-link to=""><img src="../../icons/profile.svg" alt="" /></router-link> -->
       <router-link to=""
         ><img :src="db.users[userId].profileImg" alt="profile image"

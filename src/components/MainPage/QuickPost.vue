@@ -202,6 +202,99 @@ const handleSubmit = () => {
   border-radius: 10px;
   padding: 10px 20px;
   align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: nowrap; /* ❗ 튕김 방지: 줄바꿈 막기 */
+  max-width: 100%; /* ❗ 화면 넘지 않도록 */
+  overflow-x: auto; /* ❗ 내부 넘칠 경우 스크롤 허용 */
+  box-sizing: border-box;
+}
+
+.typebtn-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex-shrink: 0; /* ❗ 줄어들지 않게 */
+}
+
+.typebtn-container > * {
+  width: 70px;
+  height: 40px;
+  border-radius: 7px;
+  border: #ffbc00 1px solid;
+  background-color: white;
+  color: #ffbc00;
+}
+
+.activeType {
+  background-color: #ffbc00;
+  color: white;
+}
+
+.quickpost-middle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+  min-width: 0; /* ❗ 내부 요소들이 줄어들 수 있게 */
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1 1 0; /* ❗ 각 입력 필드가 줄어들 수 있도록 */
+  min-width: 0;
+}
+
+.input-container > input,
+.amount-wrapper > input,
+select {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 5px 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.amount-wrapper {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.amount-wrapper > input {
+  flex: 1;
+  margin-right: 5px;
+}
+
+.unit-text {
+  color: gray;
+  white-space: nowrap;
+}
+
+.post-btn {
+  cursor: grab;
+  flex-shrink: 0;
+}
+
+select option:disabled {
+  color: lightgray;
+}
+
+.error {
+  border: 1px solid red !important;
+}
+</style>
+<!-- <style scoped>
+.quickpost-container {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 10px 20px;
+  align-items: center;
   justify-content: center;
   gap: 50px;
 }
@@ -264,4 +357,4 @@ select option:disabled {
 .error {
   border: 1px solid red !important;
 }
-</style>
+</style> -->

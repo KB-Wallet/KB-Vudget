@@ -14,7 +14,7 @@
   "dependencies": {
     "@vuepic/vue-datepicker": "^11.0.2",
     "axios": "^1.8.4",
-    "bootstrap": "^5.2.3",
+    "bootstrap": "^5.3.5",
     "bootstrap5": "^1.1.9",
     "dayjs": "^1.11.13",
     "json-server": "^1.0.0-beta.3",
