@@ -72,27 +72,27 @@ const date = new Date()
 const year = date.getFullYear()
 const month = date.getMonth() + 1
 const day = date.getDate()
-// async function deleteIncome(incomeId) {
-//   try {
-//     const response = await fetch(
-//       `${API_URL_incomes}/${incomeId}`,
-//       console.log('이거!!!!!!!', API_URL_incomes, '이거'),
-//       {
-//         method: 'DELETE',
-//       },
-//     )
-//     if (response.ok) {
-//       // 성공적으로 삭제된 경우
-//       alert('수입 항목이 삭제되었습니다.')
-//       fetchData() // 데이터를 새로 고침
-//     } else {
-//       alert('삭제 실패')
-//     }
-//   } catch (error) {
-//     console.error('삭제 중 오류 발생:', error)
-//     alert('삭제 중 오류가 발생했습니다.')
-//   }
-// }
+async function deleteIncome(incomeId) {
+  try {
+    const response = await fetch(
+      `${API_URL_incomes}/${incomeId}`,
+      console.log('이거!!!!!!!', API_URL_incomes, '이거'),
+      {
+        method: 'DELETE',
+      },
+    )
+    if (response.ok) {
+      // 성공적으로 삭제된 경우
+      alert('수입 항목이 삭제되었습니다.')
+      fetchData() // 데이터를 새로 고침
+    } else {
+      alert('삭제 실패')
+    }
+  } catch (error) {
+    console.error('삭제 중 오류 발생:', error)
+    alert('삭제 중 오류가 발생했습니다.')
+  }
+}
 
 // async function deleteExpense(expenseId) {
 //   try {
