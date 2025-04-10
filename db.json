@@ -2,7 +2,7 @@
   "users": [
     {
       "id": "1",
-      "username": "-0000",
+      "username": "비엣포",
       "email": "jiyoon@example.com",
       "password": "",
       "profileImg": "src/icons/profile.svg",
@@ -29,6 +29,12 @@
           "name": "쇼핑"
         }
       ]
+    },
+    {
+      "id": "3c87",
+      "username": "jjh",
+      "email": "jh@example.com",
+      "password": "password1234"
     }
   ],
   "incomes": [
@@ -71,6 +77,16 @@
       "description": "4월 월급",
       "payment": "이체",
       "vendor": "회사"
+    },
+    {
+      "id": "5",
+      "userId": 1,
+      "amount": 3000000,
+      "date": "2025-04-11",
+      "category": "월급",
+      "description": "15년차 월급",
+      "payment": "",
+      "vendor": "KB"
     }
   ],
   "expenses": [
@@ -143,6 +159,16 @@
       "description": "주말 외식",
       "payment": "카드",
       "vendor": "이자카야"
+    },
+    {
+      "id": "8",
+      "userId": 1,
+      "amount": 30000,
+      "date": "2025-04-11",
+      "category": "식비",
+      "description": "껌스언",
+      "payment": "",
+      "vendor": "비엣포"
     }
   ],
   "stats": [

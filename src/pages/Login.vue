@@ -5,7 +5,7 @@ import { ref, onMounted } from 'vue'
 import { useUserStore } from '@/stores/user'
 import axios from 'axios'
 import '@/assets/login.css'
-import Logo from '@/icons/Welcome Vudget.svg'
+import Logo from '@/icons/welcome.svg'
 import webintro from '@/icons/webintroduce.png'
 import webintro2 from '@/icons/webintroduce2.png'
 
@@ -36,7 +36,7 @@ const logIn = () => {
   if (foundUser) {
     alert('로그인 성공!')
     userStore.login(foundUser)
-    router.push('/mainpage')
+    router.push('/main')
   } else {
     alert('이메일 또는 비밀번호가 올바르지 않습니다.')
   }

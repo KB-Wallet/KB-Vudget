@@ -173,7 +173,7 @@ watch(currentFilter, () => {
             <th style="width: 80px">분류</th>
             <th style="width: 130px">날짜</th>
             <th style="width: 120px">카테고리</th>
-            <th style="width: 120px">결제수단</th>
+            <!-- <th style="width: 120px">결제수단</th> -->
             <th style="width: 120px">거래처</th>
             <th style="width: 120px">금액</th>
             <th style="width: 200px">메모</th>
@@ -196,7 +196,7 @@ watch(currentFilter, () => {
             </td>
             <td>{{ item.date }}</td>
             <td>{{ item.category }}</td>
-            <td>{{ item.payment }}</td>
+            <!-- <td>{{ item.payment }}</td> -->
             <td>{{ item.vendor }}</td>
             <td>{{ item.amount.toLocaleString() }}원</td>
             <td>{{ item.description }}</td>
