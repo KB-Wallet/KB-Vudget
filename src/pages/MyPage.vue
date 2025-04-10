@@ -2,6 +2,7 @@
 import axios from 'axios'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import defaultProfile from '@/icons/user.svg'
 
 const router = useRouter()
 const isModalOpen = ref(false)
@@ -36,7 +37,12 @@ function closeImage() {
       <div class="profile-container">
         <h2 class="page-title">마이페이지</h2>
         <div class="profile-left">
-          <img src="@/icons/user.svg" alt="프로필" class="profile-img" @click="openImage" />
+          <img
+            :src="user.profileImg || defaultProfile"
+            alt="프로필"
+            class="profile-img"
+            @click="openImage"
+          />
         </div>
         <div class="profile-right">
           <p>
@@ -55,14 +61,12 @@ function closeImage() {
     </div>
     <div class="mypage-Rcontainer">
       <router-link to="/editmypage" class="link">회원정보수정</router-link>
-      <router-link to="/editmypage" class="link">이번 달 내역</router-link>
       <router-link to="/editmypage" class="link">소비 유형 검사</router-link>
       <button class="logout-btn" @click="logout">로그아웃</button>
     </div>
-    <div v-if="isModalOpen" class="modal-overlay" @click="closeImage">
+    <div :class="['modal-overlay', { active: isModalOpen }]" @click="closeImage">
       <div class="modal-content" @click.stop>
-        <!-- 이미지도 db랑 연동해서 가져오기 -->
-        <img src="@/icons/user.svg" alt="확대된 프로필" />
+        <img :src="user.profileImg || defaultProfile" alt="확대된 프로필" />
       </div>
     </div>
   </div>
@@ -100,9 +104,12 @@ h2 {
 }
 
 .profile-img {
-  width: 300px;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%; /* 동그랗게 만들기 */
   cursor: pointer;
-  transition: transform 0.3 ease;
+  transition: transform 0.3s ease;
 }
 
 .profile-img:hover {
@@ -121,13 +128,18 @@ h2 {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  display: none;
+}
+
+.modal-overlay.active {
+  display: flex;
 }
 
 .modal-content img {
-  max-width: 90vw;
-  max-height: 90vh;
   width: 500px;
-  border-radius: 20px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .mypage-Rcontainer {
