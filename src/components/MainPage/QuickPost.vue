@@ -208,6 +208,7 @@ const handleSubmit = () => {
   max-width: 100%; /* ❗ 화면 넘지 않도록 */
   overflow-x: auto; /* ❗ 내부 넘칠 경우 스크롤 허용 */
   box-sizing: border-box;
+  overflow: visible !important;
 }
 
 .typebtn-container {

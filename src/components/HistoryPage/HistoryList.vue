@@ -11,7 +11,7 @@ const userId = ref(1)
 const selectedMonth = ref(dayjs()) // datepicker용 날짜 객체 사용
 const currentFilter = ref('전체') // 전체/수입/지출 필터 선택 상태
 const currentPage = ref(1) // 현재 페이지
-const itemsPerPage = 7 // 페이지당 list는 최대 7개
+const itemsPerPage = 5 // 페이지당 list는 최대 7개
 
 // 선택된 월 문자열 반환 (yyyy-MM)
 const selectedMonthStr = computed(() => selectedMonth.value.format('YYYY-MM'))
@@ -177,7 +177,7 @@ watch(currentFilter, () => {
             <th style="width: 120px">거래처</th>
             <th style="width: 120px">금액</th>
             <th style="width: 200px">메모</th>
-            <th style="width: 100px"></th>
+            <!-- <th style="width: 100px"></th> -->
           </tr>
         </thead>
         <tbody>
@@ -200,10 +200,10 @@ watch(currentFilter, () => {
             <td>{{ item.vendor }}</td>
             <td>{{ item.amount.toLocaleString() }}원</td>
             <td>{{ item.description }}</td>
-            <td>
+            <!-- <td>
               <i class="fa-solid fa-pencil edit-icon"></i>
               <i class="fa-solid fa-trash delete-icon"></i>
-            </td>
+            </td> -->
           </tr>
           <!-- 남은 빈 줄 렌더링 (최대 10줄 맞추기) -->
           <tr
@@ -211,7 +211,7 @@ watch(currentFilter, () => {
             :key="'empty-' + n"
             class="empty-row"
           >
-            <td colspan="6">&nbsp;</td>
+            <td colspan="5">&nbsp;</td>
           </tr>
         </tbody>
       </table>
@@ -359,6 +359,8 @@ watch(currentFilter, () => {
 .page-link {
   color: #545045;
   border: none;
+  outline: none !important;
+  box-shadow: none !important;
 }
 .page-item.active .page-link {
   font-weight: bold;
@@ -367,13 +369,15 @@ watch(currentFilter, () => {
 }
 .page-link:focus,
 .page-link:hover {
-  color: #000;
   background: none;
   border: none;
+  outline: none !important;
+  box-shadow: none !important;
 }
 .page-item.disabled .page-link {
   opacity: 0.4;
   pointer-events: none;
+  background: none;
 }
 .deletebtn-wrapper {
   display: flex;
