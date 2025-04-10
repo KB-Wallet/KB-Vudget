@@ -1,12 +1,10 @@
 <script setup>
 import { onMounted } from 'vue'
 import { ref } from 'vue'
-const email = ref('')
-const username = ref('')
+const userEmail = ref('')
+const userName = ref('')
 
-onMounted(() => {
-  console.log(route)
-})
+onMounted(() => {})
 
 const findPw = async () => {
   try {
@@ -14,7 +12,7 @@ const findPw = async () => {
     const users = await response.json()
 
     const matchedUser = users.find(
-      (user) => user.email === email.value || user.username === username.value,
+      (user) => user.email === userEmail.value || user.username === userName.value,
     )
 
     if (matchedUser) {
@@ -54,13 +52,21 @@ const findPw = async () => {
           </p>
         </div>
         <div class="infoForm">
-          <p><input class="userEmail" name="uemail" placeholder="Email address" /><br /></p>
+          <p>
+            <input
+              class="userEmail"
+              name="uemail"
+              placeholder="Email address"
+              v-model="userEmail"
+            /><br />
+          </p>
           <p>
             <input
               name="uid"
               class="userId"
               placeholder="Please enter the last username you remember."
               type="ID"
+              v-model="userId"
             />
           </p>
           <p>
