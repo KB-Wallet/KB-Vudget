@@ -5,31 +5,31 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 // 입력값 상태
-const username = ref('')
-const email = ref('')
-const password = ref('')
-const agree = ref(false)
+const userName = ref('')
+const userEmail = ref('')
+const userPw = ref('')
+const userAgree = ref(false)
 
 // 회원가입 함수
 const register = async () => {
-  if (!username.value || !email.value || !password.value) {
-    alert('모든 필드를 입력해주세요.')
+  if (!userName.value || !userEmail.value || !userPw.value) {
+    alert('모든 칸을 입력해주세요.')
     return
   }
 
-  if (!agree.value) {
+  if (!userAgree.value) {
     alert('약관에 동의해야 가입할 수 있습니다.')
     return
   }
 
   try {
     await axios.post('http://localhost:5000/users', {
-      username: username.value,
-      email: email.value,
-      password: password.value,
+      username: userName.value,
+      email: userEmail.value,
+      password: userPw.value,
     })
-    alert('회원가입이 완료되었습니다!')
-    router.push('/') // 로그인 페이지로 이동
+    alert('회원가입이 완료되었습니다. 환영합니다')
+    router.push('/')
   } catch (error) {
     console.error(error)
     alert('회원가입 중 오류가 발생했습니다.')
@@ -42,6 +42,7 @@ const register = async () => {
       <div class="logo_container">
         <img src="@/icons/Welcome Vudget.svg" alt="logo" class="logo" />
       </div>
+      <!-- 웹사이트 소개 사진 등록 -->
     </div>
 
     <div class="right-half">
@@ -67,34 +68,45 @@ const register = async () => {
         <div class="signup_Form"></div>
         <p>
           <input
-            class="Username-input"
-            v-model="username"
+            class="inputUserName"
+            v-model="userName"
             name="uname"
             placeholder="User Name"
           /><br />
         </p>
 
         <p>
-          <input class="ID-input" v-model="email" name="uid" placeholder="Email address" /><br />
+          <input
+            class="inputUserEmail"
+            v-model="userEmail"
+            name="uid"
+            placeholder="Email address"
+          /><br />
         </p>
         <p>
           <input
-            class="PW-input"
-            v-model="password"
+            class="inputUserPw"
+            v-model="userPw"
             name="upw"
             placeholder="Password"
             type="password"
           />
         </p>
         <p class="policy">
-          <input type="radio" id="agreebtn" value="agree" v-model="agree" class="custom-radio" />
+          <input
+            type="radio"
+            id="agreebtn"
+            value="agree"
+            v-model="userAgree"
+            class="custom-radio"
+          />
           <label for="agreebtn" class="custom-radio-label"
             ><img src="@/icons/radiobutton.svg" alt="radiobutton" class="custom-radio-img" /> I
             agree to Vudget terms of services and privacy policy.</label
           >
         </p>
         <p>
-          <button type="submit" class="signup_button" @click.prevent="register">Sign up</button>
+          <button type="submit" class="btnSignup" @click.prevent="register">Sign up</button>
         </p>
       </div>
     </div>
@@ -106,7 +118,6 @@ const register = async () => {
   display: flex;
   height: 100vh;
   width: 100vw;
-  /* overflow: hidden; */
 }
 
 .left-half {
@@ -136,10 +147,6 @@ const register = async () => {
   margin-top: 60px;
 }
 
-.link {
-  color: #ffbc00;
-  margin-left: 8px;
-}
 .head_introduce {
   padding-top: 15px;
   font-size: 50px;
@@ -154,9 +161,9 @@ const register = async () => {
   margin: 20px auto;
   /* padding: 30px; */
 }
-.Username-input,
-.ID-input,
-.PW-input {
+.inputUserName,
+.inputUserEmail,
+.inputUserPw {
   width: 65%;
   height: 60px;
   padding-top: 10px;
@@ -172,7 +179,7 @@ const register = async () => {
   padding-left: 40px;
 }
 
-.signup_button {
+.btnSignup {
   width: 65%;
   height: 60px;
   background-color: #ffbc00;
@@ -182,9 +189,7 @@ const register = async () => {
   font-size: 20px;
   margin: 40px 0 5px 0;
 }
-.find_info {
-  font-size: 16px;
-}
+
 .policy {
   display: flex;
   flex-direction: column;
