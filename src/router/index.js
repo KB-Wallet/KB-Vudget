@@ -16,11 +16,11 @@ const router = createRouter({
     },
 
     // 동적 라우트 파라미터 처리
-    // {
-    //   path: '/SPTI',
-    //   name: 'spti',
-    //   component: () => import('@/pages/Spti.vue'),
-    // },
+    {
+      path: '/SPTI',
+      name: 'spti',
+      component: () => import('@/pages/Spti.vue'),
+    },
     {
       path: '/main',
       name: 'mainpage',

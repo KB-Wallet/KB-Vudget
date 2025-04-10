@@ -136,3 +136,90 @@
 .reset-btn:hover {
   background-color: #ccc;
 }
+
+/* 모바일 (최대 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px 10px;
+  }
+
+  .inner {
+    padding: 20px 16px;
+    box-shadow: none;
+    border-radius: 8px;
+  }
+
+  .header h2 {
+    font-size: 20px;
+  }
+
+  .header p {
+    font-size: 14px;
+  }
+
+  .question p {
+    font-size: 15px;
+  }
+
+  .radio-option {
+    font-size: 14px;
+    gap: 8px;
+  }
+
+  .submit-btn,
+  .reset-btn {
+    width: 100%;
+    font-size: 15px;
+    padding: 10px 16px;
+  }
+
+  .result-emoji {
+    font-size: 28px;
+  }
+
+  .result-desc {
+    font-size: 14px;
+  }
+
+  .scrollbox {
+    max-height: none;
+    overflow-y: visible;
+  }
+}
+
+/* 태블릿 (481px ~ 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .inner {
+    padding: 24px 24px;
+  }
+
+  .header h2 {
+    font-size: 24px;
+  }
+
+  .header p {
+    font-size: 15px;
+  }
+
+  .question p {
+    font-size: 16px;
+  }
+
+  .radio-option {
+    font-size: 14.5px;
+  }
+
+  .submit-btn,
+  .reset-btn {
+    width: 100%;
+    font-size: 15.5px;
+  }
+
+  .result-emoji {
+    font-size: 30px;
+  }
+
+  .result-desc {
+    font-size: 15px;
+  }
+}
