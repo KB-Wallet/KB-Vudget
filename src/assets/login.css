@@ -16,15 +16,30 @@
 }
 .logo_container {
   position: absolute;
-  height: 100%;
-  bottom: 35%;
+  width: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
-  justify-content: flex-end;
-  padding-left: 30%;
+  flex-direction: column; /* 수직 정렬 */
+  align-items: center;
+  gap: 10px; /* logo와 webintro 사이 간격 */
 }
 .logo {
   width: 300px;
   height: auto;
+}
+.webintro {
+  width: 90%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.webintro2 {
+  width: 90%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 .signup {
   text-align: center;
