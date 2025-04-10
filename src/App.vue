@@ -3,5 +3,6 @@
 </template>
 
 <script setup>
-import CalendarMain from './pages/Calendar/CalendarMain.vue'
+import CalendarMain from './pages/CalendarPage/CalendarMain.vue'
+import CalendarCard from './pages/CalendarCard.vue'
 </script>
