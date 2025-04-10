@@ -1,11 +1,18 @@
 <script setup>
-import '@/assets/main.css'
+import AppFooter from './components/Footer.vue'
+import AppHeader from './components/Header.vue'
 </script>
 
 <template>
-  <!-- <Login /> -->
-  <!-- <Register /> -->
-  <router-view></router-view>
+  <div id="app">
+    <AppHeader></AppHeader>
+    <router-view />
+    <AppFooter></AppFooter>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+#app {
+  padding: 30px 50px;
+}
+</style>
