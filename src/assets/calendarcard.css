@@ -1,0 +1,326 @@
+.calendar-container {
+  position: relative;
+  max-width: 700px;
+  margin: 40px auto;
+  font-family: sans-serif;
+  border-radius: 20px;
+  padding: 20px 40px;
+  box-shadow: 2px 2px 6px lightgray;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: baseline;
+  /* margin-bottom: 1rem; */
+  gap: 10px;
+}
+
+.calendar-year {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #ffbc00;
+}
+
+.calendar-month {
+  font-size: 2.4rem;
+  font-weight: bold;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.changebutton button {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.changebutton .btn2 {
+  margin-left: 1.5rem;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.day-header {
+  text-align: center;
+  font-weight: bold;
+  padding: 10px 0;
+  background-color: white;
+  border-radius: 4px;
+}
+
+.day-cell {
+  border: 1px solid #ddd;
+  height: 100px;
+  padding: 5px;
+  position: relative;
+  cursor: pointer;
+  background-color: #fff;
+  transition: 0.2s ease;
+}
+
+.day-cell:hover {
+  background-color: #f9f9f9;
+}
+
+.day-cell.today {
+  background-color: rgba(255, 247, 226, 0.5);
+  border-color: #fff7e2;
+}
+
+.day-cell.inactive {
+  color: #bbb;
+  background-color: #fafafa;
+}
+
+.day-number {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.notes {
+  margin-top: 28px;
+  font-size: 12px;
+  color: #444;
+  list-style: none;
+  padding: 0;
+}
+
+/* .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 95%;
+  height: 95%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.list_write_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 20px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.list-box {
+  position: absolute;
+  left: 12px;
+}
+
+.write-box {
+  position: absolute;
+  right: 12px;
+}
+*/
+
+.totalIncomeMonth {
+  color: lightskyblue;
+  font-size: 0.8rem;
+  border: 1px dotted #ddd;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.totalExpensesMonth {
+  color: lightcoral;
+  font-size: 0.8rem;
+  border: 1px dotted #ddd;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.amounts {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  gap: 2px;
+}
+
+.amountsincomes {
+  color: lightskyblue;
+  font-size: 0.5rem;
+}
+
+.amountsExpenses {
+  color: lightcoral;
+  font-size: 0.5rem;
+}
+
+.balance {
+  color: gray;
+  font-size: 0.5rem;
+}
+
+.move-totallist {
+  text-align: right;
+}
+
+.btn-move-totallist {
+  background-color: #ffcb3d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  /* transition:
+    background-color 0.3s ease,
+    transform 0.2s ease; */
+}
+
+.btn-move-totallist:hover {
+  background-color: #ffaa00;
+  transform: translateY(-2px);
+}
+
+.btn-move-totallist:active {
+  background-color: #e69e00;
+  transform: scale(0.98);
+}
+
+.btn-move-writepage {
+  background-color: #ffcb3d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/*태블릿 이하 (max-width: 768px) */
+@media (max-width: 768px) {
+  .calendar-header {
+    gap: 5px;
+  }
+
+  .calendar-year {
+    font-size: 1rem;
+    margin: 2px;
+  }
+
+  .calendar-month {
+    font-size: 1.4rem;
+    width: auto;
+  }
+
+  .changebutton {
+    font-size: 18px;
+  }
+
+  .changebutton .btn2 {
+    margin-left: 0.8rem;
+  }
+
+  .day-number {
+    font-size: 12px;
+  }
+
+  .totalIncomeMonth,
+  .totalExpensesMonth {
+    margin: 5px;
+  }
+
+  .amountsincomes,
+  .amountsExpenses,
+  .balance {
+    font-size: 0.45rem;
+  }
+
+  .modal-content {
+    width: 90%;
+    padding: 16px;
+  }
+
+  .list_write_box {
+    flex-direction: column;
+  }
+
+  .list-box,
+  .write-box {
+    width: 100%;
+  }
+}
+
+/*모바일 */
+@media (max-width: 520px) {
+  .calendar-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .calendar-month {
+    font-size: 1rem;
+    margin: 5px;
+  }
+
+  .calendar-grid {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+  }
+
+  .changebutton .btn2 {
+    margin-left: 0.7rem;
+  }
+  .day-cell {
+    padding: 4px;
+    height: 90px;
+  }
+
+  .day-number {
+    font-size: 11px;
+  }
+
+  .totalIncomeMonth,
+  .totalExpensesMonth {
+    margin: 2px;
+  }
+
+  .amountsincomes,
+  .amountsExpenses,
+  .balance {
+    font-size: 0.35rem;
+  }
+}
