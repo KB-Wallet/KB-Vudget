@@ -1,34 +1,53 @@
 <script setup>
-import db from '@/../db.json'
-import { onMounted } from 'vue'
+import axios from 'axios'
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-onMounted(() => {
-  console.log(db)
+const router = useRouter()
+const isModalOpen = ref(false)
+const user = ref(null)
+
+onMounted(async () => {
+  try {
+    const response = await axios.get('http://localhost:5000/users/1')
+    user.value = response.data
+  } catch (error) {
+    console.error('유저 정보 불러오기 실패:', error)
+  }
 })
 
-// function logout(()=>{
+function logout() {
+  alert('로그아웃 되었습니다.')
+  router.push('/mainpage')
+}
 
-// })
+function openImage() {
+  isModalOpen.value = true
+}
+
+function closeImage() {
+  isModalOpen.value = false
+}
 </script>
 
 <template>
-  <div class="mypage-container">
+  <div v-if="user" class="mypage-container">
     <div class="mypage-Lcontainer">
       <div class="profile-container">
-        <h2>마이페이지</h2>
-        <div>
-          <img src="@/icons/user.svg" alt="" />
+        <h2 class="page-title">마이페이지</h2>
+        <div class="profile-left">
+          <img src="@/icons/user.svg" alt="프로필" class="profile-img" @click="openImage" />
         </div>
-        <div>
+        <div class="profile-right">
           <p>
-            <span class="label">이름:</span><span class="value">{{ db.users[0].username }}</span>
+            <span class="label">이름:</span><span class="value">{{ user.username }}</span>
           </p>
           <p>
-            <span class="label">이메일:</span><span class="value">{{ db.users[0].email }}</span>
+            <span class="label">이메일:</span><span class="value">{{ user.email }}</span>
           </p>
           <p>
             <span class="label">목표예산:</span
-            ><span class="value">{{ db.users[0].targetBudget.toLocaleString() }}원</span>
+            ><span class="value">{{ user.targetBudget.toLocaleString() }}원</span>
           </p>
           <p><span class="label">투자성향:</span><span class="value">쇼핑왕</span></p>
         </div>
@@ -36,18 +55,34 @@ onMounted(() => {
     </div>
     <div class="mypage-Rcontainer">
       <router-link to="/editmypage" class="link">회원정보수정</router-link>
-      <button class="logout-btn">로그아웃</button>
+      <router-link to="/editmypage" class="link">이번 달 내역</router-link>
+      <router-link to="/editmypage" class="link">소비 유형 검사</router-link>
+      <button class="logout-btn" @click="logout">로그아웃</button>
+    </div>
+    <div v-if="isModalOpen" class="modal-overlay" @click="closeImage">
+      <div class="modal-content" @click.stop>
+        <!-- 이미지도 db랑 연동해서 가져오기 -->
+        <img src="@/icons/user.svg" alt="확대된 프로필" />
+      </div>
     </div>
   </div>
+  <div v-else>유저 정보를 불러오는 중입니다..</div>
 </template>
 
 <style scoped>
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
 .mypage-container {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 40px 60px;
+  padding: 0 auto;
 }
 
 .mypage-Lcontainer {
@@ -57,10 +92,42 @@ onMounted(() => {
   border-radius: 20px;
   overflow: hidden;
   flex-wrap: wrap;
+  padding: 150px 0;
 }
 
 h2 {
   padding: 30px;
+}
+
+.profile-img {
+  width: 300px;
+  cursor: pointer;
+  transition: transform 0.3 ease;
+}
+
+.profile-img:hover {
+  transform: scale(1.05);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content img {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 500px;
+  border-radius: 20px;
 }
 
 .mypage-Rcontainer {
@@ -86,10 +153,44 @@ h2 {
 }
 
 .profile-container {
+  position: relative;
   display: flex;
   box-sizing: border-box;
   flex-wrap: wrap;
   gap: 40px;
+  padding-top: 80px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.profile-left {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 250px;
+}
+
+.profile-right {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+
+  gap: 20px;
+  font-weight: bold;
+  padding-left: 20px;
+  min-width: 300px;
+}
+
+.page-title {
+  position: absolute;
+  top: -80px;
+  left: 30px;
+  margin: 0;
+  font-size: 2rem;
 }
 
 .profile-container > div:first-child {
@@ -97,6 +198,7 @@ h2 {
   flex: 1;
   justify-content: center;
   align-items: center;
+  font-size: 1.4rem;
 }
 
 .profile-container > div:last-child {
@@ -121,8 +223,8 @@ h2 {
 .link {
   text-decoration: none;
   color: white;
-  font-size: 1.5rem;
-  padding: 20px;
+  font-size: 2rem;
+  padding: 30px;
   text-align: center;
   border-bottom: 1px solid white;
 }
@@ -137,13 +239,76 @@ h2 {
   color: white;
   font-size: 1.5rem;
 }
+.link:hover,
 .logout-btn:hover {
+  color: brown;
   cursor: pointer;
 }
 
 @media (max-width: 768px) {
-  .profile-container > div:last-child {
-    margin-left: 0;
+  .profile-container {
+    flex-direction: column;
+    align-items: center;
   }
+
+  .profile-left,
+  .profile-right {
+    flex: none;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .profile-right {
+    padding-left: 0;
+  }
+
+  .label,
+  .value {
+    display: inline-block;
+    text-align: left;
+    margin: 5px;
+  }
+
+  .label {
+    width: 80px;
+    text-align: right;
+  }
+}
+@media (max-width: 1670px) {
+  .mypage-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mypage-Lcontainer,
+  .mypage-Rcontainer {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .mypage-Rcontainer {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px;
+    height: auto;
+    position: static;
+  }
+
+  .logout-btn {
+    position: static;
+    transform: none;
+    font-size: 1rem;
+  }
+
+  .link {
+    border-bottom: none;
+    font-size: 1rem;
+  }
+}
+
+.link:hover,
+.logout-btn:hover {
+  color: brown;
 }
 </style>

@@ -44,13 +44,9 @@ const router = createRouter({
       component: () => import('@/components/MyPage/EditMyPage.vue'),
     },
     {
-      path: '/CategoriesPage',
-      name: 'categoriespage',
-      component: () => import('@/components/MyPage/CategoriesPage.vue'),
-    },
-    {
-      // path: '/mypage/edit',
-      // component: () => import('@/pages/EditMyPage.vue'),
+      path: '/:catchAll(.*)', // NotFound 처리
+      name: 'NotFound',
+      component: () => import('@/pages/NotFound.vue'),
     },
   ],
 })

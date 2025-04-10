@@ -1,24 +1,39 @@
 {
   "users": [
     {
-      "id": 1,
-      "username": "jiyoon123",
+      "id": "1",
+      "username": "정다현",
       "email": "jiyoon@example.com",
-      "password": "password123",
-      "profileImg": "url/to/profile.jpg",
-      "targetBudget": 2000000,
+      "password": "",
+      "profileImg": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzgiIGhlaWdodD0iMzgiIHZpZXdCb3g9IjAgMCAzOCAzOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMTguNzVDMCA4LjM5NDY2IDguMzk0NjYgMCAxOC43NSAwVjBDMjkuMTA1MyAwIDM3LjUgOC4zOTQ2NiAzNy41IDE4Ljc1VjE4Ljc1QzM3LjUgMjkuMTA1MyAyOS4xMDUzIDM3LjUgMTguNzUgMzcuNVYzNy41QzguMzk0NjYgMzcuNSAwIDI5LjEwNTMgMCAxOC43NVYxOC43NVoiIGZpbGw9IiM3RTg2OUUiIGZpbGwtb3BhY2l0eT0iMC4yNSIvPgo8Y2lyY2xlIGN4PSIxOC43NTEzIiBjeT0iMTQuNTgzMyIgcj0iOC4zMzMzMyIgZmlsbD0iIzIyMjIyMiIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTMxLjgxNTkgMzEuOTQwN0MzMS44NzIzIDMyLjAzOCAzMS44NTQ3IDMyLjE2MSAzMS43NzM3IDMyLjIzOTJDMjguNDAwOCAzNS40OTYzIDIzLjgwOTYgMzcuNSAxOC43NTA1IDM3LjVDMTMuNjkxNCAzNy41IDkuMTAwMjggMzUuNDk2NCA1LjcyNzM5IDMyLjIzOTNDNS42NDY0MyAzMi4xNjEyIDUuNjI4NzUgMzIuMDM4MiA1LjY4NTIzIDMxLjk0MDlDOC4wNzIzNiAyNy44MjY5IDEzLjAyNjMgMjUgMTguNzUwNiAyNUMyNC40NzQ4IDI1IDI5LjQyODcgMjcuODI2OCAzMS44MTU5IDMxLjk0MDdaIiBmaWxsPSIjMjIyMjIyIi8+Cjwvc3ZnPgo=",
+      "targetBudget": 30000,
       "categories": [
-        { "type": "income", "name": "월급" },
-        { "type": "income", "name": "용돈" },
-        { "type": "expense", "name": "식비" },
-        { "type": "expense", "name": "교통" },
-        { "type": "expense", "name": "쇼핑" }
+        {
+          "type": "income",
+          "name": "월급"
+        },
+        {
+          "type": "income",
+          "name": "용돈"
+        },
+        {
+          "type": "expense",
+          "name": "식비"
+        },
+        {
+          "type": "expense",
+          "name": "교통"
+        },
+        {
+          "type": "expense",
+          "name": "쇼핑"
+        }
       ]
     }
   ],
   "incomes": [
     {
-      "id": 1,
+      "id": "1",
       "userId": 1,
       "amount": 3000000,
       "date": "2025-03-01",
@@ -28,7 +43,7 @@
       "vendor": "회사"
     },
     {
-      "id": 2,
+      "id": "2",
       "userId": 1,
       "amount": 50000,
       "date": "2025-03-15",
@@ -36,11 +51,31 @@
       "description": "부모님 용돈",
       "payment": "현금",
       "vendor": "부모님"
+    },
+    {
+      "id": "3",
+      "userId": 1,
+      "amount": 100000,
+      "date": "2025-03-25",
+      "category": "용돈",
+      "description": "친구에게 받은 생일 돈",
+      "payment": "현금",
+      "vendor": "친구"
+    },
+    {
+      "id": "4",
+      "userId": 1,
+      "amount": 3100000,
+      "date": "2025-04-01",
+      "category": "월급",
+      "description": "4월 월급",
+      "payment": "이체",
+      "vendor": "회사"
     }
   ],
   "expenses": [
     {
-      "id": 1,
+      "id": "1",
       "userId": 1,
       "amount": 150000,
       "date": "2025-03-05",
@@ -50,7 +85,7 @@
       "vendor": "이마트"
     },
     {
-      "id": 2,
+      "id": "2",
       "userId": 1,
       "amount": 80000,
       "date": "2025-03-07",
@@ -60,7 +95,7 @@
       "vendor": "T-money"
     },
     {
-      "id": 3,
+      "id": "3",
       "userId": 1,
       "amount": 120000,
       "date": "2025-03-10",
@@ -68,6 +103,46 @@
       "description": "봄옷 구매",
       "payment": "카드",
       "vendor": "ZARA"
+    },
+    {
+      "id": "4",
+      "userId": 1,
+      "amount": 50000,
+      "date": "2025-03-12",
+      "category": "식비",
+      "description": "점심 회식",
+      "payment": "카드",
+      "vendor": "고기집"
+    },
+    {
+      "id": "5",
+      "userId": 1,
+      "amount": 30000,
+      "date": "2025-03-28",
+      "category": "교통",
+      "description": "택시비",
+      "payment": "현금",
+      "vendor": "카카오택시"
+    },
+    {
+      "id": "6",
+      "userId": 1,
+      "amount": 90000,
+      "date": "2025-04-02",
+      "category": "쇼핑",
+      "description": "잡화 쇼핑",
+      "payment": "카드",
+      "vendor": "무신사"
+    },
+    {
+      "id": "7",
+      "userId": 1,
+      "amount": 110000,
+      "date": "2025-04-05",
+      "category": "식비",
+      "description": "주말 외식",
+      "payment": "카드",
+      "vendor": "이자카야"
     }
   ],
   "stats": [
@@ -76,14 +151,16 @@
       "month": "2025-03",
       "totalIncome": 3050000,
       "totalExpenses": 350000,
-      "remainingBudget": 1650000
+      "remainingBudget": 1650000,
+      "id": "9dec"
     },
     {
       "userId": 1,
       "month": "2025-04",
       "totalIncome": 0,
       "totalExpenses": 0,
-      "remainingBudget": 2000000
+      "remainingBudget": 2000000,
+      "id": "2908"
     }
   ]
 }
