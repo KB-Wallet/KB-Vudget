@@ -5,7 +5,6 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      // 지연로딩 적용!
       name: 'Login',
       component: () => import('@/pages/Login.vue'),
     },
@@ -27,9 +26,14 @@ const router = createRouter({
     // 동적 라우트 파라미터 처리
 
     // {
-    //   path: '/MainPage',
-    //   name: mainpage,
+    //   path: '/main',
+    //   name: 'mainpage',
     //   component: () => import('@/pages/MainPage.vue'),
+    // },
+    // {
+    //   path: '/history',
+    //   name: 'historypage',
+    //   component: () => import('@/pages/HistoryPage.vue'),
     // },
     // {
     //   path: '/CalendarMain',
@@ -41,13 +45,11 @@ const router = createRouter({
     //   name: writepage,
     //   component: () => import('@/pages/WritePage.vue'),
     // },
-
     // {
     //   path: '/MyPage',
     //   name: mypage,
     //   component: () => import('@/pages/MyPage.vue'),
     // },
-
     // {
     //   path: '/EditMyPage',
     //   name: editmaypage,
@@ -57,11 +59,6 @@ const router = createRouter({
     //   path: '/EditMyPage',
     //   name: editmaypage,
     //   component: () => import('@/pages/EditMyPage.vue'),
-    // },
-    // {
-    //   path: '/Findinfo',
-    //   name: findinfo,
-    //   component: () => import('@/pages/Findinfo.vue'),
     // },
   ],
 })
