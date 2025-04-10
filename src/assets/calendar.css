@@ -1,8 +1,8 @@
 .calendar-container {
+  position: relative;
   max-width: 700px;
   margin: 40px auto;
   font-family: sans-serif;
-
   border-radius: 20px;
   padding: 20px 40px;
   box-shadow: 2px 2px 6px lightgray;
@@ -161,6 +161,36 @@
 .balance {
   color: gray;
   font-size: 0.5rem;
+}
+
+.move-totallist {
+  margin-top: 1.5rem;
+  text-align: right;
+}
+
+.btn-move-totallist {
+  background-color: #ffcb3d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  /* transition:
+    background-color 0.3s ease,
+    transform 0.2s ease; */
+}
+
+.btn-move-totallist:hover {
+  background-color: #ffaa00;
+  transform: translateY(-2px);
+}
+
+.btn-move-totallist:active {
+  background-color: #e69e00;
+  transform: scale(0.98);
 }
 
 /*태블릿 이하 (max-width: 768px) */
