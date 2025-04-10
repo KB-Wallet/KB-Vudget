@@ -2,7 +2,7 @@
 // import Header from './components/Header.vue'
 // import Footer from './components/Footer.vue'
 
-import CalendarMain from './pages/CalendarPage/CalendarMain.vue'
+import CalendarMain from './pages/CalendarMain.vue'
 </script>
 
 <template>

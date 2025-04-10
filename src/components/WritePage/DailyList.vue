@@ -5,9 +5,9 @@ const user_login = useUserStore() // 로그인한 유저 정보를 가져오는 
 
 // API URL 설정
 import axios from 'axios'
-const API_URL_users = 'http://localhost:5000/users'
-const API_URL_incomes = 'http://localhost:5000/incomes'
-const API_URL_expenses = 'http://localhost:5000/expenses'
+const API_URL_users = 'http://localhost:5001/users'
+const API_URL_incomes = 'http://localhost:5001/incomes'
+const API_URL_expenses = 'http://localhost:5001/expenses'
 
 // 상태 관리할 변수들
 import { ref, onMounted } from 'vue'
@@ -62,7 +62,7 @@ const deleteIncome = async (id) => {
   console.log(id) // 삭제할 수입의 id
   try {
     // 수입 삭제 요청
-    await axios.delete(`http://localhost:5000/incomes/${id}`)
+    await axios.delete(`http://localhost:5001/incomes/${id}`)
     console.log('삭제 성공!')
     fetchData() // 데이터 새로고침
   } catch (error) {
@@ -75,7 +75,7 @@ const deleteExpense = async (id) => {
   console.log(id) // 삭제할 지출의 id
   try {
     // 지출 삭제 요청
-    await axios.delete(`http://localhost:5000/expenses/${id}`)
+    await axios.delete(`http://localhost:5001/expenses/${id}`)
     console.log('삭제 성공!')
     fetchData() // 데이터 새로고침
   } catch (error) {

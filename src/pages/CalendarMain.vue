@@ -3,6 +3,10 @@ import { ref, computed, onMounted, watch } from 'vue'
 import router from '@/router'
 import '@/assets/calendar.css'
 import axios from '@/utils/axios'
+import { useUserStore } from '@/stores/user'
+import WriteSet from '@/components/WritePage/WriteSet.vue'
+import DailyList from '@/components/WritePage/DailyList.vue'
+const user_login = useUserStore()
 
 //당일 날짜 불러오기, =사용자가 클릭한 날짜
 const today = new Date()
@@ -160,10 +164,10 @@ function moveTotalList() {
   router.push({ path: '/history' })
 }
 
-//버튼 클릭시 작성 페이지
-function moveWritePage() {
-  router.push({ path: '/WritePage' })
-}
+// //버튼 클릭시 작성 페이지
+// function moveWritePage() {
+//   router.push({ path: '/WritePage' })
+// }
 </script>
 
 <template>
@@ -228,12 +232,18 @@ function moveWritePage() {
     <!-- 날짜 클릭시 뜨는 화면 -->
     <div v-if="selectedDay" class="modal-overlay" @click.self="selectedDay = null">
       <div class="modal-content">
-        <button class="close-btn" @click="selectedDay = null">닫기</button>
-        <!-- 클릭한 해당 날짜 출력 -->
-        <h3>{{ formatDate(selectedDay.date) }}</h3>
-        <button class="btn-move-writepage" @click="moveWritePage()">
+        <div>
+          <button class="close-btn" @click="selectedDay = null">닫기</button>
+          <!-- 클릭한 해당 날짜 출력 -->
+          <h3>{{ formatDate(selectedDay.date) }}</h3>
+        </div>
+        <div class="list_write_box">
+          <DailyList class="list-box" />
+          <WriteSet class="write-box" />
+        </div>
+        <!-- <button class="btn-move-writepage" @click="moveWritePage()">
           해당 날짜 입력 페이지 이동
-        </button>
+        </button> -->
       </div>
     </div>
   </div>

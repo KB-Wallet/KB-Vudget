@@ -8,21 +8,21 @@ const router = createRouter({
       name: 'Login',
       component: () => import('@/pages/Login.vue'),
     },
-    {
-      path: '/Register',
-      name: 'register',
-      component: () => import('@/pages/Register.vue'),
-    },
-    {
-      path: '/Findinfo',
-      name: 'findinfo',
-      component: () => import('@/pages/Findpw.vue'),
-    },
-    {
-      path: '/SPTI',
-      name: 'spti',
-      component: () => import('@/pages/Spti.vue'),
-    },
+    // {
+    //   path: '/Register',
+    //   name: 'register',
+    //   component: () => import('@/pages/Register.vue'),
+    // },
+    // {
+    //   path: '/Findinfo',
+    //   name: 'findinfo',
+    //   component: () => import('@/pages/Findpw.vue'),
+    // },
+    // {
+    //   path: '/SPTI',
+    //   name: 'spti',
+    //   component: () => import('@/pages/Spti.vue'),
+    // },
     // 동적 라우트 파라미터 처리
 
     // {
@@ -30,21 +30,21 @@ const router = createRouter({
     //   name: 'mainpage',
     //   component: () => import('@/pages/MainPage.vue'),
     // },
-    // {
-    //   path: '/history',
-    //   name: 'historypage',
-    //   component: () => import('@/pages/HistoryPage.vue'),
-    // },
-    // {
-    //   path: '/CalendarMain',
-    //   name: calendarmain,
-    //   component: () => import('@/pages/CalendarMain.vue'),
-    // },
-    // {
-    //   path: '/WritePage',
-    //   name: writepage,
-    //   component: () => import('@/pages/WritePage.vue'),
-    // },
+    {
+      path: '/history',
+      name: 'historypage',
+      component: () => import('@/pages/HistoryPage.vue'),
+    },
+    {
+      path: '/CalendarMain',
+      name: 'calendarmain',
+      component: () => import('@/pages/CalendarMain.vue'),
+    },
+    {
+      path: '/WritePage',
+      name: 'writepage',
+      component: () => import('@/pages/WritePage.vue'),
+    },
     // {
     //   path: '/MyPage',
     //   name: mypage,
