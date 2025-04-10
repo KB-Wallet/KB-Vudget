@@ -21,10 +21,6 @@ onMounted(() => {
 
     <div class="right-half">
       <div class="signin">
-        <!-- <p class="signin-text">
-          Have an account?
-          <span class="link" @click="goToRegister">sign in</span>
-        </p> -->
         <h1 class="head_introduce">Welcome to Vudget</h1>
         <div class="introduce">
           <p>

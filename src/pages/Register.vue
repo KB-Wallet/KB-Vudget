@@ -3,6 +3,8 @@ import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 import '@/assets/register.css'
+import webintro from '@/icons/webintroduce.png'
+import webintro2 from '@/icons/webintroduce2.png'
 
 const router = useRouter()
 // 입력값 상태
@@ -42,6 +44,8 @@ const register = async () => {
     <div class="left-half">
       <div class="logo_container">
         <img src="@/icons/Welcome Vudget.svg" alt="logo" class="logo" />
+        <img :src="webintro" alt="webintro" class="webintro" />
+        <img :src="webintro2" alt="webintro2" class="webintro2" />
       </div>
       <!-- 웹사이트 소개 사진 등록 -->
     </div>
