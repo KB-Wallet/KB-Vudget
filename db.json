@@ -31,27 +31,27 @@
       ]
     }
   ],
-  "incomes": [],
-  "expenses": [
+  "incomes": [
     {
-      "id": "513b",
-      "amount": "45,645",
-      "date": "2025-03-10",
+      "id": "03ec",
+      "amount": "345345",
+      "date": "2025-03-01",
       "category": "",
-      "description": "6456456",
+      "description": "5435345345",
       "payment": "현금",
-      "vendor": "546456"
+      "vendor": "3534534"
     },
     {
-      "id": "c453",
-      "amount": "456,456",
-      "date": "2025-04-10",
+      "id": "ec30",
+      "amount": "345,345,345,345",
+      "date": "2025-03-01",
       "category": "",
-      "description": "456546",
+      "description": "345345",
       "payment": "현금",
-      "vendor": "456"
+      "vendor": "45345345"
     }
   ],
+  "expenses": [],
   "stats": [
     {
       "userId": 1,

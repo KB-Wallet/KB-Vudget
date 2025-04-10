@@ -2,7 +2,6 @@
 import { useUserStore } from '@/stores/user'
 const user_login = useUserStore()
 
-import axios from 'axios'
 const API_URL_users = 'http://localhost:5000/users'
 const API_URL_incomes = 'http://localhost:5000/incomes'
 const API_URL_expenses = 'http://localhost:5000/expenses'
@@ -119,18 +118,21 @@ const changeCost = function () {
   console.log(choose_cost.value)
 }
 
+// 카테고리 리스트를 보여주는 함수
 const cate_click = function () {
-  console.log(cateClick.value) // 수정
+  console.log(cateClick.value) // 카테고리 클릭 상태
   if (cateClick.value === false) {
-    none_style.value = { display: 'block' } // 수정
+    none_style.value = { display: 'block' } // 카테고리 목록 표시
   } else {
-    none_style.value = { display: 'none' } // 수정
+    none_style.value = { display: 'none' } // 카테고리 목록 숨김
   }
-  cateClick.value = !cateClick.value // 수정
+  cateClick.value = !cateClick.value // 카테고리 클릭 상태 토글
   console.log(cate)
 }
-const now = ref('')
 
+// 현재 날짜를 관리하는 변수
+const now = ref('')
+// 컴포넌트가 마운트된 후 실행되는 함수
 onMounted(() => {
   const date = new Date()
   const year = date.getFullYear()
@@ -200,6 +202,7 @@ onMounted(() => {
             v-model="today"
           />
         </div>
+        <!-- 지불 방식 선택 (현금 또는 카드) -->
         <div class="form-check">
           <input
             class="form-check-input"
@@ -222,6 +225,7 @@ onMounted(() => {
           />
           <label class="form-check-label" for="credit_card"> 카드 </label>
         </div>
+        <!-- 제출 버튼 -->
         <button class="btn-confirm" @click="send_list">continue</button>
       </div>
     </div>
@@ -229,133 +233,5 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.revenue-cost-box {
-  position: relative;
-  top: -30px;
-}
-.set-revenue,
-.set-cost {
-  padding: 1rem;
-  /* margin: rem; */
-  width: 150px;
-  height: 80px;
-  left: 50px;
-  position: absolute;
-  bottom: 100px;
-  border-radius: 10px;
-  border: 1px solid #8a8d8f;
-  font-size: 2rem;
-}
-.set-revenue {
-  left: 150px;
-  /* bottom: 1px; */
-}
-.set-revenue:active {
-  border: #2b46f9 solid 1px;
-  background-color: #eaedff;
-  /* color: #2b46f9 solid 1px; */
-}
-.set-cost {
-  left: 400px;
-}
-.set-cost:active {
-  border: #ff4e4e solid 1px;
-
-  background-color: #ffd9d9;
-}
-.small-write {
-  color: #8a8d8f;
-  font-size: 1rem;
-}
-.category {
-  border: 1px solid #8a8d8f;
-  padding: 1rem;
-  left: 10px;
-  width: 100px;
-}
-.amount,
-.category {
-  padding: 1.2rem;
-  top: -30px;
-  position: absolute;
-}
-.amount {
-  left: 160px;
-  padding: 1.3rem;
-  width: 240px;
-}
-.input-box {
-  border: 1px solid #8a8d8f;
-  border-radius: 4px;
-  background-color: #8a8d8f29;
-}
-.input-box-below {
-  padding: 1rem;
-  margin: 1rem;
-  width: 390px;
-}
-.container-input {
-  top: 30px;
-  position: absolute;
-  margin: 10px;
-  left: -15px;
-}
-.btn-confirm {
-  background-color: #ffbc00;
-  border: none;
-  border-radius: 2rem;
-  width: 460px;
-  height: 50px;
-  color: white;
-}
-.btn-confirm:active {
-  border: #8a8d8f 1px solid;
-}
-.input-all {
-  bottom: 70px;
-  position: inherit;
-  left: 140px;
-}
-.cate-list {
-  position: absolute;
-  z-index: 3;
-  /* border: 1px solid #8a8d8f; */
-  border-radius: 4px;
-  /* background-color: #eef2f5; */
-  width: 138px;
-  left: 10px;
-  top: 30px;
-}
-li {
-  list-style-type: none;
-  border: 1px solid #8a8d8f;
-  margin: 0;
-  background-color: #eef2f5;
-  position: relative;
-  top: -15px;
-  left: -40px;
-  padding: 5px;
-  width: 120px;
-  border-radius: 5px;
-}
-li:hover {
-  background-color: #8a8d8f;
-}
-.payment-box {
-  position: relative;
-  bottom: 10px;
-  left: 15px;
-  border: 1px solid #8a8d8f;
-  border-radius: 5px;
-}
-
-.chosen_revenue {
-  border: #2b46f9 solid 1px;
-  background-color: #eaedff;
-}
-.chosen_cost {
-  border: #ff4e4e solid 1px;
-
-  background-color: #ffd9d9;
-}
+@import '../../assets/WriteSet.css';
 </style>
