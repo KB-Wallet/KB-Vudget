@@ -1,7 +1,7 @@
 <script setup>
 import CategoryCard from '@/components/CategoryCard.vue'
-
-import ReportCard from '@/components/ReportCard.vue'
+import ReportCard2 from '@/components/ReportCard2.vue'
+// import ReportCard from '@/components/ReportCard.vue'
 </script>
 
 <template>
@@ -11,8 +11,10 @@ import ReportCard from '@/components/ReportCard.vue'
     <CategoryCard />
   </div>
   <!--  -->
-  <h6>main_slide_1_2</h6>
-  <div><ReportCard /></div>
+  <h6>main_slide_1_2 원본</h6>
+  <!-- <div><ReportCard /></div> -->
+  <h6>main_slide_1_2 수정중</h6>
+  <div><ReportCard2 /></div>
 </template>
 
 <style scoped></style>
