@@ -14,6 +14,7 @@ const router = createRouter({
       name: 'register',
       component: () => import('@/pages/Register.vue'),
     },
+
     // 동적 라우트 파라미터 처리
     // {
     //   path: '/SPTI',
@@ -35,6 +36,7 @@ const router = createRouter({
     //   name: 'calendarmain',
     //   component: () => import('@/pages/CalendarMain.vue'),
     // },
+
     {
       // path: '/WritePage',
       // name: writepage,
