@@ -91,9 +91,9 @@ function updateMonthlyStats() {
 const totalIncomeDay = ref([])
 const totalExpensesDay = ref([])
 const dailyTotals = ref({})
-// 추가 정보 = ref({}):빈 객체를 초기값, ref([]): 빈 배열을 초기값
 const incomes = ref([])
 const expenses = ref([])
+// 추가 정보 = ref({}):빈 객체를 초기값, ref([]): 빈 배열을 초기값
 
 function formatDateKey(date) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
@@ -155,8 +155,10 @@ watch([currentYear, currentMonth, stats, incomes, expenses], () => {
       <h2 class="calendar-month">{{ currentMonth + 1 }}월</h2>
       <h4 class="totalIncomeMonth">총 수입 {{ totalIncomeMonth.toLocaleString() }}</h4>
       <h4 class="totalExpensesMonth">총 지출 {{ totalExpensesMonth.toLocaleString() }}</h4>
-      <button @click="changeMonth(-1)">&lt;</button>
-      <button @click="changeMonth(1)">&gt;</button>
+      <div class="changebutton">
+        <button class="btn1" @click="changeMonth(-1)">&lt;</button>
+        <button class="btn2" @click="changeMonth(1)">&gt;</button>
+      </div>
     </div>
 
     <div class="calendar-grid">

@@ -29,11 +29,15 @@
   text-align: left;
 }
 
-.calendar-header button {
+.changebutton button {
   font-size: 24px;
   background: none;
   border: none;
   cursor: pointer;
+}
+
+.changebutton .btn2 {
+  margin-left: 1.5rem;
 }
 
 .calendar-grid {
@@ -157,4 +161,91 @@
 .balance {
   color: gray;
   font-size: 0.5rem;
+}
+
+/*태블릿 이하 (max-width: 768px) */
+@media (max-width: 768px) {
+  .calendar-header {
+    gap: 5px;
+  }
+
+  .calendar-year {
+    font-size: 1rem;
+    margin: 2px;
+  }
+
+  .calendar-month {
+    font-size: 1.4rem;
+    width: auto;
+  }
+
+  .changebutton {
+    font-size: 18px;
+  }
+
+  .changebutton .btn2 {
+    margin-left: 0.8rem;
+  }
+
+  .day-number {
+    font-size: 12px;
+  }
+
+  .totalIncomeMonth,
+  .totalExpensesMonth {
+    margin: 5px;
+  }
+
+  .amountsincomes,
+  .amountsExpenses,
+  .balance {
+    font-size: 0.45rem;
+  }
+
+  .modal-content {
+    width: 90%;
+    padding: 16px;
+  }
+}
+
+/*모바일 */
+@media (max-width: 520px) {
+  .calendar-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .calendar-month {
+    font-size: 1rem;
+    margin: 5px;
+  }
+
+  .calendar-grid {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+  }
+
+  .changebutton .btn2 {
+    margin-left: 0.7rem;
+  }
+  .day-cell {
+    padding: 4px;
+    height: 90px;
+  }
+
+  .day-number {
+    font-size: 11px;
+  }
+
+  .totalIncomeMonth,
+  .totalExpensesMonth {
+    margin: 2px;
+  }
+
+  .amountsincomes,
+  .amountsExpenses,
+  .balance {
+    font-size: 0.35rem;
+  }
 }
