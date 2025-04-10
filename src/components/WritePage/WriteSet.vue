@@ -1,13 +1,14 @@
 <script setup>
 import { useUserStore } from '@/stores/user'
 const user_login = useUserStore()
+const setUserId = (id) => {
+  userStore.setUserId(id) // Pinia store에 UserId 저장
+}
 import axios from 'axios'
 const API_URL_users = 'http://localhost:5000/users'
 const API_URL_incomes = 'http://localhost:5000/incomes'
 const API_URL_expenses = 'http://localhost:5000/expenses'
 import { onMounted, reactive, ref } from 'vue'
-const incomes_login = ref([])
-const expenses_login = ref([])
 
 const cate = ref('')
 const amount = ref()
@@ -40,15 +41,18 @@ const cateClick = ref(false)
 const none_style = ref({ display: 'none' }) // 수정
 
 const send_list = async function () {
+  incomes.userId = user_login.UserId
+  expenses.userId = user_login.UserId
+  console.log('incomes user id!: ', user_login)
+  console.log('expenses user id!: ', expenses.userId)
+
   incomes.id = Date.now
   incomes.amount = Number(amount.value).toLocaleString()
-  incomes.userId = incomes.date = today.value
+
   incomes.category = cate.value
   incomes.description = memo.value
   incomes.vendor = place.value
   incomes.payment = payment.value
-  incomes.userId = incomes_login.value[0]?.userId
-  console.log('incomes user id!: ', incomes_login)
 
   expenses.id = Date.now
   expenses.amount = Number(amount.value).toLocaleString()
@@ -125,7 +129,6 @@ const cate_click = function () {
 }
 const now = ref('')
 onMounted(() => {
-  fetchData()
   const date = new Date()
   const year = date.getFullYear()
   const month = date.getMonth() + 1

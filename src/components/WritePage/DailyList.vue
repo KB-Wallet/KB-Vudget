@@ -72,45 +72,25 @@ const date = new Date()
 const year = date.getFullYear()
 const month = date.getMonth() + 1
 const day = date.getDate()
-async function deleteIncome(incomeId) {
+const deleteIncome = async (id) => {
+  console.log(id)
   try {
-    const response = await fetch(
-      `${API_URL_incomes}/${incomeId}`,
-      console.log('이거!!!!!!!', API_URL_incomes, '이거'),
-      {
-        method: 'DELETE',
-      },
-    )
-    if (response.ok) {
-      // 성공적으로 삭제된 경우
-      alert('수입 항목이 삭제되었습니다.')
-      fetchData() // 데이터를 새로 고침
-    } else {
-      alert('삭제 실패')
-    }
+    await axios.delete(`http://localhost:5000/incomes/${id}`)
+    console.log('삭제 성공!')
   } catch (error) {
-    console.error('삭제 중 오류 발생:', error)
-    alert('삭제 중 오류가 발생했습니다.')
+    console.error('수입 삭제 실패:', error)
   }
 }
 
-// async function deleteExpense(expenseId) {
-//   try {
-//     const response = await fetch(`${API_URL_expenses}/${expenseId}`, {
-//       method: 'DELETE',
-//     })
-//     if (response.ok) {
-//       // 성공적으로 삭제된 경우
-//       alert('지출 항목이 삭제되었습니다.')
-//       fetchData() // 데이터를 새로 고침
-//     } else {
-//       alert('삭제 실패')
-//     }
-//   } catch (error) {
-//     console.error('삭제 중 오류 발생:', error)
-//     alert('삭제 중 오류가 발생했습니다.')
-//   }
-// }
+const deleteExpense = async (id) => {
+  try {
+    await axios.delete(`${API_URL_expenses}/${id}`)
+    expenses_login.value = expenses_login.value.filter((item) => item.id !== id)
+    console.log(`지출 항목 ${id} 삭제됨`)
+  } catch (error) {
+    console.error('지출 삭제 실패:', error)
+  }
+}
 </script>
 
 <template>
