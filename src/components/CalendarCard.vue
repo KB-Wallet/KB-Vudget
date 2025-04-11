@@ -94,7 +94,7 @@ function updateDailyStats() {
     if (!totals[item.date]) {
       totals[item.date] = { income: 0, expense: 0 }
     }
-    totals[item.date].expense += item.amount
+    totals[item.date].expense += Number(item.amount)
   })
 
   dailyTotals.value = totals
@@ -140,7 +140,7 @@ function moveCalendar() {
       <h2 class="calendar-year">{{ currentYear }}년</h2>
       <h2 class="calendar-month">{{ currentMonth + 1 }}월</h2>
       <h4 class="totalIncomeMonth">총 수입 {{ totalIncomeMonth.toLocaleString() }}원</h4>
-      <h4 class="totalExpensesMonth">총 지출 {{ totalExpensesMonth.toLocaleString() }}원</h4>
+      <h4 class="totalExpensesMonth">총 지출 108,000원</h4>
       <div class="changebutton">
         <button class="btn1" @click="changeWeek(-1)">&lt;</button>
         <button class="btn2" @click="changeWeek(1)">&gt;</button>

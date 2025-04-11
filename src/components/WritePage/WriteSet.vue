@@ -2,9 +2,9 @@
 import { useUserStore } from '@/stores/user'
 const user_login = useUserStore()
 
-// const API_URL_users = 'https://vudget.glitch.me/users'
-const API_URL_incomes = 'https://vudget.glitch.me/incomes'
-const API_URL_expenses = 'https://vudget.glitch.me/expenses'
+// const API_URL_users = 'http://localhost:5001/users'
+const API_URL_incomes = 'http://localhost:5001/incomes'
+const API_URL_expenses = 'http://localhost:5001/expenses'
 import { onMounted, reactive, ref } from 'vue'
 
 const cate = ref('')

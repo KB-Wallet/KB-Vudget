@@ -14,7 +14,7 @@ const form = reactive({
 })
 onMounted(async () => {
   try {
-    const response = await axios.get('https://vudget.glitch.me/users/1')
+    const response = await axios.get('http://localhost:5001/users/1')
     const user = response.data
     form.name = user.username
     form.email = user.email
@@ -52,7 +52,7 @@ const onBudgetInput = (e) => {
 }
 async function editBtn() {
   try {
-    await axios.patch('https://vudget.glitch.me/users/1', {
+    await axios.patch('http://localhost:5001/users/1', {
       username: form.name,
       email: form.email,
       password: form.password, // 비밀번호 저장도 가능 (실제로는 해싱 필요하지만 여긴 테스트니까)

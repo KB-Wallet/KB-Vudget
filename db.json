@@ -6,7 +6,7 @@
       "email": "gildongHong@example.com",
       "password": "gildonghong",
       "profileImg": "src/icons/profile.svg",
-      "targetBudget": 700000,
+      "targetBudget": 900000,
       "categories": [
         {
           "type": "income",
@@ -41,6 +41,12 @@
       "username": "주진혁",
       "email": "jjh1117@naver.com",
       "password": "jjh1117"
+    },
+    {
+      "id": "11d7",
+      "username": "홍길동",
+      "email": "gildongHong@example.com",
+      "password": "gildonghong"
     }
   ],
   "incomes": [
@@ -55,14 +61,14 @@
       "vendor": "회사"
     },
     {
-      "id": "2",
+      "id": "3",
       "userId": 1,
-      "amount": 300000,
-      "date": "2025-04-11",
-      "category": "용돈",
-      "description": "이번 달 보너스",
+      "amount": 250000,
+      "date": "2025-04-03",
+      "category": "월급",
+      "description": "IT's Your Life",
       "payment": "",
-      "vendor": "아빠"
+      "vendor": "KB"
     }
   ],
   "expenses": [
@@ -97,16 +103,6 @@
       "vendor": "카카오택시"
     },
     {
-      "id": "8",
-      "userId": 1,
-      "amount": 55000,
-      "date": "2025-04-11",
-      "category": "교통",
-      "description": "4월 청년",
-      "payment": "",
-      "vendor": "기후동행카드"
-    },
-    {
       "id": "9",
       "userId": 1,
       "amount": 22000,
@@ -115,16 +111,6 @@
       "description": "치즈돈가스덮밥",
       "payment": "",
       "vendor": "동경규동"
-    },
-    {
-      "id": "10",
-      "userId": 1,
-      "amount": 150000,
-      "date": "2025-04-12",
-      "category": "쇼핑",
-      "description": "바지",
-      "payment": "",
-      "vendor": "옷"
     },
     {
       "id": "11",
@@ -137,16 +123,6 @@
       "vendor": "점심 식사"
     },
     {
-      "id": "12",
-      "userId": 1,
-      "amount": 100000,
-      "date": "2025-04-11",
-      "category": "교통",
-      "description": "신한카드",
-      "payment": "",
-      "vendor": "저번 달 교통비"
-    },
-    {
       "id": "13",
       "userId": 1,
       "amount": 10500,
@@ -157,14 +133,23 @@
       "vendor": "써브웨이"
     },
     {
-      "id": "14",
+      "id": "15",
       "userId": 1,
-      "amount": 55000,
-      "date": "2025-04-11",
-      "category": "교통",
-      "description": "청년 할인 받음",
+      "amount": 10500,
+      "date": "2025-04-10",
+      "category": "식비",
+      "description": "껌스언",
       "payment": "",
-      "vendor": "기후동행카드"
+      "vendor": "비엣포"
+    },
+    {
+      "id": "a7ab",
+      "amount": "10,000",
+      "date": "2025-04-11",
+      "category": "식비",
+      "description": "치즈돈가스덮밥",
+      "payment": "",
+      "vendor": "동경규동"
     }
   ],
   "stats": [
