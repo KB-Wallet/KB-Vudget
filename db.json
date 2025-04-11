@@ -49,13 +49,14 @@
       "vendor": "회사"
     },
     {
-      "id": "c299",
-      "amount": "5,600",
+      "id": "2",
+      "userId": 1,
+      "amount": 300000,
       "date": "2025-04-11",
-      "category": "쇼핑",
-      "description": "DFG",
-      "payment": "카드",
-      "vendor": "DKTM"
+      "category": "용돈",
+      "description": "이번 달 보너스",
+      "payment": "",
+      "vendor": "아빠"
     }
   ],
   "expenses": [
@@ -142,12 +143,12 @@
     {
       "id": "13",
       "userId": 1,
-      "amount": 122,
-      "date": "2025-04-11",
-      "category": "식비",
-      "description": "ㅇ널",
+      "amount": 10500,
+      "date": "2025-04-09",
+      "category": "교통",
+      "description": "에그마요 이탈리안 비엠티",
       "payment": "",
-      "vendor": "중국지"
+      "vendor": "써브웨이"
     }
   ],
   "stats": [

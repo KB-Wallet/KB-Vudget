@@ -1,13 +1,16 @@
 <script setup>
-import { ref, onMounted, computed, watch } from 'vue'
+import { ref, onMounted, computed, watch, onUnmounted } from 'vue'
 import dayjs from 'dayjs'
+
 const userId = ref(1)
 const selectedMonth = ref(dayjs())
 const currentFilter = ref('전체')
 const currentPage = ref(1)
 const itemsPerPage = 3
+
 const incomes = ref([])
 const expenses = ref([])
+
 // async function refetchData() {
 //   try {
 //     const [incomeRes, expenseRes] = await Promise.all([
@@ -20,23 +23,44 @@ const expenses = ref([])
 //     console.error('데이터 로드 실패:', err)
 //   }
 // }
+
 // onMounted(refetchData)
+
 onMounted(async () => {
+  await refetchData()
+
+  // ✅ 5초마다 자동 새로고침
+  const intervalId = setInterval(() => {
+    refetchData()
+  }, 100)
+
+  // 🔒 컴포넌트가 사라질 때 정리
+  onUnmounted(() => {
+    clearInterval(intervalId)
+  })
+})
+
+// 🔁 데이터 다시 불러오는 함수 정의
+const refetchData = async () => {
   try {
     const [incomeRes, expenseRes] = await Promise.all([
       fetch('http://localhost:5001/incomes'),
       fetch('http://localhost:5001/expenses'),
     ])
+
     incomes.value = await incomeRes.json()
     expenses.value = await expenseRes.json()
   } catch (err) {
     console.error('데이터 로드 실패:', err)
   }
-})
+}
+
 const selectedMonthStr = computed(() => selectedMonth.value.format('YYYY-MM'))
 const selectedMonthDisplay = computed(() => selectedMonth.value.format('YYYY년 M월'))
+
 const isFirstPage = computed(() => currentPage.value === 1)
 const selectedRows = ref([])
+
 const allChecked = computed({
   get: () =>
     selectedRows.value.length === paginatedHistory.value.length &&
@@ -45,26 +69,33 @@ const allChecked = computed({
     selectedRows.value = value ? paginatedHistory.value.map((item) => item.id) : []
   },
 })
+
 const monthlyHistory = computed(() => {
   const incomeHistory = incomes.value
     .filter((i) => i.userId === userId.value && i.date.startsWith(selectedMonthStr.value))
     .map((i) => ({ type: '수입', ...i }))
+
   const expenseHistory = expenses.value
     .filter((e) => e.userId === userId.value && e.date.startsWith(selectedMonthStr.value))
     .map((e) => ({ type: '지출', ...e }))
+
   return [...incomeHistory, ...expenseHistory].sort((a, b) => new Date(a.date) - new Date(b.date))
 })
+
 const filteredHistory = computed(() => {
   if (currentFilter.value === '전체') return monthlyHistory.value
   return monthlyHistory.value.filter((item) => item.type === currentFilter.value)
 })
+
 const totalPages = computed(() => Math.ceil(filteredHistory.value.length / itemsPerPage))
 const isLastPage = computed(() => currentPage.value === totalPages.value)
+
 const paginatedHistory = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage
   const end = start + itemsPerPage
   return filteredHistory.value.slice(start, end)
 })
+
 const goPrevMonth = () => {
   selectedMonth.value = selectedMonth.value.subtract(1, 'month')
   currentPage.value = 1
@@ -79,23 +110,29 @@ const toggleRow = (id) => {
 watch(currentFilter, () => {
   selectedRows.value = []
 })
+
 // const deleteSelectedItems = async () => {
 //   if (selectedRows.value.length === 0) {
 //     alert('삭제할 내역을 선택해주세요.')
 //     return
 //   }
+
 //   const confirmDelete = confirm('선택한 내역을 삭제하시겠습니까?')
 //   if (!confirmDelete) return
+
 //   for (const id of selectedRows.value) {
 //     const item = monthlyHistory.value.find((item) => item.id === id)
 //     if (!item) continue
+
 //     const url =
 //       item.type === '수입'
 //         ? `http://localhost:5001/incomes/${id}`
 //         : `http://localhost:5001/expenses/${id}`
+
 //     try {
 //       const res = await fetch(url, { method: 'DELETE' })
 //       if (!res.ok) throw new Error('삭제 실패')
+
 //       // 삭제가 성공한 경우, 로컬 데이터도 제거
 //       if (item.type === '수입') {
 //         incomes.value = incomes.value.filter((i) => i.id !== id)
@@ -107,9 +144,11 @@ watch(currentFilter, () => {
 //       alert('삭제 중 오류가 발생했습니다.')
 //     }
 //   }
+
 //   selectedRows.value = [] // 선택 초기화
 // }
 </script>
+
 <template>
   <div class="historylist-container">
     <div class="historylist-title">
@@ -165,6 +204,7 @@ watch(currentFilter, () => {
       <!-- <button class="button btn-refresh btn addlist-btn" @click="refetchData">새로고침</button> -->
       <!-- <button type="button" class="btn addlist-btn">내역 추가</button> -->
     </div>
+
     <!-- 리스트 테이블 -->
     <div class="historylist-table">
       <table class="table">
@@ -248,6 +288,7 @@ watch(currentFilter, () => {
     </div>
   </div>
 </template>
+
 <style scoped>
 .historylist-container {
   display: flex;
@@ -381,6 +422,7 @@ watch(currentFilter, () => {
 }
 .deletebtn-wrapper {
   display: flex;
+
   justify-content: flex-end;
 }
 </style>

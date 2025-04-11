@@ -1,12 +1,13 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import { useRoute, useRouter } from 'vue-router'
+// import { useRoute, useRouter } from 'vue-router'
 import { ref, onMounted, nextTick } from 'vue'
-import { useUserStore } from '@/stores/user'
+// import { useUserStore } from '@/stores/user'
 import axios from 'axios'
 import '@/assets/spti.css'
-const userStore = useUserStore()
-const route = useRoute()
-const router = useRouter()
+// const userStore = useUserStore()
+// const route = useRoute()
+// const router = useRouter()
 const users = ref([])
 
 const originalQuestions = [
