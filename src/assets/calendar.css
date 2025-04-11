@@ -137,13 +137,13 @@
 }
 .span_list {
   position: relative;
-  right: 200px;
-  bottom: 300px;
+  right: 230px;
+  bottom: 400px;
 }
 .span_write {
   position: relative;
-  right: 600px;
-  top: 500px;
+  right: 550px;
+  top: 420px;
 }
 .list-box {
   position: absolute;

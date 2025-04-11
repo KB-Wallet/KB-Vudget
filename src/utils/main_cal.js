@@ -1,4 +1,3 @@
-<script setup>
 import { ref, computed, onMounted, watch } from 'vue'
 
 import router from '@/router'
@@ -169,90 +168,7 @@ function moveTotalList() {
 // function moveWritePage() {
 //   router.push({ path: '/WritePage' })
 // }
-</script>
 
-<template>
-  <div class="calendar-container">
-    <!-- 캘린더 상단 정보 (년/월/총수입/총지출) -->
-    <div class="calendar-header">
-      <h2 class="calendar-year">{{ currentYear }}년</h2>
-      <h2 class="calendar-month">{{ currentMonth + 1 }}월</h2>
-      <h4 class="totalIncomeMonth">총 수입 {{ totalIncomeMonth.toLocaleString() }}</h4>
-      <h4 class="totalExpensesMonth">총 지출 {{ totalExpensesMonth.toLocaleString() }}</h4>
-      <!-- 달변경버튼(전_1/후_2) -->
-      <div class="changebutton">
-        <button class="btn1" @click="changeMonth(-1)">&lt;</button>
-        <button class="btn2" @click="changeMonth(1)">&gt;</button>
-      </div>
-    </div>
-
-    <div class="calendar-grid">
-      <!-- 달력 표 (요일 부분) -->
-      <div v-for="day in weekDays" :key="day" class="day-header">
-        {{ day }}
-      </div>
-      <!-- 달력 표 (날짜 부분) - 셀로 그려냄-->
-      <div
-        v-for="(day, index) in calendarDays"
-        :key="index"
-        class="day-cell"
-        :class="{ inactive: day.inactive, today: day.isToday }"
-        @click="handleDayClick(day)"
-      >
-        <!-- 날짜 (숫자) 표시 -->
-        <div class="day-number">{{ day.date.getDate() }}</div>
-        <!-- 현재 달의 날짜만 표시하기 위한 조건 (amount의 v-if) -->
-        <div class="amounts" v-if="!day.inactive">
-          <!-- 수입, 지출, 잔액 표시 (현재 달만) -->
-          <div class="amountsincomes" v-if="dailyTotals[formatDateKey(day.date)]?.income">
-            수입 +{{ dailyTotals[formatDateKey(day.date)].income.toLocaleString() }}
-          </div>
-
-          <div class="amountsExpenses" v-if="dailyTotals[formatDateKey(day.date)]?.expense">
-            지출 -{{ dailyTotals[formatDateKey(day.date)].expense.toLocaleString() }}
-          </div>
-
-          <div class="balance" v-if="dailyTotals[formatDateKey(day.date)]">
-            잔액
-            {{
-              (
-                dailyTotals[formatDateKey(day.date)].income -
-                dailyTotals[formatDateKey(day.date)].expense
-              ).toLocaleString()
-            }}
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 페이지 이동 버튼; 아직 페이지 이동 이벤트 추가 안함 -->
-    <div class="move-totallist">
-      <button class="btn-move-totallist" @click="moveTotalList()">달 전체 리스트 보기</button>
-    </div>
-
-    <!-- 날짜 클릭시 뜨는 화면 -->
-    <div v-if="selectedDay" class="modal-overlay" @click.self="selectedDay = null">
-      <div class="modal-content">
-        <div>
-          <button class="close-btn" @click="selectedDay = null">닫기</button>
-          <!-- 클릭한 해당 날짜 출력 -->
-          <h3>{{ formatDate(selectedDay.date) }}</h3>
-        </div>
-        <div class="list_write_box">
-          <span class="span_list">
-            <DailyList :selectedDay="selectedDay" :formatDate="formatDate" class="list-box" />
-          </span>
-
-          <span class="span_write">
-            <WriteSet class="write-box" />
-          </span>
-        </div>
-        <!-- <button class="btn-move-writepage" @click="moveWritePage()">
-          해당 날짜 입력 페이지 이동
-        </button> -->
-      </div>
-    </div>
-  </div>
-</template>
-
-<style scoped></style>
+export function formatDate(date) {
+  return date.toLocaleDateString()
+}

@@ -1,127 +1,100 @@
 <script setup>
-// 유저 관련 데이터와 함수들
-import { useUserStore } from '@/stores/user'
-const user_login = useUserStore() // 로그인한 유저 정보를 가져오는 store
-
-// API URL 설정
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
-const API_URL_users = 'http://localhost:5001/users'
+import { useUserStore } from '@/stores/user'
+
+const props = defineProps({
+  selectedDay: Object,
+})
+
+const user_login = useUserStore()
+
+// API URL
 const API_URL_incomes = 'http://localhost:5001/incomes'
 const API_URL_expenses = 'http://localhost:5001/expenses'
 
-// 상태 관리할 변수들
-import { ref, onMounted } from 'vue'
-const users = ref([]) // 전체 사용자 데이터
-const incomes = ref([]) // 전체 수입 데이터
-const expenses = ref([]) // 전체 지출 데이터
-const incomes_login = ref([]) // 로그인한 유저의 수입 데이터
-const expenses_login = ref([]) // 로그인한 유저의 지출 데이터
+// 상태 변수
+const dailyIncomes = ref([])
+const dailyExpenses = ref([])
 
-// 데이터 가져오기 함수
+// 날짜 필터링용 포맷 함수 (YYYY-MM-DD)
+const formatDateKey = (date) => {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(
+    date.getDate(),
+  ).padStart(2, '0')}`
+}
+
 const fetchData = async () => {
   try {
-    console.log('ddd', incomes_login)
-    // 각각의 API에서 데이터를 가져옴
-    const response_users = await axios.get(API_URL_users)
-    const response_incomes = await axios.get(API_URL_incomes)
-    const response_expenses = await axios.get(API_URL_expenses)
+    const resIncomes = await axios.get(API_URL_incomes)
+    const resExpenses = await axios.get(API_URL_expenses)
 
-    // 응답 데이터를 상태 변수에 저장
-    users.value = response_users.data
-    incomes.value = response_incomes.data
-    expenses.value = response_expenses.data
+    const allIncomes = resIncomes.data.filter((item) => item.UserId === user_login.UserId)
+    const allExpenses = resExpenses.data.filter((item) => item.UserId === user_login.UserId)
 
-    // 로그인한 유저의 UserId로 필터링
-    incomes_login.value = incomes.value.filter((item) => item.UserId === user_login.UserId)
-    expenses_login.value = expenses.value.filter((item) => item.UserId === user_login.UserId)
+    const selectedDateStr = formatDateKey(new Date(props.selectedDay.date))
 
-    // 콘솔로 필터링된 데이터 출력
-    console.log('전체 users:', users.value)
-    console.log('전체 incomes:', incomes.value)
-    console.log('전체 expenses:', expenses.value)
-    // 로그인한 유저의 수입과 지출을 필터링하여 출력
-    // console.log('로그인한 유저의 수입:', incomes_login.value)
-    // console.log('로그인한 유저의 지출:', expenses_login.value)
+    dailyIncomes.value = allIncomes.filter((i) => i.date === selectedDateStr)
+    dailyExpenses.value = allExpenses.filter((e) => e.date === selectedDateStr)
+
+    console.log('✅ 선택된 날짜:', selectedDateStr)
+    console.log('📥 수입:', dailyIncomes.value)
+    console.log('📤 지출:', dailyExpenses.value)
   } catch (error) {
-    // 데이터 가져오기 실패 시 에러 출력
-    console.error('Error fetching data:', error)
+    console.error('데이터 불러오기 실패:', error)
   }
 }
 
-// 컴포넌트가 마운트되면 데이터를 가져옴
 onMounted(() => {
-  fetchData() // fetchData 함수 호출
+  fetchData()
 })
 
-// 수입 추가 후 새로고침 함수 (추가된 수입을 화면에 반영)
-const check = () => {
-  fetchData() // 데이터를 새로 가져옴
-}
-
-// 수입 삭제 함수
+// 삭제 함수 (옵션: 필요 없으면 지워도 됨)
 const deleteIncome = async (id) => {
-  console.log(id) // 삭제할 수입의 id
   try {
-    // 수입 삭제 요청
-    await axios.delete(`http://localhost:5001/incomes/${id}`)
-    console.log('삭제 성공!')
-    fetchData() // 데이터 새로고침
+    await axios.delete(`${API_URL_incomes}/${id}`)
+    fetchData()
   } catch (error) {
-    console.error('수입 삭제 실패:', error) // 삭제 실패 시 에러 출력
+    console.error('수입 삭제 실패:', error)
   }
 }
 
-// 지출 삭제 함수
 const deleteExpense = async (id) => {
-  console.log(id) // 삭제할 지출의 id
   try {
-    // 지출 삭제 요청
-    await axios.delete(`http://localhost:5001/expenses/${id}`)
-    console.log('삭제 성공!')
-    fetchData() // 데이터 새로고침
+    await axios.delete(`${API_URL_expenses}/${id}`)
+    fetchData()
   } catch (error) {
-    console.error('수입 삭제 실패:', error) // 삭제 실패 시 에러 출력
+    console.error('지출 삭제 실패:', error)
   }
 }
 </script>
 
 <template>
-  <!-- 헤더 제목 -->
-  <h3 class="header3">Vueget 기록</h3>
-
-  <!-- 수입과 지출 목록을 보여주는 박스 -->
+  <h3 class="header_mini">vudget</h3>
   <div class="list-box">
     <ul class="unordered_list">
-      <!-- 로그인한 유저의 수입 목록 -->
-      <li class="lists" v-for="i in incomes_login" :key="i.id">
+      <!-- 수입 -->
+      <li class="lists" v-for="i in dailyIncomes" :key="i.id">
         <div class="box_rev_cost">
-          <!-- 수입 항목의 벤더 이름 출력 -->
           <span class="list-name">{{ i.vendor }}</span>
-          <!-- 수입 텍스트 출력 -->
-          <span class="income"> 수입 </span>
-          <!-- 삭제 버튼 클릭 시 수입 삭제 함수 호출 -->
+          <span class="income">수입</span>
           <i class="fa-solid fa-trash i_con_trash" @click="deleteIncome(i.id)"></i>
         </div>
         <div>
-          <!-- 수입의 날짜, 카테고리, 금액 출력 -->
           <span class="date">{{ i.date }}</span>
           <span class="cate-name">{{ i.category }}</span>
           <span class="amount">{{ i.amount }}</span>
         </div>
       </li>
 
-      <!-- 로그인한 유저의 지출 목록 -->
-      <li class="lists" v-for="i in expenses_login" :key="i.id">
+      <!-- 지출 -->
+      <li class="lists" v-for="i in dailyExpenses" :key="i.id">
         <div>
-          <!-- 지출 항목의 벤더 이름 출력 -->
           <span class="list-name">{{ i.vendor }}</span>
-          <!-- 지출 텍스트 출력 -->
-          <span class="cost"> 지출 </span>
-          <!-- 삭제 버튼 클릭 시 지출 삭제 함수 호출 -->
+          <span class="cost">지출</span>
           <i class="fa-solid fa-trash i_con_trash" @click="deleteExpense(i.id)"></i>
         </div>
         <div>
-          <!-- 지출의 날짜, 카테고리, 금액 출력 -->
           <span class="date">{{ i.date }}</span>
           <span class="cate-name">{{ i.category }}</span>
           <span class="amount">{{ i.amount }}</span>
@@ -129,9 +102,6 @@ const deleteExpense = async (id) => {
       </li>
     </ul>
   </div>
-
-  <!-- 새로고침 버튼 (기능 구현되어 있음) -->
-  <button class="move-total" @click="check" style="display: none">새로고침</button>
 </template>
 <style scoped>
 @import '../../assets/DailyList.css';

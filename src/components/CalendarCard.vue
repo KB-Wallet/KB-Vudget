@@ -16,7 +16,7 @@ const currentMonth = computed(() => currentDate.value.getMonth())
 
 const weekDays = ['일', '월', '화', '수', '목', '금', '토']
 
-// ⭐ 현재 주의 일요일 기준 일주일 날짜 반환
+// 현재 주의 일요일 기준 일주일 날짜 반환
 function getWeekDays(date) {
   const startOfWeek = new Date(date)
   startOfWeek.setDate(date.getDate() - date.getDay()) // 일요일로 이동

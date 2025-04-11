@@ -41,6 +41,15 @@
       "description": "3월 월급",
       "payment": "이체",
       "vendor": "회사"
+    },
+    {
+      "id": "71ab",
+      "amount": "4,234,234",
+      "date": "2025-04-11",
+      "category": "식비",
+      "description": "234324",
+      "payment": "현금",
+      "vendor": "23423"
     }
   ],
   "expenses": [
@@ -85,14 +94,22 @@
       "vendor": "기후동행카드"
     },
     {
-      "id": "9",
-      "userId": 1,
-      "amount": 22000,
+      "id": "6466",
+      "amount": "123,123",
       "date": "2025-04-11",
-      "category": "식비",
-      "description": "치즈돈가스덮밥",
-      "payment": "",
-      "vendor": "동경규동"
+      "category": "",
+      "description": "123",
+      "payment": "현금",
+      "vendor": "123123"
+    },
+    {
+      "id": "76a0",
+      "amount": "3,123,123",
+      "date": "2025-04-08",
+      "category": "",
+      "description": "123123123",
+      "payment": "현금",
+      "vendor": "12312"
     }
   ],
   "stats": [
