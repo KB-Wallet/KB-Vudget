@@ -37,7 +37,7 @@ const router = createRouter({
 
     {
       path: '/WritePage',
-      name: writepage,
+      name: 'writepage',
       component: () => import('@/pages/WritePage.vue'),
     },
     {
@@ -49,10 +49,6 @@ const router = createRouter({
       path: '/EditMyPage',
       name: 'editmypage',
       component: () => import('@/components/MyPage/EditMyPage.vue'),
-    },
-    {
-      path: '/history',
-      component: () => import('@/pages/HistoryPage.vue'),
     },
     {
       path: '/Findpw',
