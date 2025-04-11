@@ -13,7 +13,6 @@ const router = createRouter({
       name: 'register',
       component: () => import('@/pages/Register.vue'),
     },
-
     {
       path: '/SPTI',
       name: 'spti',
@@ -34,7 +33,6 @@ const router = createRouter({
       name: 'calendarmain',
       component: () => import('@/pages/CalendarMain.vue'),
     },
-
     {
       path: '/WritePage',
       name: 'writepage',

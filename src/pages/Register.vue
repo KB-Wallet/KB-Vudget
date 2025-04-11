@@ -44,7 +44,7 @@ const register = async () => {
   <div class="container">
     <div class="left-half">
       <div class="logo_container">
-        <img src="@/icons/Welcome Vudget.svg" alt="logo" class="logo" />
+        <img src="@/icons/welcome.svg" alt="logo" class="logo" />
         <img :src="webintro" alt="webintro" class="webintro" />
         <img :src="webintro2" alt="webintro2" class="webintro2" />
       </div>

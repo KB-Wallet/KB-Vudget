@@ -1,30 +1,36 @@
 <script setup>
-import db from '@/../db.json'
 import { ref, onMounted, computed, watch } from 'vue'
-import dayjs from 'dayjs' // 🫠
-
-onMounted(() => {
-  console.log(db)
-})
+import dayjs from 'dayjs'
 
 const userId = ref(1)
-const selectedMonth = ref(dayjs()) // datepicker용 날짜 객체 사용
-const currentFilter = ref('전체') // 전체/수입/지출 필터 선택 상태
-const currentPage = ref(1) // 현재 페이지
-const itemsPerPage = 5 // 페이지당 list는 최대 7개
+const selectedMonth = ref(dayjs())
+const currentFilter = ref('전체')
+const currentPage = ref(1)
+const itemsPerPage = 5
 
-// 선택된 월 문자열 반환 (yyyy-MM)
+const incomes = ref([])
+const expenses = ref([])
+
+onMounted(async () => {
+  try {
+    const [incomeRes, expenseRes] = await Promise.all([
+      fetch('http://localhost:5001/incomes'),
+      fetch('http://localhost:5001/expenses'),
+    ])
+
+    incomes.value = await incomeRes.json()
+    expenses.value = await expenseRes.json()
+  } catch (err) {
+    console.error('데이터 로드 실패:', err)
+  }
+})
+
 const selectedMonthStr = computed(() => selectedMonth.value.format('YYYY-MM'))
-// UI 출력용 포맷: 2025년 4월
 const selectedMonthDisplay = computed(() => selectedMonth.value.format('YYYY년 M월'))
 
-// 좌우 버튼 비활성화 여부 계산 (첫/마지막 페이지 체크)
 const isFirstPage = computed(() => currentPage.value === 1)
-const totalPages = computed(() => Math.ceil(filteredHistory.value.length / itemsPerPage))
-const isLastPage = computed(() => currentPage.value === totalPages.value)
-
-// 내역 선택
 const selectedRows = ref([])
+
 const allChecked = computed({
   get: () =>
     selectedRows.value.length === paginatedHistory.value.length &&
@@ -34,31 +40,32 @@ const allChecked = computed({
   },
 })
 
-// 선택 월 내역 필터링
 const monthlyHistory = computed(() => {
-  const incomeHistory = db.incomes
+  const incomeHistory = incomes.value
     .filter((i) => i.userId === userId.value && i.date.startsWith(selectedMonthStr.value))
     .map((i) => ({ type: '수입', ...i }))
-  const expenseHistory = db.expenses
+
+  const expenseHistory = expenses.value
     .filter((e) => e.userId === userId.value && e.date.startsWith(selectedMonthStr.value))
     .map((e) => ({ type: '지출', ...e }))
+
   return [...incomeHistory, ...expenseHistory].sort((a, b) => new Date(a.date) - new Date(b.date))
 })
 
-// 필터 적용된 내역 계산 (전체 / 수입 / 지출)
 const filteredHistory = computed(() => {
   if (currentFilter.value === '전체') return monthlyHistory.value
   return monthlyHistory.value.filter((item) => item.type === currentFilter.value)
 })
 
-// 현재 페이지에 보여질 리스트 계산
+const totalPages = computed(() => Math.ceil(filteredHistory.value.length / itemsPerPage))
+const isLastPage = computed(() => currentPage.value === totalPages.value)
+
 const paginatedHistory = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage
   const end = start + itemsPerPage
   return filteredHistory.value.slice(start, end)
 })
 
-// 월 이동 함수 (왼쪽, 오른쪽 버튼)
 const goPrevMonth = () => {
   selectedMonth.value = selectedMonth.value.subtract(1, 'month')
   currentPage.value = 1
@@ -67,45 +74,52 @@ const goNextMonth = () => {
   selectedMonth.value = selectedMonth.value.add(1, 'month')
   currentPage.value = 1
 }
-
-// 페이지 이동 함수
 const goPage = (num) => {
   currentPage.value = num
 }
-
-//
 const toggleRow = (id) => {
-  selectedRows.value = [id] // ✅ 항상 한 줄만 선택되도록 고정
+  selectedRows.value = [id]
 }
-
 watch(currentFilter, () => {
-  selectedRows.value = [] // ✅ 필터 변경 시 선택 해제
+  selectedRows.value = []
 })
 
-// // 해당 내역의 날짜가 선택된 월에 속하는지 확인하는
-// const isInMonth = (dateStr, monthStr) => {
-//   return dateStr.startsWith(monthStr)
-// }
+const deleteSelectedItems = async () => {
+  if (selectedRows.value.length === 0) {
+    alert('삭제할 내역을 선택해주세요.')
+    return
+  }
 
-// // 월별 내역 가져오기
-// const monthlyHistory = computed(() => {
-//   const incomeHistory = db.incomes
-//     .filter((i) => i.userId === userId.value && isInMonth(i.date, selectedMonth.value))
-//     .map((i) => ({
-//       type: '수입',
-//       ...i,
-//     }))
+  const confirmDelete = confirm('선택한 내역을 삭제하시겠습니까?')
+  if (!confirmDelete) return
 
-//   const expenseHistory = db.expenses
-//     .filter((e) => e.userId === userId.value && isInMonth(e.date, selectedMonth.value))
-//     .map((e) => ({
-//       type: '지출',
-//       ...e,
-//     }))
+  for (const id of selectedRows.value) {
+    const item = monthlyHistory.value.find((item) => item.id === id)
+    if (!item) continue
 
-//   // 날짜순 정렬
-//   return [...incomeHistory, ...expenseHistory].sort((a, b) => new Date(a.date) - new Date(b.date))
-// })
+    const url =
+      item.type === '수입'
+        ? `http://localhost:5001/incomes/${id}`
+        : `http://localhost:5001/expenses/${id}`
+
+    try {
+      const res = await fetch(url, { method: 'DELETE' })
+      if (!res.ok) throw new Error('삭제 실패')
+
+      // 삭제가 성공한 경우, 로컬 데이터도 제거
+      if (item.type === '수입') {
+        incomes.value = incomes.value.filter((i) => i.id !== id)
+      } else {
+        expenses.value = expenses.value.filter((e) => e.id !== id)
+      }
+    } catch (err) {
+      console.error('삭제 중 오류 발생:', err)
+      alert('삭제 중 오류가 발생했습니다.')
+    }
+  }
+
+  selectedRows.value = [] // 선택 초기화
+}
 </script>
 
 <template>
@@ -173,7 +187,7 @@ watch(currentFilter, () => {
             <th style="width: 80px">분류</th>
             <th style="width: 130px">날짜</th>
             <th style="width: 120px">카테고리</th>
-            <th style="width: 120px">결제수단</th>
+            <!-- <th style="width: 120px">결제수단</th> -->
             <th style="width: 120px">거래처</th>
             <th style="width: 120px">금액</th>
             <th style="width: 200px">메모</th>
@@ -196,7 +210,7 @@ watch(currentFilter, () => {
             </td>
             <td>{{ item.date }}</td>
             <td>{{ item.category }}</td>
-            <td>{{ item.payment }}</td>
+            <!-- <td>{{ item.payment }}</td> -->
             <td>{{ item.vendor }}</td>
             <td>{{ item.amount.toLocaleString() }}원</td>
             <td>{{ item.description }}</td>
@@ -240,7 +254,9 @@ watch(currentFilter, () => {
         </nav>
       </div>
       <div class="deletebtn-wrapper">
-        <button type="button" class="btn selected-deletebtn">선택 내역 삭제</button>
+        <button type="button" class="btn selected-deletebtn" @click="deleteSelectedItems">
+          선택 내역 삭제
+        </button>
       </div>
     </div>
   </div>

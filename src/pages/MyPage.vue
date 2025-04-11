@@ -55,7 +55,7 @@ function closeImage() {
     </div>
     <div class="mypage-Rcontainer">
       <router-link to="/editmypage" class="link">회원정보수정</router-link>
-      <router-link to="/editmypage" class="link">소비 유형 검사</router-link>
+      <router-link to="/spti" class="link">소비 유형 검사</router-link>
       <button class="logout-btn" @click="logout">로그아웃</button>
     </div>
     <div :class="['modal-overlay', { active: isModalOpen }]" @click="closeImage">
@@ -67,13 +67,6 @@ function closeImage() {
   <div v-else>유저 정보를 불러오는 중입니다..</div>
 </template>
 <style scoped>
-html,
-body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  overflow: hidden;
-}
 .mypage-container {
   box-sizing: border-box;
   display: flex;
@@ -150,9 +143,8 @@ h2 {
 }
 .label {
   display: inline-block;
-  width: 100px; /* 너비 조정 가능 */
+  width: 100px;
   text-align: right;
-  margin-right: 60px;
 }
 .value {
   display: inline-block;
