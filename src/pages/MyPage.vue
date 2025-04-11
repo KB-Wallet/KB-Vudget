@@ -55,7 +55,7 @@ function closeImage() {
     </div>
     <div class="mypage-Rcontainer">
       <router-link to="/editmypage" class="link">회원정보수정</router-link>
-      <router-link to="/editmypage" class="link">소비 유형 검사</router-link>
+      <router-link to="/spti" class="link">소비 유형 검사</router-link>
       <button class="logout-btn" @click="logout">로그아웃</button>
     </div>
     <div :class="['modal-overlay', { active: isModalOpen }]" @click="closeImage">

@@ -1,12 +1,20 @@
 <script setup>
 import ReportCard from './ReportCard.vue'
 import CategoryCard from './CategoryCard.vue'
+import db from '@/../db.json'
+import { ref, computed } from 'vue'
+
+const userId = ref('1')
+const user = computed(() => db.users.find((u) => u.id === userId.value))
 </script>
 
 <template>
   <div class="report-slide-wrapper">
     <div class="report-slide-header">
-      <h2><span class="username">username</span> 님의 지출 리포트</h2>
+      <h2>
+        <span class="username">{{ user?.username }}</span
+        >님의 리포트
+      </h2>
       <p class="date">{{ currentDate }}</p>
     </div>
 
@@ -48,6 +56,7 @@ const currentDate = new Date().toLocaleDateString('ko-KR', {
 .report-slide-header > h2 {
   font-size: 1.2rem;
 }
+
 .username {
   color: #f5a623;
   font-weight: bold;

@@ -1,6 +1,7 @@
 <script setup>
 import ReportSlide from './ReportSlide.vue'
 import HistoryList from '../HistoryPage/HistoryList.vue'
+import CalendarCard from '../CalendarCard.vue'
 </script>
 
 <template>
@@ -33,10 +34,10 @@ import HistoryList from '../HistoryPage/HistoryList.vue'
       <!-- 슬라이드 이미지들 -->
       <div class="carousel-inner">
         <div class="carousel-item"><ReportSlide></ReportSlide></div>
-        <!-- <div class="carousel-item"><ReportSlide></ReportSlide></div> -->
-        <!-- <div class="carousel-item"><ReportSlide></ReportSlide></div> -->
         <div class="carousel-item active"><HistoryList></HistoryList></div>
-        <div class="carousel-item">Hi</div>
+        <div class="carousel-item"><CalendarCard></CalendarCard></div>
+        <!-- <div class="carousel-item"><CalendarCard></CalendarCard></div> -->
+        <!-- <div class="carousel-item"><CalendarCard></CalendarCard></div> -->
       </div>
 
       <!-- 이전 / 다음 버튼 -->
