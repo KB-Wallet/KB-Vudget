@@ -32,8 +32,8 @@ import CalendarCard from '../CalendarCard.vue'
       </div>
       <!-- 슬라이드 이미지들 -->
       <div class="carousel-inner">
-        <div class="carousel-item"><ReportSlide></ReportSlide></div>
-        <div class="carousel-item active"><HistorySlide></HistorySlide></div>
+        <div class="carousel-item active"><ReportSlide></ReportSlide></div>
+        <div class="carousel-item"><HistorySlide></HistorySlide></div>
         <div class="carousel-item"><CalendarCard></CalendarCard></div>
         <!-- <div class="carousel-item"><CalendarCard></CalendarCard></div> -->
         <!-- <div class="carousel-item"><CalendarCard></CalendarCard></div> -->

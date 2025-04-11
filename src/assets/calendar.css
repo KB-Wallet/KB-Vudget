@@ -188,20 +188,22 @@
   gap: 2px;
 }
 
-.amountsincomes {
+.amountsincomesC {
   color: lightskyblue;
-  font-size: 0.5rem;
+  font-size: 0.6rem;
+  margin-left: 5px;
 }
 
-.amountsExpenses {
+.amountsExpensesC {
   color: lightcoral;
-  font-size: 0.5rem;
+  font-size: 0.6rem;
+  margin-left: 5px;
 }
 
-.balance {
+/* .balance {
   color: gray;
   font-size: 0.5rem;
-}
+} */
 
 .move-totallist {
   margin-top: 1.5rem;

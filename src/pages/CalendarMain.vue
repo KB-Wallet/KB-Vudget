@@ -85,19 +85,34 @@ const totalIncomeMonth = ref(0)
 const stats = ref([])
 
 function updateMonthlyStats() {
-  //YYYY-MM 형식 포맷 (객체 키로 사용위함)
   const monthStr = `${currentYear.value}-${String(currentMonth.value + 1).padStart(2, '0')}`
-  //db.json 에 stat 객체에서 불러옴
-  const stat = stats.value.find((item) => item.month === monthStr)
 
-  if (stat) {
-    totalIncomeMonth.value = stat.totalIncome
-    totalExpensesMonth.value = stat.totalExpenses
-  } else {
-    totalIncomeMonth.value = 0
-    totalExpensesMonth.value = 0
-  }
+  const incomeSum = incomes.value
+    .filter((item) => item.date.startsWith(monthStr))
+    .reduce((sum, item) => sum + item.amount, 0)
+
+  const expenseSum = expenses.value
+    .filter((item) => item.date.startsWith(monthStr))
+    .reduce((sum, item) => sum + item.amount, 0)
+
+  totalIncomeMonth.value = incomeSum
+  totalExpensesMonth.value = expenseSum
 }
+
+// function updateMonthlyStats() {
+//   //YYYY-MM 형식 포맷 (객체 키로 사용위함)
+//   const monthStr = `${currentYear.value}-${String(currentMonth.value + 1).padStart(2, '0')}`
+//   //db.json 에 stat 객체에서 불러옴
+//   const stat = stats.value.find((item) => item.month === monthStr)
+
+//   if (stat) {
+//     totalIncomeMonth.value = stat.totalIncome
+//     totalExpensesMonth.value = stat.totalExpenses
+//   } else {
+//     totalIncomeMonth.value = 0
+//     totalExpensesMonth.value = 0
+//   }
+// }
 
 //일 에 해당하는 통계를 incomes 와 expenses에서 찾아서 반영
 // const totalIncomeDay = ref([])
@@ -177,8 +192,8 @@ function moveTotalList() {
     <div class="calendar-header">
       <h2 class="calendar-year">{{ currentYear }}년</h2>
       <h2 class="calendar-month">{{ currentMonth + 1 }}월</h2>
-      <h4 class="totalIncomeMonth">총 수입 {{ totalIncomeMonth.toLocaleString() }}</h4>
-      <h4 class="totalExpensesMonth">총 지출 {{ totalExpensesMonth.toLocaleString() }}</h4>
+      <h4 class="totalIncomeMonth">총 수입 {{ totalIncomeMonth.toLocaleString() }}원</h4>
+      <h4 class="totalExpensesMonth">총 지출 {{ totalExpensesMonth.toLocaleString() }}원</h4>
       <!-- 달변경버튼(전_1/후_2) -->
       <div class="changebutton">
         <button class="btn1" @click="changeMonth(-1)">&lt;</button>
@@ -204,15 +219,15 @@ function moveTotalList() {
         <!-- 현재 달의 날짜만 표시하기 위한 조건 (amount의 v-if) -->
         <div class="amounts" v-if="!day.inactive">
           <!-- 수입, 지출, 잔액 표시 (현재 달만) -->
-          <div class="amountsincomes" v-if="dailyTotals[formatDateKey(day.date)]?.income">
-            수입 +{{ dailyTotals[formatDateKey(day.date)].income.toLocaleString() }}
+          <div class="amountsincomesC" v-if="dailyTotals[formatDateKey(day.date)]?.income">
+            수입 + {{ dailyTotals[formatDateKey(day.date)].income.toLocaleString() }}원
           </div>
 
-          <div class="amountsExpenses" v-if="dailyTotals[formatDateKey(day.date)]?.expense">
-            지출 -{{ dailyTotals[formatDateKey(day.date)].expense.toLocaleString() }}
+          <div class="amountsExpensesC" v-if="dailyTotals[formatDateKey(day.date)]?.expense">
+            지출 - {{ dailyTotals[formatDateKey(day.date)].expense.toLocaleString() }}원
           </div>
 
-          <div class="balance" v-if="dailyTotals[formatDateKey(day.date)]">
+          <!-- <div class="balance" v-if="dailyTotals[formatDateKey(day.date)]">
             잔액
             {{
               (
@@ -220,7 +235,7 @@ function moveTotalList() {
                 dailyTotals[formatDateKey(day.date)].expense
               ).toLocaleString()
             }}
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

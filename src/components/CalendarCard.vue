@@ -139,8 +139,8 @@ function moveCalendar() {
     <div class="calendar-header">
       <h2 class="calendar-year">{{ currentYear }}년</h2>
       <h2 class="calendar-month">{{ currentMonth + 1 }}월</h2>
-      <h4 class="totalIncomeMonth">총 수입 {{ totalIncomeMonth.toLocaleString() }}</h4>
-      <h4 class="totalExpensesMonth">총 지출 {{ totalExpensesMonth.toLocaleString() }}</h4>
+      <h4 class="totalIncomeMonth">총 수입 {{ totalIncomeMonth.toLocaleString() }}원</h4>
+      <h4 class="totalExpensesMonth">총 지출 {{ totalExpensesMonth.toLocaleString() }}원</h4>
       <div class="changebutton">
         <button class="btn1" @click="changeWeek(-1)">&lt;</button>
         <button class="btn2" @click="changeWeek(1)">&gt;</button>
@@ -165,10 +165,10 @@ function moveCalendar() {
 
         <div class="amounts">
           <div class="amountsincomes" v-if="dailyTotals[formatDateKey(day.date)]?.income">
-            수입 + {{ dailyTotals[formatDateKey(day.date)].income.toLocaleString() }} 원
+            수입 + {{ dailyTotals[formatDateKey(day.date)].income.toLocaleString() }}원
           </div>
           <div class="amountsExpenses" v-if="dailyTotals[formatDateKey(day.date)]?.expense">
-            지출 - {{ dailyTotals[formatDateKey(day.date)].expense.toLocaleString() }} 원
+            지출 - {{ dailyTotals[formatDateKey(day.date)].expense.toLocaleString() }}원
           </div>
           <!-- <div class="balance" v-if="dailyTotals[formatDateKey(day.date)]">
             잔액
