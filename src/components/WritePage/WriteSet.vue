@@ -202,7 +202,7 @@ onMounted(() => {
           />
         </div>
         <!-- 지불 방식 선택 (현금 또는 카드) -->
-        <div class="form-check">
+        <div class="form-check" style="display: none">
           <input
             class="form-check-input"
             type="radio"
@@ -213,7 +213,7 @@ onMounted(() => {
           />
           <label class="form-check-label" for="cash"> 현금 </label>
         </div>
-        <div class="form-check">
+        <div class="form-check" style="display: none">
           <input
             class="form-check-input"
             type="radio"

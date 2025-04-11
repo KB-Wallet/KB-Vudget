@@ -6,7 +6,7 @@
       "email": "jiyoon@example.com",
       "password": "",
       "profileImg": "src/icons/profile.svg",
-      "targetBudget": 2000000,
+      "targetBudget": 500,
       "categories": [
         {
           "type": "income",
@@ -29,6 +29,12 @@
           "name": "쇼핑"
         }
       ]
+    },
+    {
+      "id": "22fa",
+      "username": "newuser1",
+      "email": "newuser1@gmail.com",
+      "password": "newuser"
     }
   ],
   "incomes": [
@@ -43,13 +49,13 @@
       "vendor": "회사"
     },
     {
-      "id": "71ab",
-      "amount": "4,234,234",
+      "id": "c299",
+      "amount": "5,600",
       "date": "2025-04-11",
-      "category": "식비",
-      "description": "234324",
-      "payment": "현금",
-      "vendor": "23423"
+      "category": "쇼핑",
+      "description": "DFG",
+      "payment": "카드",
+      "vendor": "DKTM"
     }
   ],
   "expenses": [
@@ -94,22 +100,54 @@
       "vendor": "기후동행카드"
     },
     {
-      "id": "6466",
-      "amount": "123,123",
+      "id": "9",
+      "userId": 1,
+      "amount": 22000,
       "date": "2025-04-11",
-      "category": "",
-      "description": "123",
-      "payment": "현금",
-      "vendor": "123123"
+      "category": "식비",
+      "description": "치즈돈가스덮밥",
+      "payment": "",
+      "vendor": "동경규동"
     },
     {
-      "id": "76a0",
-      "amount": "3,123,123",
-      "date": "2025-04-08",
-      "category": "",
-      "description": "123123123",
-      "payment": "현금",
-      "vendor": "12312"
+      "id": "10",
+      "userId": 1,
+      "amount": 150000,
+      "date": "2025-04-12",
+      "category": "쇼핑",
+      "description": "바지",
+      "payment": "",
+      "vendor": "옷"
+    },
+    {
+      "id": "11",
+      "userId": 1,
+      "amount": 50000,
+      "date": "2025-04-06",
+      "category": "식비",
+      "description": "곱창",
+      "payment": "",
+      "vendor": "점심 식사"
+    },
+    {
+      "id": "12",
+      "userId": 1,
+      "amount": 100000,
+      "date": "2025-04-11",
+      "category": "교통",
+      "description": "신한카드",
+      "payment": "",
+      "vendor": "저번 달 교통비"
+    },
+    {
+      "id": "13",
+      "userId": 1,
+      "amount": 122,
+      "date": "2025-04-11",
+      "category": "식비",
+      "description": "ㅇ널",
+      "payment": "",
+      "vendor": "중국지"
     }
   ],
   "stats": [

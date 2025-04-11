@@ -6,7 +6,7 @@ import Footer from './components/Footer.vue'
 const route = useRoute()
 
 // 숨길 경로들을 배열로 관리
-const hideLayoutRoutes = ['/', '/Register', '/Findinfo']
+const hideLayoutRoutes = ['/', '/Register', '/Findpw', '/SPTI']
 </script>
 
 <template>
