@@ -177,7 +177,7 @@ const resetSPTI = () => {
 }
 
 onMounted(async () => {
-  const res = await axios.get('http://localhost:5000/users')
+  const res = await axios.get('http://localhost:5001/users')
   users.value = res.data
 
   // 1. 셔플 먼저
