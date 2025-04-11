@@ -109,36 +109,42 @@
   background-color: white;
   padding: 20px;
   border-radius: 12px;
-  width: 95%;
-  height: 95%;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  position: relative;
-}
+  width: 65%;
+  height: 85%;
 
-.close-btn {
+  /* display: flex; */
+  /* flex-direction: column; */
+  gap: 20px;
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: transparent;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
 }
 
 .list_write_box {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
+  overflow-y: auto;
+  /* display: flex; */
+  margin: 0 auto;
+  /* flex-direction: row; */
+
+  /* justify-content: space-between; */
+  /* align-items: flex-start; */
+  width: 1000px;
+  height: 1000px;
   gap: 20px;
   margin-top: 20px;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+.span_list {
+  position: relative;
+  right: 200px;
+  bottom: 300px;
+}
+.span_write {
+  position: relative;
+  right: 600px;
+  top: 500px;
+}
 .list-box {
   position: absolute;
   left: 12px;
@@ -147,6 +153,16 @@
 .write-box {
   position: absolute;
   right: 12px;
+  /* border: px solid red; */
+}
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .totalIncomeMonth {
@@ -272,15 +288,15 @@
     width: 90%;
     padding: 16px;
   }
-
+  /*
   .list_write_box {
     flex-direction: column;
-  }
+  } */
 
-  .list-box,
+  /* .list-box,
   .write-box {
     width: 100%;
-  }
+  } */
 }
 
 /*모바일 */

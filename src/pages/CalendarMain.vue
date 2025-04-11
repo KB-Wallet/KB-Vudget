@@ -238,8 +238,13 @@ function moveTotalList() {
           <h3>{{ formatDate(selectedDay.date) }}</h3>
         </div>
         <div class="list_write_box">
-          <DailyList class="list-box" />
-          <WriteSet class="write-box" />
+          <span class="span_list">
+            <DailyList class="list-box" />
+          </span>
+
+          <span class="span_write">
+            <WriteSet class="write-box" />
+          </span>
         </div>
         <!-- <button class="btn-move-writepage" @click="moveWritePage()">
           해당 날짜 입력 페이지 이동

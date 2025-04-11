@@ -20,6 +20,7 @@ const expenses_login = ref([]) // 로그인한 유저의 지출 데이터
 // 데이터 가져오기 함수
 const fetchData = async () => {
   try {
+    console.log('ddd',incomes_login)
     // 각각의 API에서 데이터를 가져옴
     const response_users = await axios.get(API_URL_users)
     const response_incomes = await axios.get(API_URL_incomes)
@@ -117,11 +118,11 @@ const deleteExpense = async (id) => {
           <!-- 지출 텍스트 출력 -->
           <span class="cost"> 지출 </span>
           <!-- 삭제 버튼 클릭 시 지출 삭제 함수 호출 -->
-          <i class="fa-solid fa-trash" @click="deleteExpense(i.id)"></i>
+          <i class="fa-solid fa-trash i_con_trash" @click="deleteExpense(i.id)"></i>
         </div>
         <div>
           <!-- 지출의 날짜, 카테고리, 금액 출력 -->
-          <span class="date">{{ i.date }}</span>
+          <span class="date">{{ i.date }}</span  overflow-y: auto;>
           <span class="cate-name">{{ i.category }}</span>
           <span class="amount">{{ i.amount }}</span>
         </div>

@@ -18,7 +18,7 @@ const incomes = reactive({
   id: 1,
   userId: 1,
   amount: 3000000,
-  date: '2025-03-01',
+  date: '',
   category: '월급',
   description: '3월 월급',
   payment: '이체',
@@ -45,7 +45,7 @@ const send_list = async function () {
 
   incomes.id = Date.now
   incomes.amount = Number(amount.value).toLocaleString()
-
+  incomes.date = today.value
   incomes.category = cate.value
   incomes.description = memo.value
   incomes.vendor = place.value
@@ -158,7 +158,6 @@ onMounted(() => {
         <p class="small-write">Choose Expenditure</p>
       </span>
     </div>
-
     <div class="input-all">
       <div @click="cate_click">
         <span class="category spend-place input-box">카테고리 ▼</span>
