@@ -8,7 +8,7 @@ const userId = ref(0)
 <template>
   <div class="header-container">
     <!-- <img src="../../icons/vudget.svg" alt="vudgetLogo" style="width: 250px; height: 105px" /> -->
-    <router-link to="/main" style="text-decoration: none; cursor: pointer">
+    <router-link to="/" style="text-decoration: none; cursor: pointer">
       <h1 class="vudget-logo">Vudget</h1>
     </router-link>
     <div class="header-rcontainer">
