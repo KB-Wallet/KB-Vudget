@@ -44,8 +44,8 @@ onMounted(async () => {
 const refetchData = async () => {
   try {
     const [incomeRes, expenseRes] = await Promise.all([
-      fetch('http://localhost:5001/incomes'),
-      fetch('http://localhost:5001/expenses'),
+      fetch('https://vudget.glitch.me/incomes'),
+      fetch('https://vudget.glitch.me/expenses'),
     ])
 
     incomes.value = await incomeRes.json()

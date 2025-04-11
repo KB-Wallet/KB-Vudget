@@ -178,7 +178,7 @@ const resetSPTI = () => {
 }
 
 onMounted(async () => {
-  const res = await axios.get('http://localhost:5001/users')
+  const res = await axios.get('https://vudget.glitch.me/users')
   users.value = res.data
 
   // 1. 셔플 먼저

@@ -8,7 +8,7 @@ const isModalOpen = ref(false)
 const user = ref(null)
 onMounted(async () => {
   try {
-    const response = await axios.get('http://localhost:5001/users/1')
+    const response = await axios.get('https://vudget.glitch.me/users/1')
     user.value = response.data
   } catch (error) {
     console.error('유저 정보 불러오기 실패:', error)

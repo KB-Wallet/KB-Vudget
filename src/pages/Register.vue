@@ -27,7 +27,7 @@ const register = async () => {
   }
 
   try {
-    await axios.post('http://localhost:5001/users', {
+    await axios.post('https://vudget.glitch.me/users', {
       username: userName.value,
       email: userEmail.value,
       password: userPw.value,

@@ -15,8 +15,8 @@ const expenses = ref([])
 onMounted(async () => {
   try {
     const [incomeRes, expenseRes] = await Promise.all([
-      fetch('http://localhost:5001/incomes'),
-      fetch('http://localhost:5001/expenses'),
+      fetch('https://vudget.glitch.me/incomes'),
+      fetch('https://vudget.glitch.me/expenses'),
     ])
 
     incomes.value = await incomeRes.json()
@@ -100,8 +100,8 @@ const deleteSelectedItems = async () => {
 
     const url =
       item.type === '수입'
-        ? `http://localhost:5001/incomes/${id}`
-        : `http://localhost:5001/expenses/${id}`
+        ? `https://vudget.glitch.me/incomes/${id}`
+        : `https://vudget.glitch.me/expenses/${id}`
 
     try {
       const res = await fetch(url, { method: 'DELETE' })

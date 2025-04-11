@@ -9,7 +9,7 @@ import '@vuepic/vue-datepicker/dist/main.css'
 const users = ref({})
 onMounted(async () => {
   try {
-    const response = await axios.get('http://localhost:5001/users/1')
+    const response = await axios.get('https://vudget.glitch.me/users/1')
     users.value = response.data
   } catch (error) {
     console.error('데이터 불러오기 실패:', error)
@@ -77,8 +77,8 @@ const handleSubmit = async () => {
 
   const endpoint =
     selectedType.value === 'expense'
-      ? 'http://localhost:5001/expenses'
-      : 'http://localhost:5001/incomes'
+      ? 'https://vudget.glitch.me/expenses'
+      : 'https://vudget.glitch.me/incomes'
 
   // ✅ 기존 내역들 불러와서 id 계산
   const { data: existingRecords } = await axios.get(endpoint)

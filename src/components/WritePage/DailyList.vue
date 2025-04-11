@@ -10,8 +10,8 @@ const props = defineProps({
 const user_login = useUserStore()
 
 // API URL
-const API_URL_incomes = 'http://localhost:5001/incomes'
-const API_URL_expenses = 'http://localhost:5001/expenses'
+const API_URL_incomes = 'https://vudget.glitch.me/incomes'
+const API_URL_expenses = 'https://vudget.glitch.me/expenses'
 
 // 상태 변수
 const dailyIncomes = ref([])
