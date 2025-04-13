@@ -60,17 +60,170 @@ SPTI(Spending Personality Type Indicator) 검사와 함께 예산 설정 및 소
 ```
 ---
 ## 웹 사이트 주요 기능
-
+ - 로그인 & 로그아웃 & 회원가입 & 비밀번호 찾기 페이지
+ - 일주일간 지출 및 수입 캘린더 -> 메인 페이지
+ - 한달 지출 및 수입 시각화 차트 -> 메인 페이지
+ - 최신 지출 및 수입 목록 -> 메인 페이지
+ - 빠른 추가 버튼 -> 메인 페이지
+ - 한달 캘린터 페이지
+ - 상세 지출 및 수입 추가 페이지
+ - 마이페이지 ( 목표 금액 추가, 회원정보 수정, 프로필 등록)
+ - SPTI 검사 (소비 유형 검사) 페이지
 
 
 ---
 ## 프로젝트 구조
+<details>
+  <summary><strong>📁 프로젝트 구조 보기</strong></summary>
+<pre>
+📦src
+ ┣ 📂assets
+ ┃ ┣ 📜calendar.css  
+ ┃ ┣ 📜calendarcard.css  
+ ┃ ┣ 📜DailyList.css  
+ ┃ ┣ 📜findpw.css  
+ ┃ ┣ 📜login.css  
+ ┃ ┣ 📜main.css  
+ ┃ ┣ 📜register.css  
+ ┃ ┣ 📜spti.css  
+ ┃ ┣ 📜WritePage.css  
+ ┃ ┗ 📜WriteSet.css  
+ ┣ 📂components
+ ┃ ┣ 📂HistoryPage
+ ┃ ┃ ┣ 📜AddList.vue  
+ ┃ ┃ ┗ 📜HistoryList.vue  
+ ┃ ┣ 📂MainPage
+ ┃ ┃ ┣ 📜CategoryCard.vue  
+ ┃ ┃ ┣ 📜HistorySlide.vue  
+ ┃ ┃ ┣ 📜QuickPost.vue  
+ ┃ ┃ ┣ 📜ReportCard.vue  
+ ┃ ┃ ┣ 📜ReportSlide.vue  
+ ┃ ┃ ┣ 📜SliderView.vue  
+ ┃ ┃ ┗ 📜WeeklyCalendar.vue  
+ ┃ ┣ 📂MyPage
+ ┃ ┃ ┗ 📜EditMyPage.vue  
+ ┃ ┣ 📂WritePage
+ ┃ ┃ ┣ 📜DailyList.vue  
+ ┃ ┃ ┗ 📜WriteSet.vue  
+ ┃ ┣ 📜CalendarCard.vue  
+ ┃ ┣ 📜CategoryCard.vue  
+ ┃ ┣ 📜Footer.vue  
+ ┃ ┣ 📜Header.vue  
+ ┃ ┗ 📜ReportCard.vue  
+ ┣ 📂icons
+ ┃ ┣ 📜bear.svg  
+ ┃ ┣ 📜bear_submit.svg  
+ ┃ ┣ 📜calendar.svg  
+ ┃ ┣ 📜heart.svg  
+ ┃ ┣ 📜history.svg  
+ ┃ ┣ 📜profile.svg  
+ ┃ ┣ 📜radiobutton.svg  
+ ┃ ┣ 📜user.svg  
+ ┃ ┣ 📜vudget.svg  
+ ┃ ┣ 📜vudget_bear_only.svg  
+ ┃ ┣ 📜webintroduce.png  
+ ┃ ┣ 📜webintroduce2.png  
+ ┃ ┗ 📜welcome.svg  
+ ┣ 📂pages
+ ┃ ┣ 📂LJJ
+ ┃ ┃ ┗ 📜MainPage.vue  
+ ┃ ┣ 📜CalendarMain.vue  
+ ┃ ┣ 📜EditMyPage.vue  
+ ┃ ┣ 📜Findpw.vue  
+ ┃ ┣ 📜HistoryPage.vue  
+ ┃ ┣ 📜Login.vue  
+ ┃ ┣ 📜MainPage.vue  
+ ┃ ┣ 📜MyPage.vue  
+ ┃ ┣ 📜Register.vue  
+ ┃ ┣ 📜Spti.vue  
+ ┃ ┗ 📜WritePage.vue  
+ ┣ 📂router
+ ┃ ┗ 📜index.js  
+ ┣ 📂stores
+ ┃ ┣ 📜counter.js  
+ ┃ ┣ 📜dataStore.js  
+ ┃ ┗ 📜user.js  
+ ┣ 📂utils
+ ┃ ┣ 📜axios.js  
+ ┃ ┗ 📜main_cal.js  
+ ┣ 📜App.vue  
+ ┗ 📜main.js  
+</pre>
+</details>
 
 ### 🎞️플로우 차트
-
-### ERD
+<img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/flowchart_wallet.drawio.png?raw=true">
 
 ### 와이어 프레임
+<details>
+  <summary><strong> 🔔와이어 프레임 보기</strong></summary>
+<pre>
+<table>
+  <tr>
+    <td align="center">
+      <strong>🔐 로그인 페이지</strong><br/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/loginpage.png?raw=true" width="500"/>
+    </td>
+    <td align="center">
+      <strong>🔐 메인 페이지 (화면1)</strong><br/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/mainpage-layout1.png?raw=true" width="500"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <strong>🔐 메인 페이지 (화면2)</strong><br/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/mainpage-layout2.png?raw=true" width="500"/>
+    </td>
+    <td align="center">
+      <strong>🔐 메인 페이지 (화면3)</strong><br/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/mainpage-layout3.png?raw=true" width="500"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <strong> 📅 캘린더 페이지</strong><br/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/calendarpage.png?raw=true" width="500"/>
+    </td>
+    <td align="center">
+      <strong> ➕ 목록 추가 페이지</strong><br/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/addpage.png?raw=true" width="500"/>
+    </td>
+  </tr>
+   <tr>
+    <td align="center">
+      <strong> ➕ 목록 추가 과정 </strong><br/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/addingpage.png?raw=true" width="500"/>
+    </td>
+    <td align="center">
+      <strong> ✨ 마이 페이지 </strong><br/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/mypage.png?raw=true" width="500"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <strong> ✨ 마이 페이지 수정 </strong><br/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/mypage_edit.png?raw=true" width="500"/>
+    </td>
+    <td align="center">
+      <strong> ✨ 마이 페이지 수정 완료 알림창 </strong><br/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/mypage_edit_alert.png?raw=true" width="500"/>
+    </td>
+  </tr>
+   <tr>
+    <td align="center">
+      <strong> 🐥 SPTI 페이지 </strong><br/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/sptipage.png?raw=true" width="500"/>
+    </td>
+    <td align="center">
+      <strong> 🐥 SPTI 페이지 오류 알림 </strong><br/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/sptipage_err_alert.png?raw=true" width="500"/>
+    </td>
+  </tr>
+  
+</table>
+</pre>
+</details>
+
 ---
 
 ## 시작 가이드
