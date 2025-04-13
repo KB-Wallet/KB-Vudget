@@ -13,7 +13,7 @@ mz세대를 위한 SPTI (소비 성향 검사)와 직관적인 소비 분석, �
 |      이승리       |          박상현         |       이재정         |       송민지         |       김민정         |       주진혁         |                                                                                                               
 | :--: | :--: | :--: | :--: | :--: | :--: |
 |   <img src="https://avatars.githubusercontent.com/u/113532580?v=4" width=100>    |  <img src="https://avatars.githubusercontent.com/u/162774863?v=4" width=100>    |<img src="https://avatars.githubusercontent.com/u/201695929?v=4" width=100>    |<img src="https://avatars.githubusercontent.com/u/203580692?v=4" width=100>    |<img src="https://avatars.githubusercontent.com/u/101929817?v=4" width=100>    |<img src="https://avatars.githubusercontent.com/u/201695758?v=4" width=100>    |
-|   [@smilevictory](https://github.com/smilevictory)   |    [@ChaeyeonSeo](https://github.com/SANGHYUNBBB)  | [@Jaejeong Lee](https://github.com/Jaejeong-Lee) |  [@star075](https://github.com/star075)| [@ahddl](https://github.com/ahddl) |[@joojinhyeok](https://github.com/joojinhyeok) |
+|   [@smilevictory](https://github.com/smilevictory)   |    [@SANGHYUNBBB](https://github.com/SANGHYUNBBB)  | [@Jaejeong Lee](https://github.com/Jaejeong-Lee) |  [@star075](https://github.com/star075)| [@ahddl](https://github.com/ahddl) |[@joojinhyeok](https://github.com/joojinhyeok) |
 
 ---
 ## ✅프로젝트 소개 및 목적
