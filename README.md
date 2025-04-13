@@ -162,61 +162,61 @@ SPTI(Spending Personality Type Indicator) 검사와 함께 예산 설정 및 소
   <tr>
     <td align="center">
       <strong>🔐 로그인 페이지</strong><br/>
-      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/loginpage.png?raw=true" width="500"/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/loginpage.png?raw=true" width="400"/>
     </td>
     <td align="center">
       <strong>🔐 메인 페이지 (화면1)</strong><br/>
-      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/mainpage-layout1.png?raw=true" width="500"/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/mainpage-layout1.png?raw=true" width="400"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <strong>🔐 메인 페이지 (화면2)</strong><br/>
-      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/mainpage-layout2.png?raw=true" width="500"/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/mainpage-layout2.png?raw=true" width="400"/>
     </td>
     <td align="center">
       <strong>🔐 메인 페이지 (화면3)</strong><br/>
-      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/mainpage-layout3.png?raw=true" width="500"/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/mainpage-layout3.png?raw=true" width="400"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <strong> 📅 캘린더 페이지</strong><br/>
-      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/calendarpage.png?raw=true" width="500"/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/calendarpage.png?raw=true" width="400"/>
     </td>
     <td align="center">
       <strong> ➕ 목록 추가 페이지</strong><br/>
-      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/addpage.png?raw=true" width="500"/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/addpage.png?raw=true" width="400"/>
     </td>
   </tr>
    <tr>
     <td align="center">
       <strong> ➕ 목록 추가 과정 </strong><br/>
-      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/addingpage.png?raw=true" width="500"/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/addingpage.png?raw=true" width="400"/>
     </td>
     <td align="center">
       <strong> ✨ 마이 페이지 </strong><br/>
-      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/mypage.png?raw=true" width="500"/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/mypage.png?raw=true" width="400"/>
     </td>
   </tr>
   <tr>
     <td align="center">
       <strong> ✨ 마이 페이지 수정 </strong><br/>
-      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/mypage_edit.png?raw=true" width="500"/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/mypage_edit.png?raw=true" width="400"/>
     </td>
     <td align="center">
       <strong> ✨ 마이 페이지 수정 완료 알림창 </strong><br/>
-      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/mypage_edit_alert.png?raw=true" width="500"/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/mypage_edit_alert.png?raw=true" width="400"/>
     </td>
   </tr>
    <tr>
     <td align="center">
       <strong> 🐥 SPTI 페이지 </strong><br/>
-      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/sptipage.png?raw=true" width="500"/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/sptipage.png?raw=true" width="400"/>
     </td>
     <td align="center">
       <strong> 🐥 SPTI 페이지 오류 알림 </strong><br/>
-      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/sptipage_err_alert.png?raw=true" width="500"/>
+      <img src="https://github.com/KB-Wallet/KB-Vudget/blob/main/usecase/sptipage_err_alert.png?raw=true" width="400"/>
     </td>
   </tr>
   
