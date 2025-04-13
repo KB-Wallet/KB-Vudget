@@ -1,3 +1,7 @@
+body {
+  font-family: 'Baloo 2', sans-serif;
+  font-family: 'Baloo 2', 'Gowun Dodum', 'Noto Sans KR', sans-serif;
+}
 .container {
   display: flex;
   flex-direction: row;
