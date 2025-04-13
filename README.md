@@ -99,7 +99,7 @@ npm run dev
 | 이재정 | Frontend | 프로젝트 기획, UI/UX 디자인|
 | 송민지 | Frontend | 프로젝트 기획, UI/UX 디자인|
 | 김민정 | Frontend | 프로젝트 기획, UI/UX 디자인|
-| 주진혁 | 팀원 / Frontend |  프로젝트 기획, UI/UX 디자인| 마이페이지 - 회원정보수정 |
+| 주진혁 | 팀원 / Frontend |  프로젝트 기획, UI/UX 디자인, 마이페이지 - 회원정보수정 |
 
 ## 개선사항 및 소감
 
