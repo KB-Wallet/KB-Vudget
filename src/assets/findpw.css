@@ -1,7 +1,13 @@
+body {
+  font-family: 'Baloo 2', sans-serif;
+  font-family: 'Baloo 2', 'Gowun Dodum', 'Noto Sans KR', sans-serif;
+}
+
 .container {
   display: flex;
+  flex-direction: row;
   height: 100vh;
-  width: 100vw;
+  align-items: space-between;
 }
 
 .left-half {
@@ -13,6 +19,7 @@
 .right-half {
   flex: 1;
   background-color: #ffffff;
+  padding-bottom: 100px;
 }
 .find_container {
   position: absolute;
@@ -26,7 +33,7 @@
   gap: 10px; /* logo와 webintro 사이 간격 */
 }
 .logo {
-  width: 250px;
+  width: 300px;
   height: auto;
 }
 .webintro {
@@ -46,12 +53,14 @@
   margin-top: 60px;
 }
 .findpw-text {
-  font-size: 16px;
+  padding-top: 15px;
+  font-size: 20px;
 }
 
 .head_introduce {
   padding-top: 15px;
   font-size: 50px;
+  text-align: center;
 }
 .introduce {
   text-align: left;
@@ -62,10 +71,11 @@
 .infoForm {
   margin: 20px auto;
   padding: 30px;
+  text-align: center;
 }
 
-.userId,
-.userEmail {
+.inputUserId,
+.inputUserEmail {
   width: 70%;
   height: 60px;
   padding-top: 10px;
@@ -76,11 +86,10 @@
   font-size: 17px;
   box-sizing: border-box;
   transition: border-color 0.2s;
-
   text-align: left;
   padding-left: 40px;
 }
-.userEmail {
+.inputUserEmail {
   margin: 20px;
 }
 .btnFind {
@@ -92,4 +101,117 @@
   color: white;
   font-size: 20px;
   margin: 40px 0 5px 0;
+}
+
+@media (max-width: 767px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left-half,
+  .right-half {
+    width: 100%;
+    height: auto;
+  }
+
+  .logo_container,
+  .find_container {
+    width: 90%;
+    padding: 20px 0;
+    position: static;
+    transform: none;
+    margin: 0 auto;
+  }
+
+  .logo {
+    width: 180px;
+  }
+
+  .head_introduce {
+    font-size: 28px;
+  }
+
+  .introduce {
+    padding: 0 20px;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .loginForm,
+  .signup_Form,
+  .infoForm {
+    padding: 15px;
+  }
+
+  input,
+  .btnLogin,
+  .btnSignup,
+  .btnFind {
+    width: 90%;
+    font-size: 15px;
+    height: 48px;
+  }
+
+  .btnLogin,
+  .btnSignup,
+  .btnFind {
+    margin: 25px 0 5px 0;
+  }
+}
+
+/* 반응형 태블릿 (768px ~ 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left-half,
+  .right-half {
+    width: 100%;
+    height: auto;
+  }
+
+  .logo_container,
+  .find_container {
+    width: 85%;
+    padding: 25px 0;
+    position: static;
+    transform: none;
+    margin: 0 auto;
+  }
+
+  .logo {
+    width: 220px;
+  }
+
+  .head_introduce {
+    font-size: 34px;
+  }
+
+  .introduce {
+    padding: 0 50px;
+    font-size: 17px;
+    text-align: center;
+  }
+
+  .loginForm,
+  .signup_Form,
+  .infoForm {
+    padding: 20px;
+  }
+
+  input,
+  .btnLogin,
+  .btnSignup,
+  .btnFind {
+    width: 85%;
+    font-size: 16px;
+    height: 50px;
+  }
+
+  .btnLogin,
+  .btnSignup,
+  .btnFind {
+    margin: 30px 0 5px 0;
+  }
 }

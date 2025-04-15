@@ -4,8 +4,11 @@ import { ref } from 'vue'
 import '@/assets/findpw.css'
 import webintro from '@/icons/webintroduce.png'
 import webintro2 from '@/icons/webintroduce2.png'
+import Logo from '@/icons/welcome.svg'
+
 const userEmail = ref('')
 const userName = ref('')
+const userId = ref('')
 
 onMounted(() => {})
 
@@ -34,7 +37,7 @@ const findPw = async () => {
   <div class="container">
     <div class="left-half">
       <div class="find_container">
-        <img src="@/icons/welcome.svg" alt="logo" class="logo" />
+        <img :src="Logo" alt="logo" class="logo" />
         <img :src="webintro" alt="webintro" class="webintro" />
         <img :src="webintro2" alt="webintro2" class="webintro2" />
       </div>
@@ -43,7 +46,7 @@ const findPw = async () => {
       <div class="findpw">
         <h1 class="head_introduce">Find your PW</h1>
         <div class="introduce">
-          <p>
+          <p class="findpw-text">
             로그인하려고 했는데 아이디가 기억 안 나시나요?
             <br />
             비밀번호는 맞는 것 같은데 자꾸 틀렸다고요?
@@ -58,7 +61,7 @@ const findPw = async () => {
         <div class="infoForm">
           <p>
             <input
-              class="userEmail"
+              class="inputUserEmail"
               name="uemail"
               placeholder="Email address"
               v-model="userEmail"
@@ -67,7 +70,7 @@ const findPw = async () => {
           <p>
             <input
               name="uid"
-              class="userId"
+              class="inputUserId"
               placeholder="Please enter the last username you remember."
               type="ID"
               v-model="userId"

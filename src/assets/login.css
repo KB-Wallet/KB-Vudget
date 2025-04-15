@@ -1,7 +1,7 @@
 body {
-  font-family: 'Baloo 2', sans-serif;
   font-family: 'Baloo 2', 'Gowun Dodum', 'Noto Sans KR', sans-serif;
 }
+
 .container {
   display: flex;
   flex-direction: row;
@@ -63,6 +63,7 @@ body {
 .head_introduce {
   padding-top: 15px;
   font-size: 50px;
+  text-align: center;
 }
 .introduce {
   text-align: left;
@@ -73,6 +74,7 @@ body {
 .loginForm {
   margin: 20px auto;
   padding: 30px;
+  text-align: center;
 }
 
 .userEmail,

@@ -1,28 +1,41 @@
+body {
+  font-family: 'Baloo 2', sans-serif;
+  font-family: 'Baloo 2', 'Gowun Dodum', 'Noto Sans KR', sans-serif;
+}
+
 .container {
   display: flex;
   flex-direction: row;
-  min-height: calc(100vh - 104px);
-  width: 100%;
-  flex-wrap: wrap;
+  /* min-height: calc(100vh - 104px); */
+  height: 100vh;
+  /* flex-wrap: wrap; */
+  align-items: space-between;
 }
 
 .left-half {
   flex: 1;
   background-color: #8a8d8f;
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px 20px;
-  box-sizing: border-box;
+  box-sizing: border-box; */
+  position: relative;
 }
 
 .right-half {
   flex: 1;
   background-color: #ffffff;
+  padding-bottom: 100px;
 }
 .logo_container {
-  width: 100%;
-  max-width: 500px;
+  position: absolute;
+  /* width: 100%;
+  max-width: 500px; */
+  width: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,6 +66,7 @@
 .head_introduce {
   padding-top: 15px;
   font-size: 50px;
+  text-align: center;
 }
 .introduce {
   text-align: left;
@@ -62,11 +76,13 @@
 }
 .signup_Form {
   margin: 20px auto;
+  padding: 30px;
+  text-align: center;
 }
 .inputUserName,
 .inputUserEmail,
 .inputUserPw {
-  width: 65%;
+  width: 70%;
   height: 60px;
   padding-top: 10px;
   margin-bottom: 15px;
@@ -76,13 +92,12 @@
   font-size: 17px;
   box-sizing: border-box;
   transition: border-color 0.2s;
-
   text-align: left;
   padding-left: 40px;
 }
 
 .btnSignup {
-  width: 65%;
+  width: 70%;
   height: 60px;
   background-color: #ffbc00;
   border: none;
@@ -97,7 +112,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
   text-align: center;
 }
 .custom-radio {
@@ -109,11 +123,11 @@ input[type='radio'] {
 .custom-radio-label {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 10px;
   font-size: 15px;
   margin-top: 10px;
   cursor: pointer;
+  position: relative;
 }
 .custom-radio-img {
   width: 20px;
@@ -124,10 +138,6 @@ input[type='radio'] {
 
 input[type='radio']:checked + label > img {
   transform: scale(1.1);
-}
-
-.custom-radio-label {
-  position: relative;
 }
 
 input[type='radio']:checked + .custom-radio-label::after {
@@ -143,5 +153,98 @@ input[type='radio']:checked + .custom-radio-label::after {
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
+  }
+  .left-half,
+  .right-half {
+    width: 100%;
+    height: auto;
+  }
+
+  .logo_container {
+    width: 90%;
+    padding: 20px 0;
+    position: static;
+    transform: none;
+    margin: 0 auto;
+  }
+
+  .logo {
+    width: 180px;
+  }
+  .head_introduce {
+    font-size: 28px;
+  }
+
+  .introduce {
+    padding: 0 20px;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .signup_Form {
+    padding: 15px;
+  }
+  .inputUserName,
+  .inputUserEmail,
+  .inputUserPw,
+  .btnSignup {
+    width: 90%;
+    font-size: 15px;
+    height: 48px;
+  }
+
+  .btnSignup {
+    margin: 25px 0 5px 0;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left-half,
+  .right-half {
+    width: 100%;
+    height: auto;
+  }
+
+  .logo_container {
+    width: 85%;
+    padding: 25px 0;
+    position: static;
+    transform: none;
+    margin: 0 auto;
+  }
+
+  .logo {
+    width: 220px;
+  }
+
+  .head_introduce {
+    font-size: 34px;
+  }
+
+  .introduce {
+    padding: 0 50px;
+    font-size: 17px;
+    text-align: center;
+  }
+
+  .signup_Form {
+    padding: 20px;
+  }
+
+  .inputUserName,
+  .inputUserEmail,
+  .inputUserPw,
+  .btnSignup {
+    width: 85%;
+    font-size: 16px;
+    height: 50px;
+  }
+
+  .btnSignup {
+    margin: 30px 0 5px 0;
   }
 }
